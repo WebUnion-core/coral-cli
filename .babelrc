@@ -1,0 +1,12 @@
+{
+    "presets": [
+        "env",
+        "react",
+        "stage-2"
+    ],
+    "plugins": [
+        "transform-react-jsx",
+        "react-hot-loader/babel"
+    ],
+    "compact": false
+}

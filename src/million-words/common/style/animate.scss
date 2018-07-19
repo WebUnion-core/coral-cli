@@ -1,0 +1,11 @@
+@keyframes slide {
+    from {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(-33.33%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}

@@ -1,0 +1,6 @@
+{
+    "port": 2015,
+    "apps": [
+        { "name": "million-words", "title": "Million Words" }
+    ]
+}
