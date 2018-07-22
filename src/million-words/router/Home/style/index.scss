@@ -6,10 +6,19 @@
     position: relative;
 
     .bg-container {
+        position: relative;
         overflow: hidden;
         width: 100%;
         height: 14.5rem;
         border-bottom: 2.5rem solid rgba(0,0,0,0.75);
+
+        .icon-cog {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            font-size: 1.25rem;
+            color: #000000;
+        }
 
         .bg-img {
             width: 150%;

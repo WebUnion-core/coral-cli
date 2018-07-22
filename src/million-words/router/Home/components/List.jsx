@@ -7,11 +7,19 @@ export default class List extends React.Component {
     }
 
     render() {
+        const { list } = this.props.store;
+
         return (
             <ul className="article-list-container">
-                <Link to="/million-words/article">
-                    <li className="article-list-item">ITEM_NAME</li>
-                </Link>
+            {
+                list.map((item, index) => {
+                    return (
+                        <Link key={ index } to={ item.link }>
+                            <li className="article-list-item">{ item.text }</li>
+                        </Link>
+                    )
+                })
+            }
             </ul>
         )
     }

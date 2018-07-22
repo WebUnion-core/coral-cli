@@ -3,13 +3,18 @@ import './common/style/reset.scss';
 import React from 'react';
 import { render } from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
+import { Provider } from 'react-redux';
+import configureStore from './configureStore.js';
+const store = configureStore();
 
 //导入组件
 import App from './router/App.jsx';
 
 render(
     <AppContainer>
-        <App />
+        <Provider store={ store }>
+            <App />
+        </Provider>
     </AppContainer>,
     document.getElementById('app')
 );

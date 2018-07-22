@@ -27,6 +27,7 @@ module.exports = function setDevMode(webpackConfig) {
     // 开发模式server
     webpackConfig.devServer = {
         contentBase: DIST_PATH,
+        host: base.host,
         port: base.port,
         historyApiFallback: true,
         inline: true,

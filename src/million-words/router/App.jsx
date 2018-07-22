@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-import Home from './Home/Home.jsx';
-import ArticleCont from './ArticleCont/ArticleCont.jsx';
+import Home from './Home';
+import Setting from './Setting';
 
 export default class App extends React.Component {
     constructor(props) {
@@ -19,7 +19,7 @@ export default class App extends React.Component {
                 <div>
                     <Switch>
                         <Route path='/million-words/' component={ Home } exact />
-                        <Route path='/million-words/article' component={ ArticleCont } exact />
+                        <Route path='/million-words/setting' component={ Setting } exact />
                     </Switch>
 
                     <footer className="footer">FOOTER</footer>

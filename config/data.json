@@ -1,6 +1,7 @@
 {
     "port": 2015,
+    "host": "127.0.0.1",
     "apps": [
-        { "name": "million-words", "title": "Million Words" }
+        { "name": "million-words", "title": "模板" }
     ]
 }

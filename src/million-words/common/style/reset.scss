@@ -4,6 +4,7 @@
 	margin: 0;
 	padding: 0;
 	word-break: break-all;
+	line-height: normal;
 }
 @font-face {
 	font-family: "Kelson Sans Regular";
@@ -17,6 +18,7 @@ html {
 	background-color: #fcfcfc;
 	font-family: "Kelson Sans Regular";
 	cursor: pointer;
+	-webkit-tap-highlight-color: transparent;
 }
 
 ol,
@@ -46,11 +48,7 @@ input[type="text"],
 input[type="password"],
 textarea,
 select {
-	height: 1.7em;
-	width: 15em;
-	padding: 2px;
 	vertical-align: middle;
-	border: 1px solid #aaa;
 	outline: none;
 }
 
@@ -59,21 +57,13 @@ input[type="submit"],
 input[type="reset"],
 .button {
 	padding: 0.5em 1em;
-	border: 1px solid #0063bc;
-	border-radius: 0.5em 0.5em;
+	border: 0;
+	border-radius: 0.3em 0.3em;
 	background-color: #0063bc;
 	color: white;
 	font-weight: bold;
 	font-size: 0.8em;
 	text-align: center;
-	box-shadow: 2px 2px 2px 2px #aaa;
-}
-
-input[type="button"]:hover,
-input[type="submit"]:hover,
-input[type="reset"]:hover,
-.button:hover {
-	box-shadow: 0 0 0 0;
 }
 
 input[type="checkbox"] {
@@ -99,10 +89,9 @@ select {
 }
 
 main {
-    width: 100%;
-    max-width: 1080px;
-    margin: 0 auto;
-    font-family: "PingFang SC","Helvetica Neue","Hiragino Sans GB","Segoe UI","Microsoft YaHei","微软雅黑",sans-serif;
+	width: 100%;
+	max-width: 1080px;
+	margin: 0 auto;
 }
 
 footer {
