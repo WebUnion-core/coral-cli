@@ -6,10 +6,10 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
-const MODE = process.env.MODE;
+const MODE = process.env.NODE_ENV;
 
 const webpackConfig = {
-    mode: MODE.toLowerCase(),
+    mode: MODE,
     entry: {
         'vendor': [
             'react',
@@ -59,7 +59,7 @@ const webpackConfig = {
                     test: /node_modules/, // 指定是node_modules下的第三方包
                     chunks: 'initial',
                     name: 'vendor', // 打包后的文件名，任意命名
-                    priority: -10 // 设置优先级，防覆盖
+                    // priority: -10 // 设置优先级，防覆盖
                 }
             }
         },
@@ -76,16 +76,16 @@ const webpackConfig = {
     plugins: [
         // 注入常量
         new webpack.DefinePlugin({
-            __DEV__: String(MODE === 'DEVELOPMENT')
+            __DEV__: MODE === 'development'
         })
     ]
 }
 
 switch (MODE) {
-    case 'DEVELOPMENT':
+    case 'development':
         setDevMode(webpackConfig);
         break;
-    case 'PRODUCTION':
+    case 'production':
         setProdMode(webpackConfig);
         break;
     default:

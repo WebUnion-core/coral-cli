@@ -1,10 +1,13 @@
 const webpack = require('webpack');
 const path = require('path');
+const config = require('./data.json');
 
 // 插件
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+
+const DIST_PATH = path.resolve(__dirname, './../dist');
 
 // 生产模式打包配置
 module.exports = function setProdMode(webpackConfig) {
@@ -17,28 +20,32 @@ module.exports = function setProdMode(webpackConfig) {
         new MiniCssExtractPlugin({
             filename: '[name].[hash:8].css',
             chunkFilename: '[name].[hash:8].css'
-        }),
-
-        // 配置页面模板
-        new HtmlWebpackPlugin({
-            title: '欢迎访问WJT20的博客',
-            filename: path.resolve(__dirname, './index.html'),
-            template: path.resolve(__dirname, './src/template.ejs'),
-            hash: false,
-            minify: false
         })
     );
 
-    // TODO 设置打包入口，需优化
-    webpackConfig.entry['home/index'] = [
-        path.resolve(__dirname, './src/router/Home/entry.js')
-    ];
-
     // 设置打包出口
     webpackConfig.output = {
-        path: path.resolve(__dirname, './dist'),
-        publicPath: 'https://weijietao.github.io/wjt20/dist/',
-        filename: '[name].js',
-        chunkFilename: '[name].js'
+        path: path.resolve(__dirname, './../dist'),
+        publicPath: '/',
+        filename: '[name].[hash:8].js',
+        chunkFilename: '[name].[hash:8].js'
     };
+
+    config.apps.forEach(function(item) {
+        // 配置页面模板
+        webpackConfig.plugins.push(
+            new HtmlWebpackPlugin({
+                title: item.title,
+                filename: path.resolve(__dirname, './../dist/' + item.name + '/index.html'),
+                template: path.resolve(__dirname, './../src/' + item.name + '/template.ejs'),
+                hash: false,
+                minify: true
+            })
+        );
+
+        // 设置打包入口
+        webpackConfig.entry[item.name + '/bundle'] = [
+            path.resolve(__dirname, './../src/' + item.name + '/entry.js')
+        ];
+    });
 };

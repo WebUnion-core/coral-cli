@@ -1,6 +1,6 @@
 const webpack = require('webpack');
 const path = require('path');
-const base = require('./data.json');
+const config = require('./data.json');
 
 // 插件
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -27,8 +27,8 @@ module.exports = function setDevMode(webpackConfig) {
     // 开发模式server
     webpackConfig.devServer = {
         contentBase: DIST_PATH,
-        host: base.host,
-        port: base.port,
+        host: config.host,
+        port: config.port,
         historyApiFallback: true,
         inline: true,
         hot: true
@@ -42,7 +42,7 @@ module.exports = function setDevMode(webpackConfig) {
         chunkFilename: '[name].js'
     };
 
-    base.apps.forEach(function(item) {
+    config.apps.forEach(function(item) {
         // 配置页面模板
         webpackConfig.plugins.push(
             new HtmlWebpackPlugin({
@@ -58,7 +58,6 @@ module.exports = function setDevMode(webpackConfig) {
         webpackConfig.entry[item.name + '/bundle'] = [
             path.resolve(__dirname, './../src/' + item.name + '/entry.js'),
             'react-hot-loader/patch',
-            'babel-polyfill',
             'webpack-dev-server/client',
             'webpack/hot/only-dev-server'
         ];

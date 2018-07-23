@@ -10,6 +10,16 @@ const store = configureStore();
 //导入组件
 import App from './router/App.jsx';
 
+// const Root = __DEV__
+//              ? (<AppContainer>
+//                      <Provider store={ store }>
+//                          <App />
+//                      </Provider>
+//                  </AppContainer>)
+//              : (<Provider store={ store }>
+//                     <App />
+//                 </Provider>)
+
 render(
     <AppContainer>
         <Provider store={ store }>
@@ -20,6 +30,6 @@ render(
 );
 
 // 热更新通知
-if (module.hot && process.env.MODE === 'DEVELOPMENT'){
+if (module.hot){
     module.hot.accept();
 }
