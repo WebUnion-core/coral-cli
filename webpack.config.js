@@ -1,12 +1,61 @@
 const webpack = require('webpack');
 const path = require('path');
-const setDevMode = require('./config/development.config.js');
-const setProdMode = require('./config/production.config.js');
+
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const SpritesmithPlugin = require('webpack-spritesmith');
+
+const setDevMode = require('./config/development.config.js');
+const setProdMode = require('./config/production.config.js');
 
 const MODE = process.env.NODE_ENV;
+
+let spriteConfig;
+
+switch (process.env.SPRITE_TYPE) {
+    case 'intro':
+        spriteConfig = {
+            // 目标小图标
+            src: {
+                cwd: path.resolve(__dirname, './asset/intro'),
+                glob: '*.png'
+            },
+            // 输出雪碧图文件及样式文件
+            target: {
+                image: path.resolve(__dirname, './asset/intro1.png'),
+                css: path.resolve(__dirname, './asset/sprite-intro.scss')
+            },
+            // 样式文件中调用雪碧图地址写法
+            apiOptions: {
+                cssImageRef: './intro1.png'
+            },
+            spritesmithOptions: {
+                algorithm: 'left-right',
+            }
+        };
+        break;
+    default:
+        spriteConfig = {
+            // 目标小图标
+            src: {
+                cwd: path.resolve(__dirname, './asset/sprite'),
+                glob: '*.png'
+            },
+            // 输出雪碧图文件及样式文件
+            target: {
+                image: path.resolve(__dirname, './asset/sprite.png'),
+                css: path.resolve(__dirname, './asset/sprite.scss')
+            },
+            // 样式文件中调用雪碧图地址写法
+            apiOptions: {
+                cssImageRef: './sprite.png'
+            },
+            spritesmithOptions: {
+                algorithm: 'top-down',
+            }
+        };
+}
 
 const webpackConfig = {
     mode: MODE,
@@ -59,7 +108,7 @@ const webpackConfig = {
                     test: /node_modules/, // 指定是node_modules下的第三方包
                     chunks: 'initial',
                     name: 'vendor', // 打包后的文件名，任意命名
-                    // priority: -10 // 设置优先级，防覆盖
+                    priority: -10 // 设置优先级，防覆盖
                 }
             }
         },
@@ -77,7 +126,9 @@ const webpackConfig = {
         // 注入常量
         new webpack.DefinePlugin({
             __DEV__: MODE === 'development'
-        })
+        }),
+
+        new SpritesmithPlugin(spriteConfig)
     ]
 }
 

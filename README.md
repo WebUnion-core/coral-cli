@@ -1,5 +1,5 @@
 
-# react-world #
+# Bona Storm #
 
 ## 安装 ##
 
@@ -17,13 +17,11 @@ npm run build-dev
 npm run dev
 ```
 
-## 首页预览图 ##
+## 预览图 ##
 
-![image](./intro/home.png)
+![image](./asset/intro1.png)
 
-## 设置 ##
-
-![image](./intro/setting.png)
+预览图 1
 
 ---
 
