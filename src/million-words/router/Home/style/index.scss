@@ -1,5 +1,5 @@
-@import url("./../../../common/style/reset.scss");
 @import url("./../../../common/style/animate.scss");
+@import url("./../../../common/style/swiper.min.scss");
 
 /* 导航 */
 .nav-container {
@@ -50,14 +50,75 @@
     }
 }
 
-/* 列表 */
-.article-list-container {
-    padding: 0.5rem;
+/* 占一行列表 */
+.full-row-list-container {
+    .full-row-list {
+        .full-row-item {
+            display: flex;
+            align-items: center;
+            height: 6rem;
+            border-bottom: 1px solid #dcdcdc;
+            box-sizing: border-box;
 
-    .article-list-item {
-        padding: 0.75rem;
-        margin-bottom: 0.5rem;
-        border: 1px solid #dcdcdc;
-        box-shadow: 0.2rem 0.2rem 0.2rem 0.2rem #ececec;
+            .figure {
+                width: 4rem;
+                height: 4rem;
+                margin: 1rem;
+                border: 1px solid #dcdcdc;
+            }
+
+            .text {}
+        }
+    }
+}
+
+/* 滚动列表 */
+.scroll-list-container {
+    background-color: #ffffff;
+    padding: 0 20px;
+    border-bottom: 0.3rem solid #ececec;
+
+    .scroll-list {
+        position: relative;
+        width: 200%;
+        height: 8rem;
+
+        .scroll-item {
+            display: flex;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+
+            margin: 1rem 0;
+            height: 6rem;
+            background-color: #ffffff;
+            border: 1px solid #dcdcdc;
+            box-sizing: border-box;
+        }
+    }
+}
+
+/* 半侧列表 */
+.half-side-list-container {
+    overflow: hidden;
+    border-bottom: 0.3rem solid #ececec;
+
+    .half-side-list {
+        .half-side-item {
+            float: left;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 50%;
+            height: 6rem;
+            box-sizing: border-box;
+
+            &:first-of-type {
+                border-right: 1px solid #dcdcdc
+            }
+        }
     }
 }

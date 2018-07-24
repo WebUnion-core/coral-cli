@@ -9,7 +9,59 @@ export default (state = {}, action) => {
             return state = {
                 homeData: {
                     title: 'USER_NAME',
-                    list: [
+                    scrollList: [
+                        {
+                            link: '/million-words/',
+                            text: 'ITEM_NAME'
+                        },
+                        {
+                            link: '/million-words/',
+                            text: 'ITEM_NAME'
+                        },
+                        {
+                            link: '/million-words/',
+                            text: 'ITEM_NAME'
+                        },
+                        {
+                            link: '/million-words/',
+                            text: 'ITEM_NAME'
+                        },
+                        {
+                            link: '/million-words/',
+                            text: 'ITEM_NAME'
+                        }
+                    ],
+                    halfSideList: [
+                        [
+                            {
+                                link: '/million-words/',
+                                text: 'ITEM_NAME'
+                            },
+                            {
+                                link: '/million-words/',
+                                text: 'ITEM_NAME'
+                            }
+                        ],
+                        [
+                            {
+                                link: '/million-words/',
+                                text: 'ITEM_NAME'
+                            },
+                            {
+                                link: '/million-words/',
+                                text: 'ITEM_NAME'
+                            }
+                        ]
+                    ],
+                    fullRowList: [
+                        {
+                            link: '/million-words/',
+                            text: 'ITEM_NAME'
+                        },
+                        {
+                            link: '/million-words/',
+                            text: 'ITEM_NAME'
+                        },
                         {
                             link: '/million-words/',
                             text: 'ITEM_NAME'

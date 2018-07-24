@@ -25,6 +25,7 @@ class Setting extends React.Component {
     }
 
     render() {
+        const { setSettingData } = this.props;
         const { settingData } = this.props[prefix];
         const { text, ifShow } = settingData.toastCtrler;
 
@@ -32,12 +33,13 @@ class Setting extends React.Component {
             <div className="setting-container">
                 <HeadBar title="SETTING" />
 
-                <List store={ this.props[prefix] } setSettingData={ this.props.setSettingData } />
+                <List store={ this.props[prefix] }
+                      setSettingData={ setSettingData } />
 
                 <Toast text={ text }
                        ifShow={ ifShow }
                        toastPrefix='toastCtrler'
-                       toggleCallback={ this.props.setSettingData }
+                       toggleCallback={ setSettingData }
                        store={ this.props[prefix] } />
             </div>
         )

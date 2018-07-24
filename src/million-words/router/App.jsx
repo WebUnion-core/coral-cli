@@ -9,10 +9,6 @@ export default class App extends React.Component {
         super(props);
     }
 
-    componentWillMount() {
-        console.log(__DEV__);
-    }
-
     render() {
         return (
             <Router>

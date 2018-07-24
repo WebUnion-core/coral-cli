@@ -10,16 +10,6 @@ const store = configureStore();
 //导入组件
 import App from './router/App.jsx';
 
-// const Root = __DEV__
-//              ? (<AppContainer>
-//                      <Provider store={ store }>
-//                          <App />
-//                      </Provider>
-//                  </AppContainer>)
-//              : (<Provider store={ store }>
-//                     <App />
-//                 </Provider>)
-
 render(
     <AppContainer>
         <Provider store={ store }>

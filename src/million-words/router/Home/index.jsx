@@ -10,7 +10,9 @@ import HeadBar from './../../common/components/head-bar';
 
 // 子组件
 import Nav from './components/Nav.jsx';
-import List from './components/List.jsx';
+import FullRowList from './components/FullRowList.jsx';
+import ScrollList from './components/ScrollList.jsx';
+import HalfSideList from './components/HalfSideList.jsx';
 
 // 入口前缀
 const prefix = 'Home';
@@ -20,21 +22,15 @@ class Home extends React.Component {
         super(props);
     }
 
-    componentDidMount() {
-        setTimeout(() => {
-            this.props.setHomeData({
-                title: 'WJT20'
-            }, this.props[prefix]);
-        }, 10000);
-    }
-
     render() {
         const { homeData } = this.props[prefix];
 
         return (
             <div className="main-container">
                 <Nav store={ homeData } />
-                <List store={ homeData } />
+                <ScrollList store={ homeData } />
+                <HalfSideList store={ homeData } />
+                <FullRowList store={ homeData } />
             </div>
         )
     }
