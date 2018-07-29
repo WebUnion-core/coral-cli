@@ -7,6 +7,7 @@ import actions from './../../actions';
 
 // 通用组件
 import Toast from './../../common/components/toast';
+import TabsFooter from './../../common/components/tabs-footer';
 
 // 子组件
 import List from './components/List.jsx';
@@ -14,7 +15,7 @@ import List from './components/List.jsx';
 // 入口前缀
 const prefix = 'Setting';
 
-class Setting extends React.Component {
+class Container extends React.Component {
     constructor(props) {
         super(props);
     }
@@ -26,6 +27,7 @@ class Setting extends React.Component {
     render() {
         const { setSettingData } = this.props;
         const { settingData } = this.props[prefix];
+        const { footTabs } = this.props['Public'].publicData;
         const { text, ifShow } = settingData.toastCtrler;
 
         return (
@@ -38,6 +40,8 @@ class Setting extends React.Component {
                        toastPrefix='toastCtrler'
                        toggleCallback={ setSettingData }
                        store={ this.props[prefix] } />
+
+                <TabsFooter list={ footTabs } defaultIndex={ 1 } />
             </div>
         )
     }
@@ -47,6 +51,7 @@ class Setting extends React.Component {
 function mapStateToProps(state) {
     return {
         [prefix]: state[prefix],
+        ['Public']: state['Public'],
     }
 }
 
@@ -59,4 +64,4 @@ function mapDispatchToProps(dispatch) {
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(Setting);
+)(Container);

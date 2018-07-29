@@ -5,18 +5,11 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import actions from './../../actions';
 
-// 通用组件
-import TabsFooter from './../../common/components/tabs-footer';
-
-// 子组件
-import Nav from './components/Nav.jsx';
-import FullRowList from './components/FullRowList.jsx';
-import ScrollList from './components/ScrollList.jsx';
-import HalfSideList from './components/HalfSideList.jsx';
-import TopIconList from './components/TopIconList.jsx';
-
 // 入口前缀
-const prefix = 'Home';
+const prefix = 'Clock';
+
+import HeadTabs from './components/HeadTabs.jsx';
+import ClockDisplayer from './components/ClockDisplayer.jsx';
 
 class Container extends React.Component {
     constructor(props) {
@@ -28,18 +21,13 @@ class Container extends React.Component {
     }
 
     render() {
-        const { homeData } = this.props[prefix];
-        const { footTabs } = this.props['Public'].publicData;
+        const { setClockData } = this.props;
+        const { clockData } = this.props[prefix];
 
         return (
-            <div className="container main-container">
-                <Nav store={ homeData } />
-                <TopIconList store={ homeData } />
-                <ScrollList store={ homeData } />
-                <HalfSideList store={ homeData } />
-                <FullRowList store={ homeData } />
-
-                <TabsFooter list={ footTabs } defaultIndex={ 0 } />
+            <div className="container clock-container">
+                <HeadTabs store={ clockData } />
+                <ClockDisplayer store={ clockData } />
             </div>
         )
     }
@@ -49,7 +37,6 @@ class Container extends React.Component {
 function mapStateToProps(state) {
     return {
         [prefix]: state[prefix],
-        ['Public']: state['Public'],
     }
 }
 

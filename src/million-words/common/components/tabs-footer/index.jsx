@@ -15,10 +15,11 @@ export default class TabsFooter extends React.Component {
     }
 
     clickTab(event, item, index) {
+        const { clickHandle = () => {} } = this.props;
         this.setState({
             activeIndex: index
         });
-        this.props.clickHandle(event, item);
+        clickHandle(event, item);
     }
 
     render() {
@@ -29,7 +30,9 @@ export default class TabsFooter extends React.Component {
             <ul className="tabs-footer-list flex-center">
             {
                 list.map((item, index) => {
-                    const ifActive = (defaultIndex && index === defaultIndex) || (index === activeIndex);
+                    const ifActive = item.link
+                                     ? (typeof defaultIndex === 'number' && index === defaultIndex)
+                                     : (index === activeIndex);
 
                     return (
                         item.link
@@ -37,26 +40,14 @@ export default class TabsFooter extends React.Component {
                                 to={ item.link }
                                 style={{ width: `${ 100 / list.length }%` }} >
                                 <li onClick={ (e) => this.clickTab(e, item, index) }
-                                    className={
-                                        `item ${
-                                            ifActive
-                                            ? 'active'
-                                            : ''
-                                        }`
-                                    } >
+                                    className={ `item ${ ifActive ? 'active' : '' }` } >
                                     <p className="row"><i className={ `icon ${ item.icon }${ ifActive ? '-active' : '' }` }></i></p>
                                     <p className="row"><span className="text">{ item.name }</span></p>
                                 </li>
                           </Link>
                         : <li key={ index }
                               onClick={ (e) => this.clickTab(e, item, index) }
-                              className={
-                                  `item ${
-                                      ifActive
-                                      ? 'active'
-                                      : ''
-                                  }`
-                              }
+                              className={ `item ${ ifActive ? 'active' : '' }` }
                               style={{ width: `${ 100 / list.length }%` }}>
                               <p className="row"><i className={ `icon ${ item.icon }${ ifActive ? '-active' : '' }` }></i></p>
                               <p className="row"><span className="text">{ item.name }</span></p>

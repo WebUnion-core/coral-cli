@@ -1,0 +1,37 @@
+$themeColor: #00A79D;
+
+.clock-container {
+    // 头部tab
+    .head-tabs-container {
+        height: 3.79rem;
+        background-color: $themeColor;
+        color: #ffffff;
+
+        .head-tabs-list {
+            width: 17.67rem;
+            height: inherit;
+            margin: 0 auto;
+
+            .head-tabs-item {
+                float: left;
+                width: 33.33%;
+                height: inherit;
+                opacity: 0.5;
+
+                &.active {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+
+    // 时钟主体
+    .clock-displayer-container {
+        width: 100%;
+        background-color: $themeColor;
+
+        .clock-bg {
+            width: 100%;
+        }
+    }
+}

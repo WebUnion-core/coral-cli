@@ -1,10 +1,14 @@
+import Public from './Public.js';
 import Home from './Home.js';
 import Setting from './Setting.js';
+import Clock from './Clock.js';
 
-let actions = {};
+const actions = {};
 Object.assign(actions, {
+    ...Public,
     ...Home,
-    ...Setting
+    ...Setting,
+    ...Clock
 });
 
 export default actions;
