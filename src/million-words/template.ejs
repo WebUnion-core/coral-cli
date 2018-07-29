@@ -37,11 +37,14 @@
                 var clientWidth = docEl.clientWidth > win.innerWidth
                                   ? win.innerWidth
                                   : docEl.clientWidth; // 处理一些移动设备中获取到怪异设备宽度的情况
+                var fontSize;
 
                 if (clientWidth >= 720) { // 大于峰值规定一致的字体大小
-                    win.remFontSize = docEl.style.fontSize = '32px';
+                    fontSize = docEl.style.fontSize = '32px';
+                    win.remFontSize = parseInt(fontSize, 10);
                 } else {
-                    win.remFontSize = docEl.style.fontSize = clientWidth * 32 / 720 + 'px'; // 等比例缩放
+                    fontSize = docEl.style.fontSize = clientWidth * 32 / 720 + 'px'; // 等比例缩放
+                    win.remFontSize = parseInt(fontSize, 10);
                 }
             };
 

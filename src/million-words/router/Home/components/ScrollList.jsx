@@ -25,7 +25,10 @@ export default class ScrollList extends React.Component {
                         return (
                             <li className="swiper-slide" key={ index }>
                                 <Link to={ item.link }>
-                                    <div className="scroll-item">{ item.text }</div>
+                                    <div className="scroll-item">
+                                        <figure className="img"></figure>
+                                        <p className="text">{ item.text }</p>
+                                    </div>
                                 </Link>
                             </li>
                         )

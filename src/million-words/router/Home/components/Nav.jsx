@@ -13,8 +13,8 @@ export default class Nav extends React.Component {
             <nav className="nav-container">
                 <figure className="bg-container">
                     <img className="bg-img" src={ require('./../../../images/w1.jpg') } />
-                    <Link to={ settingLink }><i className="icon-cog"></i></Link>
                 </figure>
+
                 <figure className="avator-container">
                     <img className="avator" src={ require('./../../../images/w2.png') } />
                     <strong className="user-name">{ title }</strong>

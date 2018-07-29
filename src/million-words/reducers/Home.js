@@ -25,10 +25,6 @@ export default (state = {}, action) => {
                         {
                             link: '/million-words/',
                             text: 'ITEM_NAME'
-                        },
-                        {
-                            link: '/million-words/',
-                            text: 'ITEM_NAME'
                         }
                     ],
                     halfSideList: [

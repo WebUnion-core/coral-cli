@@ -15,7 +15,7 @@ export default class HeadBar extends React.Component {
 
         return (
             <h1 className="head-bar">
-                <i onClick={ () => window.history.back() } className="icon-arrow-left back-icon"></i>
+                <i onClick={ () => window.history.back() } className="icon icon-back"></i>
                 <span>{ title || 'BAR_TITLE' }</span>
             </h1>
         )

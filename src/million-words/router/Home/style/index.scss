@@ -4,21 +4,14 @@
 /* 导航 */
 .nav-container {
     position: relative;
+    border-bottom: 2.2rem solid #046761;
+    opacity: 0.85;
 
     .bg-container {
         position: relative;
         overflow: hidden;
         width: 100%;
-        height: 14.5rem;
-        border-bottom: 2.5rem solid rgba(0,0,0,0.75);
-
-        .icon-cog {
-            position: absolute;
-            top: 0.5rem;
-            right: 0.5rem;
-            font-size: 1.25rem;
-            color: #000000;
-        }
+        height: 5rem;
 
         .bg-img {
             width: 150%;
@@ -28,24 +21,55 @@
 
     .avator-container {
         position: absolute;
-        bottom: 0.625rem;
+        bottom: 0;
         width: 98%;
+        height: 3.5rem;
 
         .avator {
             display: block;
             float: right;
+            box-sizing: border-box;
             width: 3.75rem;
             height: 3.75rem;
+            margin-top: 1.75rem;
             border-radius: 3.75rem 3.75rem;
             background-color: #ffffff;
-            border: 0.2rem solid #0f85f2;
+            border: 0.2rem solid #0EA198;
         }
 
         .user-name {
             position: absolute;
             bottom: 0;
-            right: 4.5rem;
+            right: 4.25rem;
             color: #ffffff;
+            top: 3.8rem;
+            margin: auto;
+            height: 1rem;
+        }
+    }
+}
+
+/* 顶部icon列表 */
+.top-icon-list-container {
+    border-bottom: 0.3rem solid #ececec;
+
+    .top-icon-list {
+        overflow: hidden;
+        padding: 1.1rem 0 0;
+
+        .top-icon-item {
+            float: left;
+            width: 20%;
+            padding-bottom: 0.8rem;
+            text-align: center;
+
+            .icon {
+                border-radius: 0.35rem 0.35rem;
+            }
+
+            .text {
+                font-size: 0.65rem;
+            }
         }
     }
 }
@@ -91,7 +115,6 @@
             -webkit-box-align: center;
             -ms-flex-align: center;
             align-items: center;
-
             margin: 1rem 0;
             height: 6rem;
             background-color: #ffffff;
@@ -117,7 +140,7 @@
             box-sizing: border-box;
 
             &:first-of-type {
-                border-right: 1px solid #dcdcdc
+                border-right: 1px solid #dcdcdc;
             }
         }
     }

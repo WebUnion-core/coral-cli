@@ -13,6 +13,7 @@ import Nav from './components/Nav.jsx';
 import FullRowList from './components/FullRowList.jsx';
 import ScrollList from './components/ScrollList.jsx';
 import HalfSideList from './components/HalfSideList.jsx';
+import TopIconList from './components/TopIconList.jsx';
 
 // 入口前缀
 const prefix = 'Home';
@@ -26,8 +27,9 @@ class Home extends React.Component {
         const { homeData } = this.props[prefix];
 
         return (
-            <div className="main-container">
+            <div className="container main-container">
                 <Nav store={ homeData } />
+                <TopIconList />
                 <ScrollList store={ homeData } />
                 <HalfSideList store={ homeData } />
                 <FullRowList store={ homeData } />

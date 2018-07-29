@@ -11,7 +11,7 @@
     "start-prod-server": "set NODE_ENV=production&&node server.js",
     "watch": "nodemon --exec npm run start-dev-server",
     "build": "babel interface -d build",
-    "intro": "set SPRITE_TYPE=intro&&npm run build-dev"
+    "build-sprite": "webpack --colors&&node ./bin/reset-sprite.js"
   },
   "author": "WebUnion",
   "license": "ISC",

@@ -6,7 +6,6 @@ import { connect } from 'react-redux';
 import actions from './../../actions';
 
 // 通用组件
-import HeadBar from './../../common/components/head-bar';
 import Toast from './../../common/components/toast';
 
 // 子组件
@@ -30,9 +29,7 @@ class Setting extends React.Component {
         const { text, ifShow } = settingData.toastCtrler;
 
         return (
-            <div className="setting-container">
-                <HeadBar title="SETTING" />
-
+            <div className="container setting-container">
                 <List store={ this.props[prefix] }
                       setSettingData={ setSettingData } />
 
