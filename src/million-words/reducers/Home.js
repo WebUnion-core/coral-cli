@@ -10,32 +10,32 @@ export default (state = {}, action) => {
                 homeData: {
                     title: 'USER_NAME',
                     scrollList: [
-                        { link: '/million-words/', text: 'ITEM_NAME' },
-                        { link: '/million-words/', text: 'ITEM_NAME' },
-                        { link: '/million-words/', text: 'ITEM_NAME' },
-                        { link: '/million-words/', text: 'ITEM_NAME' },
+                        { link: '/', text: 'ITEM_NAME' },
+                        { link: '/', text: 'ITEM_NAME' },
+                        { link: '/', text: 'ITEM_NAME' },
+                        { link: '/', text: 'ITEM_NAME' },
                     ],
                     halfSideList: [
                         [
-                            { link: '/million-words/', text: 'ITEM_NAME' },
-                            { link: '/million-words/', text: 'ITEM_NAME' },
+                            { link: '/', text: 'ITEM_NAME' },
+                            { link: '/', text: 'ITEM_NAME' },
                         ],
                         [
-                            { link: '/million-words/', text: 'ITEM_NAME' },
-                            { link: '/million-words/', text: 'ITEM_NAME' },
+                            { link: '/', text: 'ITEM_NAME' },
+                            { link: '/', text: 'ITEM_NAME' },
                         ]
                     ],
                     fullRowList: [
-                        { link: '/million-words/', text: 'ITEM_NAME' },
-                        { link: '/million-words/', text: 'ITEM_NAME' },
-                        { link: '/million-words/', text: 'ITEM_NAME' },
+                        { link: '/', text: 'ITEM_NAME' },
+                        { link: '/', text: 'ITEM_NAME' },
+                        { link: '/', text: 'ITEM_NAME' },
                     ],
                     topIconList: [
-                        { icon: 'icon-clock', text: 'CLOCK', link: '/million-words/clock' },
-                        { icon: 'icon-head-phone', text: 'MUSIC', link: '/million-words/' },
-                        { icon: 'icon-key-board', text: 'KEY_BOARD', link: '/million-words/' },
+                        { icon: 'icon-clock', text: 'CLOCK', link: '/clock' },
+                        { icon: 'icon-head-phone', text: 'MUSIC', link: '/' },
+                        { icon: 'icon-key-board', text: 'KEY_BOARD', link: '/' },
                     ],
-                    settingLink: '/million-words/setting'
+                    settingLink: '/setting'
                 }
             };
     }
