@@ -31,9 +31,9 @@ export default (state = {}, action) => {
                         { link: '/', text: 'ITEM_NAME' },
                     ],
                     topIconList: [
-                        { icon: 'icon-clock', text: 'CLOCK', link: '/clock' },
-                        { icon: 'icon-head-phone', text: 'MUSIC', link: '/' },
-                        { icon: 'icon-key-board', text: 'KEY_BOARD', link: '/' },
+                        { icon: 'icon-271-clock', text: 'CLOCK', link: '/clock' },
+                        { icon: 'icon-271-head-phone', text: 'MUSIC', link: '/' },
+                        { icon: 'icon-271-key-board', text: 'KEY_BOARD', link: '/' },
                     ],
                     settingLink: '/setting'
                 }

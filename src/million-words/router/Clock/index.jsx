@@ -10,6 +10,7 @@ const prefix = 'Clock';
 
 import HeadTabs from './components/HeadTabs.jsx';
 import ClockDisplayer from './components/ClockDisplayer.jsx';
+import SelectList from './components/SelectList.jsx';
 
 class Container extends React.Component {
     constructor(props) {
@@ -25,9 +26,10 @@ class Container extends React.Component {
         const { clockData } = this.props[prefix];
 
         return (
-            <div className="container clock-container">
+            <div className="clock-container">
                 <HeadTabs store={ clockData } />
                 <ClockDisplayer store={ clockData } />
+                <SelectList store={ clockData } />
             </div>
         )
     }

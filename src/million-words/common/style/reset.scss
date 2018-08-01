@@ -1,4 +1,5 @@
 @import url('./../../../asset/style/sprite-50-5-1-1.css');
+@import url('./../../../asset/style/sprite-50-2-1.5-1.css');
 @import url('./../../../asset/style/sprite-100-3-2.7-1.css');
 
 * {
@@ -20,6 +21,17 @@ html {
 	font-family: "Kelson Sans Regular";
 	cursor: pointer;
 	-webkit-tap-highlight-color: transparent;
+
+	/* 禁止双击复制 */
+	-moz-user-select: none;
+	/* 火狐 */
+	-webkit-user-select: none;
+	/* webkit浏览器 */
+	-ms-user-select: none;
+	/* IE10 */
+	-khtml-user-select: none;
+	/* 早期浏览器 */
+	user-select: none;
 }
 
 ol,
@@ -108,7 +120,6 @@ main {
 	justify-content: center;
 }
 
-// 16px代表1rem
 .icon {
 	display: inline-block;
 }

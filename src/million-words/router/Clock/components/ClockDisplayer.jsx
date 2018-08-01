@@ -55,6 +55,14 @@ export default class ClockDisplayer extends React.Component {
                     <div ref="minute" className="abs minute"><hr className="color-line" /></div>
                     <div ref="second" className="abs second"><hr className="color-line" /></div>
                 </figure>
+                <div className="flex-center btn-container left">
+                    <span className="text">添加</span>
+                    <i className="icon icon-151-add" />
+                </div>
+                <div className="flex-center btn-container right">
+                    <span className="text">设置</span>
+                    <i className="icon icon-151-setting" />
+                </div>
             </section>
         )
     }
