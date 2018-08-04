@@ -15,7 +15,7 @@ const app = require(root).default;
 
 app.listen(config.port, config.host, function(err) {
     if (err)
-        console.error(err);
+        throw new Error(err);
     else
-        console.log('The server is listenning in => http:/' + config.host + ':' + config.port);
+        console.log('The server is listening in => http://' + config.host + ':' + config.port);
 });

@@ -1,18 +1,14 @@
 import KoaRouter from 'koa-router';
 
+// 接口
+import requestHomeList from './home-list.js';
+
 const path = require('path');
 const fs = require('fs');
 const config = require('./../../config/data.json');
 const api = KoaRouter();
 
-api.get('/', (ctx, next) => {
-        ctx.body = 'Home.';
-    })
-    .get('/about/:name', (ctx, next) => {
-        // http://127.0.0.1:2015/about/WJT20 => "About WJT20"
-        const { name } = ctx.params;
-        ctx.body = `About ${ name || '' }`;
-    });
+api.get(`/${ config.version }/home_list`, requestHomeList); // 首页列表
 
 // 附加应用路由
 config.apps.forEach((item, index) => {

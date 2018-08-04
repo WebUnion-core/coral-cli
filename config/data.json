@@ -1,7 +1,8 @@
 {
     "port": 2015,
     "host": "192.168.1.101",
+    "version": "v1",
     "apps": [
-        { "name": "million-words", "title": "模板" }
+        { "name": "million-words", "title": "繁言[Million Words]" }
     ]
 }
