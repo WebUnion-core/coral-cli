@@ -52,7 +52,10 @@ const webpackConfig = {
     resolve: {
         alias: {},
         extensions: ['.jsx', '.js', '.scss', '.css', '.png', '.jpg'], // 最常匹配的放在最前面，减少查找
-        modules: [ path.resolve(__dirname, './node_modules') ] // 直接指明第三方模块的绝对路径，减少查找
+        modules: [
+            path.resolve(__dirname, './node_modules'),
+            path.resolve(__dirname, './src/asset')
+        ] // 直接指明第三方模块的绝对路径，减少查找
     },
     optimization: {
         splitChunks: {

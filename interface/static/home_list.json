@@ -1,72 +1,36 @@
 {
-    "scrollList": [
-        {
-            "link": "/",
-            "text": "ITEM_NAME"
-        },
-        {
-            "link": "/",
-            "text": "ITEM_NAME"
-        },
-        {
-            "link": "/",
-            "text": "ITEM_NAME"
-        },
-        {
-            "link": "/",
-            "text": "ITEM_NAME"
-        }
-    ],
-    "halfSideList": [
-        [
-            {
-                "link": "/",
-                "text": "ITEM_NAME"
-            },
-            {
-                "link": "/",
-                "text": "ITEM_NAME"
-            }
-        ],
-        [
-            {
-                "link": "/",
-                "text": "ITEM_NAME"
-            },
-            {
-                "link": "/",
-                "text": "ITEM_NAME"
-            }
-        ]
-    ],
-    "fullRowList": [
-        {
-            "link": "/",
-            "text": "ITEM_NAME"
-        },
-        {
-            "link": "/",
-            "text": "ITEM_NAME"
-        },
-        {
-            "link": "/",
-            "text": "ITEM_NAME"
-        }
-    ],
+    "scrollList": null,
+    "halfSideList": null,
+    "fullRowList": null,
     "topIconList": [
         {
             "icon": "icon-271-clock",
-            "text": "CLOCK",
+            "text": "时钟",
             "link": "/clock"
         },
         {
-            "icon": "icon-271-head-phone",
-            "text": "MUSIC",
+            "icon": "icon-271-user",
+            "text": "账户",
+            "link": "/account"
+        },
+        {
+            "icon": "icon-271-search",
+            "text": "搜索",
             "link": "/"
         },
         {
-            "icon": "icon-271-key-board",
-            "text": "KEY_BOARD",
+            "icon": "icon-271-music",
+            "text": "音乐",
+            "link": "/"
+        },
+        {
+            "icon": "icon-217-share",
+            "text": "分享",
+            "link": "/"
+        },
+        {
+            "icon": "icon-271-gallery",
+            "text": "画廊",
             "link": "/"
         }
     ]

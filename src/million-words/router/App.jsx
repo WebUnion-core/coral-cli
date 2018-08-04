@@ -4,6 +4,7 @@ import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import Home from './Home';
 import Setting from './Setting';
 import Clock from './Clock';
+import Account from './Account';
 
 // 入口前缀
 const prefix = 'App';
@@ -19,13 +20,14 @@ export default class App extends React.Component {
     render() {
         return (
             <Router>
-                <div>
+                <section>
                     <Switch>
                         <Route path="/" component={ Home } exact />
                         <Route path="/setting/" component={ Setting } exact />
                         <Route path="/clock/" component={ Clock } exact />
+                        <Route path="/account/" component={ Account } exact />
                     </Switch>
-                </div>
+                </section>
             </Router>
         )
     }

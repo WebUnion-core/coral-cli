@@ -14,7 +14,7 @@ export default class HalfSideList extends React.Component {
                     <div className="half-side-list-container">
                         <ul className="half-side-list">
                         {
-                            halfSideList[0].map((item, index) => {
+                            halfSideList.length > 0 && halfSideList[0].map((item, index) => {
                                 return (
                                     <Link key={ index } to={ item.link }>
                                         <div className="half-side-item">{ item.text }</div>
