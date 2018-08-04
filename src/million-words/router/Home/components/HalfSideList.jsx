@@ -9,20 +9,22 @@ export default class HalfSideList extends React.Component {
     render() {
         const { halfSideList } = this.props.store;
 
-        return (
-            <div className="half-side-list-container">
-                <ul className="half-side-list">
-                {
-                    halfSideList[0].map((item, index) => {
-                        return (
-                            <Link key={ index } to={ item.link }>
-                                <div className="half-side-item">{ item.text }</div>
-                            </Link>
-                        )
-                    })
-                }
-                </ul>
-            </div>
-        )
+        return halfSideList
+                ? (
+                    <div className="half-side-list-container">
+                        <ul className="half-side-list">
+                        {
+                            halfSideList[0].map((item, index) => {
+                                return (
+                                    <Link key={ index } to={ item.link }>
+                                        <div className="half-side-item">{ item.text }</div>
+                                    </Link>
+                                )
+                            })
+                        }
+                        </ul>
+                    </div>
+                )
+                : ''
     }
 }

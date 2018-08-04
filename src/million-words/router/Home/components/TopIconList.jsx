@@ -9,23 +9,25 @@ export default class TopIconList extends React.Component {
     render() {
         const { topIconList } = this.props.store;
 
-        return (
-            <div className="top-icon-list-container">
-                <ul className="top-icon-list">
-                {
-                    topIconList.map((item, index) => {
-                        return (
-                            <Link key={ index } to={ item.link }>
-                                <li className="top-icon-item">
-                                    <p><i className={ `icon ${ item.icon }` }></i></p>
-                                    <p><span className="text">{ item.text }</span></p>
-                                </li>
-                            </Link>
-                        )
-                    })
-                }
-                </ul>
-            </div>
-        )
+        return topIconList
+                ? (
+                    <div className="top-icon-list-container">
+                        <ul className="top-icon-list">
+                        {
+                            topIconList.map((item, index) => {
+                                return (
+                                    <Link key={ index } to={ item.link }>
+                                        <li className="top-icon-item">
+                                            <p><i className={ `icon ${ item.icon }` }></i></p>
+                                            <p><span className="text">{ item.text }</span></p>
+                                        </li>
+                                    </Link>
+                                )
+                            })
+                        }
+                        </ul>
+                    </div>
+                )
+                : ''
     }
 }

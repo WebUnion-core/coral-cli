@@ -5,9 +5,18 @@ $themeColor: #00A79D;
 
     // 头部tab
     .head-tabs-container {
+        position: relative;
         height: 3.79rem;
         background-color: $themeColor;
         color: #ffffff;
+
+        .icon {
+            position: absolute;
+            top: -0.4rem;
+            bottom: 0;
+            left: 0.65rem;
+            margin: auto;
+        }
 
         .head-tabs-list {
             width: 17.67rem;

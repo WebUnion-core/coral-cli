@@ -4,6 +4,10 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import actions from './../../actions';
+import Swiper from 'swiper';
+
+// 公共模块
+import request from './../../common/modules/request.js';
 
 // 通用组件
 import TabsFooter from './../../common/components/tabs-footer';
@@ -24,12 +28,31 @@ class Container extends React.Component {
     }
 
     componentWillMount() {
-        console.log(`${prefix} props => `, this.props);
+        const { setHomeData } = this.props;
+
+        // 请求数据
+        request({
+            method: 'GET',
+            url: '/v1/home_list',
+            success: (data) => {
+                setHomeData(data, this.props[prefix]);
+
+                new Swiper('.scroll-list-container', {
+                    slidesPerView: 2.5,
+                    spaceBetween: 20
+                });
+            },
+            fail: (err) => {
+                console.error(err);
+            }
+        });
     }
 
     render() {
         const { homeData } = this.props[prefix];
         const { footTabs } = this.props['Public'].publicData;
+
+        console.log(`${prefix} props => `, this.props);
 
         return (
             <div className="container main-container">

@@ -7,7 +7,7 @@ export default class Nav extends React.Component {
     }
 
     render() {
-        const { title, settingLink } = this.props.store;
+        const { title } = this.props.store;
 
         return (
             <nav className="nav-container">

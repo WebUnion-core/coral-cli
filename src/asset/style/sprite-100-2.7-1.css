@@ -17,21 +17,21 @@ To change `display` (e.g. `display: inline-block;`), we suggest using a common C
 <i class="icon icon-home"></i>
 */
 .icon-271-clock {
-  background-image: url(./../images/sprite-100-3-2.7-1.png);
+  background-image: url(./../images/sprite-100-2.7-1.png);
   background-position: 0px 0rem;
   background-size: 2.7rem;
   width: 2.7rem;
   height: 2.7rem;
 }
 .icon-271-head-phone {
-  background-image: url(./../images/sprite-100-3-2.7-1.png);
+  background-image: url(./../images/sprite-100-2.7-1.png);
   background-position: 0px -2.7rem;
   background-size: 2.7rem;
   width: 2.7rem;
   height: 2.7rem;
 }
 .icon-271-key-board {
-  background-image: url(./../images/sprite-100-3-2.7-1.png);
+  background-image: url(./../images/sprite-100-2.7-1.png);
   background-position: 0px -5.4rem;
   background-size: 2.7rem;
   width: 2.7rem;

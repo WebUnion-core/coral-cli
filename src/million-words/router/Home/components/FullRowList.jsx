@@ -9,23 +9,25 @@ export default class FullRowList extends React.Component {
     render() {
         const { fullRowList } = this.props.store;
 
-        return (
-            <div className="full-row-list-container">
-                <ul className="full-row-list">
-                {
-                    fullRowList.map((item, index) => {
-                        return (
-                            <Link key={ index } to={ item.link }>
-                                <li className="full-row-item">
-                                    <figure className="figure flex-center">IMG</figure>
-                                    <span className="text">{ item.text }</span>
-                                </li>
-                            </Link>
-                        )
-                    })
-                }
-                </ul>
-            </div>
-        )
+        return fullRowList
+                ? (
+                    <div className="full-row-list-container">
+                        <ul className="full-row-list">
+                        {
+                            fullRowList.map((item, index) => {
+                                return (
+                                    <Link key={ index } to={ item.link }>
+                                        <li className="full-row-item">
+                                            <figure className="figure flex-center">IMG</figure>
+                                            <span className="text">{ item.text }</span>
+                                        </li>
+                                    </Link>
+                                )
+                            })
+                        }
+                        </ul>
+                    </div>
+                )
+                : ''
     }
 }

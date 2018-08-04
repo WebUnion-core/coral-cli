@@ -9,33 +9,10 @@ export default (state = {}, action) => {
             return state = {
                 homeData: {
                     title: 'USER_NAME',
-                    scrollList: [
-                        { link: '/', text: 'ITEM_NAME' },
-                        { link: '/', text: 'ITEM_NAME' },
-                        { link: '/', text: 'ITEM_NAME' },
-                        { link: '/', text: 'ITEM_NAME' },
-                    ],
-                    halfSideList: [
-                        [
-                            { link: '/', text: 'ITEM_NAME' },
-                            { link: '/', text: 'ITEM_NAME' },
-                        ],
-                        [
-                            { link: '/', text: 'ITEM_NAME' },
-                            { link: '/', text: 'ITEM_NAME' },
-                        ]
-                    ],
-                    fullRowList: [
-                        { link: '/', text: 'ITEM_NAME' },
-                        { link: '/', text: 'ITEM_NAME' },
-                        { link: '/', text: 'ITEM_NAME' },
-                    ],
-                    topIconList: [
-                        { icon: 'icon-271-clock', text: 'CLOCK', link: '/clock' },
-                        { icon: 'icon-271-head-phone', text: 'MUSIC', link: '/' },
-                        { icon: 'icon-271-key-board', text: 'KEY_BOARD', link: '/' },
-                    ],
-                    settingLink: '/setting'
+                    scrollList: null,
+                    halfSideList: null,
+                    fullRowList: null,
+                    topIconList: null
                 }
             };
     }

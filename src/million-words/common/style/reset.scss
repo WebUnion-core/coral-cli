@@ -1,6 +1,4 @@
-@import url('./../../../asset/style/sprite-50-5-1-1.css');
-@import url('./../../../asset/style/sprite-50-2-1.5-1.css');
-@import url('./../../../asset/style/sprite-100-3-2.7-1.css');
+@import url('./../../../asset/all-sprite.scss');
 
 * {
 	margin: 0;
@@ -105,6 +103,10 @@ main {
 	width: 100%;
 	max-width: 1080px;
 	margin: 0 auto;
+}
+
+.container {
+	overflow: hidden;
 }
 
 .container::after {

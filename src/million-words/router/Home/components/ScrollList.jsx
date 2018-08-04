@@ -7,35 +7,31 @@ export default class ScrollList extends React.Component {
         super(props);
     }
 
-    componentDidMount() {
-        new Swiper('.swiper-container', {
-            slidesPerView: 2.5,
-            spaceBetween: 20
-        });
-    }
 
     render() {
         const { scrollList } = this.props.store;
 
-        return (
-            <div className="swiper-container scroll-list-container">
-                <ul className="swiper-wrapper scroll-list">
-                {
-                    scrollList.map((item, index) => {
-                        return (
-                            <li className="swiper-slide" key={ index }>
-                                <Link to={ item.link }>
-                                    <div className="scroll-item">
-                                        <figure className="img"></figure>
-                                        <p className="text">{ item.text }</p>
-                                    </div>
-                                </Link>
-                            </li>
-                        )
-                    })
-                }
-                </ul>
-            </div>
-        )
+        return scrollList
+                ? (
+                    <div className="scroll-list-container">
+                        <ul className="swiper-wrapper scroll-list">
+                        {
+                            scrollList.map((item, index) => {
+                                return (
+                                    <li className="swiper-slide" key={ index }>
+                                        <Link to={ item.link }>
+                                            <div className="scroll-item">
+                                                <figure className="img"></figure>
+                                                <p className="text">{ item.text }</p>
+                                            </div>
+                                        </Link>
+                                    </li>
+                                )
+                            })
+                        }
+                        </ul>
+                    </div>
+                )
+                : ''
     }
 }
