@@ -22,8 +22,8 @@ class Container extends React.Component {
     }
 
     render() {
-        const { setClockData } = this.props;
-        const { clockData } = this.props[prefix];
+        const { setClockData } = this.props,
+            { clockData } = this.props[prefix];
 
         return (
             <div className="clock-container">
@@ -38,7 +38,7 @@ class Container extends React.Component {
 // 将state对应值绑定到props上
 function mapStateToProps(state) {
     return {
-        [prefix]: state[prefix],
+        [prefix]: state[prefix]
     }
 }
 

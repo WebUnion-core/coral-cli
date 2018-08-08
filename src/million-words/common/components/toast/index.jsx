@@ -21,7 +21,10 @@ export default class Toast extends React.Component {
             store
         } = this.props;
 
-        if (this.timer) clearTimeout(this.timer);
+        if (this.timer) {
+            clearTimeout(this.timer);
+        }
+
         this.timer = setTimeout(() => {
             toggleCallback({
                 [toastPrefix]: {
@@ -32,13 +35,14 @@ export default class Toast extends React.Component {
             this.timer = null;
         }, 3000);
 
-        return (<span className="toast-text"
-                      style={{
-                          display: ifShow
-                                   ? 'inline-block'
-                                   : 'none'
-                      }}>
-                      { text || '空' }
-                </span>)
+        return (
+            <span className="toast-text"
+                style={{
+                    display: ifShow
+                        ? 'inline-block'
+                        : 'none'
+                }}>
+                { text || '空' }
+            </span>)
     }
 }

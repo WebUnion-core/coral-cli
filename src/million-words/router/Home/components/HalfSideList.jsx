@@ -10,9 +10,9 @@ export default class HalfSideList extends React.Component {
         const { halfSideList } = this.props.store;
 
         return halfSideList
-                ? (
-                    <div className="half-side-list-container">
-                        <ul className="half-side-list">
+            ? (
+                <div className="half-side-list-container">
+                    <ul className="half-side-list">
                         {
                             halfSideList.length > 0 && halfSideList[0].map((item, index) => {
                                 return (
@@ -22,9 +22,9 @@ export default class HalfSideList extends React.Component {
                                 )
                             })
                         }
-                        </ul>
-                    </div>
-                )
-                : ''
+                    </ul>
+                </div>
+            )
+            : ''
     }
 }

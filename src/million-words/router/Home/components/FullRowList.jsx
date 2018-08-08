@@ -10,9 +10,9 @@ export default class FullRowList extends React.Component {
         const { fullRowList } = this.props.store;
 
         return fullRowList
-                ? (
-                    <div className="full-row-list-container">
-                        <ul className="full-row-list">
+            ? (
+                <div className="full-row-list-container">
+                    <ul className="full-row-list">
                         {
                             fullRowList.map((item, index) => {
                                 return (
@@ -25,9 +25,9 @@ export default class FullRowList extends React.Component {
                                 )
                             })
                         }
-                        </ul>
-                    </div>
-                )
-                : ''
+                    </ul>
+                </div>
+            )
+            : ''
     }
 }

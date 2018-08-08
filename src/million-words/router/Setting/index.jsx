@@ -25,21 +25,21 @@ class Container extends React.Component {
     }
 
     render() {
-        const { setSettingData } = this.props;
-        const { settingData } = this.props[prefix];
-        const { footTabs } = this.props['Public'].publicData;
-        const { text, ifShow } = settingData.toastCtrler;
+        const { setSettingData } = this.props,
+            { settingData } = this.props[prefix],
+            { footTabs } = this.props['Public'].publicData,
+            { text, ifShow } = settingData.toastCtrler;
 
         return (
             <div className="container setting-container">
                 <List store={ this.props[prefix] }
-                      setSettingData={ setSettingData } />
+                    setSettingData={ setSettingData } />
 
                 <Toast text={ text }
-                       ifShow={ ifShow }
-                       toastPrefix='toastCtrler'
-                       toggleCallback={ setSettingData }
-                       store={ this.props[prefix] } />
+                    ifShow={ ifShow }
+                    toastPrefix='toastCtrler'
+                    toggleCallback={ setSettingData }
+                    store={ this.props[prefix] } />
 
                 <TabsFooter list={ footTabs } defaultIndex={ 1 } />
             </div>
@@ -51,7 +51,7 @@ class Container extends React.Component {
 function mapStateToProps(state) {
     return {
         [prefix]: state[prefix],
-        ['Public']: state['Public'],
+        ['Public']: state['Public']
     }
 }
 

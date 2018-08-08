@@ -10,9 +10,9 @@ export default class TopIconList extends React.Component {
         const { topIconList } = this.props.store;
 
         return topIconList
-                ? (
-                    <div className="top-icon-list-container">
-                        <ul className="top-icon-list">
+            ? (
+                <div className="top-icon-list-container">
+                    <ul className="top-icon-list">
                         {
                             topIconList.map((item, index) => {
                                 return (
@@ -25,9 +25,9 @@ export default class TopIconList extends React.Component {
                                 )
                             })
                         }
-                        </ul>
-                    </div>
-                )
-                : ''
+                    </ul>
+                </div>
+            )
+            : ''
     }
 }

@@ -37,7 +37,7 @@ class Container extends React.Component {
             success: (data) => {
                 setHomeData(data, this.props[prefix]);
 
-                new Swiper('.scroll-list-container', {
+                const swiper = new Swiper('.scroll-list-container', {
                     slidesPerView: 2.5,
                     spaceBetween: 20
                 });
@@ -49,8 +49,8 @@ class Container extends React.Component {
     }
 
     render() {
-        const { homeData } = this.props[prefix];
-        const { footTabs } = this.props['Public'].publicData;
+        const { homeData } = this.props[prefix],
+            { footTabs } = this.props['Public'].publicData;
 
         console.log(`${prefix} props => `, this.props);
 
@@ -72,7 +72,7 @@ class Container extends React.Component {
 function mapStateToProps(state) {
     return {
         [prefix]: state[prefix],
-        ['Public']: state['Public'],
+        ['Public']: state['Public']
     }
 }
 

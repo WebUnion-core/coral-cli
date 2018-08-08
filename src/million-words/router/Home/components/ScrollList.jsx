@@ -12,9 +12,9 @@ export default class ScrollList extends React.Component {
         const { scrollList } = this.props.store;
 
         return scrollList
-                ? (
-                    <div className="scroll-list-container">
-                        <ul className="swiper-wrapper scroll-list">
+            ? (
+                <div className="scroll-list-container">
+                    <ul className="swiper-wrapper scroll-list">
                         {
                             scrollList.map((item, index) => {
                                 return (
@@ -29,9 +29,9 @@ export default class ScrollList extends React.Component {
                                 )
                             })
                         }
-                        </ul>
-                    </div>
-                )
-                : ''
+                    </ul>
+                </div>
+            )
+            : ''
     }
 }

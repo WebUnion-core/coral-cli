@@ -8,15 +8,13 @@ export default class ClockDisplayer extends React.Component {
 
     componentDidMount() {
         setInterval(() => {
-            const dateTime = new Date();
-
-            const second = dateTime.getSeconds();
-            const minute = dateTime.getMinutes();
-            const hour = dateTime.getHours() > 12 ? (dateTime.getHours() - 12) : dateTime.getHours();
-
-            const secondDeg = second * 6;
-            const minuteDeg = minute * 6;
-            const hourDeg = hour * 30;
+            const dateTime = new Date(),
+                second = dateTime.getSeconds(),
+                minute = dateTime.getMinutes(),
+                hour = dateTime.getHours() > 12 ? (dateTime.getHours() - 12) : dateTime.getHours(),
+                secondDeg = second * 6,
+                minuteDeg = minute * 6,
+                hourDeg = hour * 30;
 
             // 秒针转动
             Object.assign(this.refs.second.style, {
