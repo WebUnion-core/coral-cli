@@ -49,6 +49,10 @@ npm run start-prod-server
 
 ![image](./asset/intro/2018-08-04-23-42-53.jpg)
 
+### 登录/注册 ###
+
+![image](./asset/intro/2018-08-08-23-39-46.jpg)
+
 ---
 
 ```

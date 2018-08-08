@@ -9,9 +9,17 @@ import actions from './../../actions';
 // 入口前缀
 const prefix = 'Account';
 
+// 子组件
+import SignIn from './components/SignIn.jsx';
+import Register from './components/Register.jsx';
+
 class Container extends React.Component {
     constructor(props) {
         super(props);
+
+        this.state = {
+            contentType: 'SIGIN'
+        }
     }
 
     componentWillMount() {
@@ -20,10 +28,27 @@ class Container extends React.Component {
 
     componentDidMount() {
         anime({
-            targets: this.refs['accountContent'],
+            targets: document.getElementById('account-content'),
             translateY: '100%',
             delay: 1000
         });
+    }
+
+    // 切换表单
+    toggleContent = (contentType, callback) => {
+        this.setState({
+            contentType
+        }, callback);
+    }
+
+    // 获取显示内容
+    renderForm() {
+        switch(this.state.contentType) {
+            case 'REGISTER':
+                return <Register toggleContent={ this.toggleContent } />;
+            default:
+                return <SignIn toggleContent={ this.toggleContent } />;
+        }
     }
 
     render() {
@@ -32,10 +57,8 @@ class Container extends React.Component {
 
         return (
             <div className="account-container">
-                <div ref="accountContent" className="account-content">
-                    <form className="fillin-form">
-                        <img className="logo" src={ require('./../../images/logo.png') } />
-                    </form>
+                <div id="account-content" className="account-content">
+                { this.renderForm() }
                 </div>
             </div>
         )
