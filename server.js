@@ -1,21 +1,20 @@
 // 入口文件(index.js)不会被babel编译，其中require的文件才会被编译
 require('babel-polyfill');
 
-const config = require('./config/data.json');
-let root;
+const config = require('./config/config.json').dataServer;
+let app;
 
 if (process.env.NODE_ENV === 'development') {
     require('babel-register');
-    root = './interface/app.js';
+    app = require('./controllers/app.js').default;
 } else {
-    root = './build/app.js';
+    app = require('./build/app.js').default;
 }
 
-const app = require(root).default;
-
 app.listen(config.port, config.host, function(err) {
-    if (err)
+    if (err) {
         throw new Error(err);
-    else
+    } else {
         console.log('The server is listening in => http://' + config.host + ':' + config.port);
+    }
 });

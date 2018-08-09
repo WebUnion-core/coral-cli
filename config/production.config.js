@@ -1,20 +1,17 @@
-const webpack = require('webpack');
 const path = require('path');
-const config = require('./data.json');
+const config = require('./config.json');
 
 // 插件
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
-const DIST_PATH = path.resolve(__dirname, './../dist');
-
 // 生产模式打包配置
 module.exports = function setProdMode(webpackConfig) {
     // 额外插件
     webpackConfig.plugins.push(
         // 清除打包源文件
-        new CleanWebpackPlugin([ 'dist' ]),
+        new CleanWebpackPlugin(['dist']),
 
         // CSS提取
         new MiniCssExtractPlugin({

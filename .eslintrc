@@ -9,13 +9,11 @@
 
     // 项目中定义的全局变量
     "globals": {
-        "$": false,
-        "phead": true,
-        "platform": true,
-        "Platform": false,
         "React": false,
         "ReactDOM": false,
-        "__DEV__": false
+        "__DEV__": false,
+        "__VERSION__": false,
+        "__DEBUG__": false
     },
 
     "parser": "babel-eslint",
@@ -142,14 +140,7 @@
         "no-useless-call": 2, // 禁止不必要的call和apply
         "no-void": 2, // 禁用void操作符
         "no-var": 1, // 禁用var，用let和const代替
-        "no-warning-comments": [
-            1, {
-                "terms": [
-                    "todo", "fixme", "xxx"
-                ],
-                "location": "start"
-            }
-        ], // 不能有警告备注
+        "no-warning-comments": 0, // 不能有警告备注
         "no-with": 2, //禁用with
         "array-bracket-spacing": [
             2, "never"
@@ -161,7 +152,7 @@
         "brace-style": [
             1, "1tbs"
         ], // 大括号风格
-        "callback-return": 1, // 避免多次调用回调什么的
+        "callback-return": 0, // 避免多次调用回调什么的
         "camelcase": 1, // 强制驼峰法命名
         "comma-dangle": [
             2, "never"
@@ -237,7 +228,7 @@
             0, "never"
         ], // 大括号内是否允许不必要的空格
         "object-shorthand": 0, // 强制对象字面量缩写语法
-        "one-var": 1, // 连续声明
+        "one-var": 0, // 连续声明
         "operator-assignment": [
             0, "always"
         ], // 赋值运算符 += -=什么的

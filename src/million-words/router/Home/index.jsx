@@ -33,11 +33,11 @@ class Container extends React.Component {
         // 请求数据
         request({
             method: 'GET',
-            url: '/v1/home_list',
+            url: `/v2/home_list`,
             success: (data) => {
                 setHomeData(data, this.props[prefix]);
 
-                const swiper = new Swiper('.scroll-list-container', {
+                new Swiper('.scroll-list-container', {
                     slidesPerView: 2.5,
                     spaceBetween: 20
                 });

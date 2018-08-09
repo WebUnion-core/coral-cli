@@ -1,6 +1,5 @@
 const webpack = require('webpack');
 const path = require('path');
-const config = require('./data.json');
 const fs = require('fs');
 
 const SpritesmithPlugin = require('webpack-spritesmith');
@@ -30,7 +29,7 @@ module.exports = function setOther(webpackConfig) {
             cssImageRef: './intro1.png'
         },
         spritesmithOptions: {
-            algorithm: 'left-right',
+            algorithm: 'left-right'
         }
     });
 

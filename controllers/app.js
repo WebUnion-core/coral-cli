@@ -1,9 +1,9 @@
 import Koa from 'koa';
-import KoaBody from 'koa-body';
-import KoaBodyParser from 'koa-bodyparser';
-import KoaJson from 'koa-json';
-import KoaLogger from 'koa-logger';
-import KoaCors from 'koa-cors';
+import koaBody from 'koa-body';
+import koaBodyParser from 'koa-bodyparser';
+import koaJson from 'koa-json';
+import koaLogger from 'koa-logger';
+import koaCors from 'koa-cors';
 import convert from 'koa-convert';
 
 import api from './api';
@@ -11,11 +11,11 @@ import api from './api';
 const app = new Koa()
     .use(convert(require('koa-static')(__dirname + './../dist')))
     .use(convert.compose(
-        KoaBody({ multipart: true }),
-        KoaBodyParser(),
-        KoaJson(),
-        KoaLogger(),
-        KoaCors(),
+        koaBody({ multipart: true }),
+        koaBodyParser(),
+        koaJson(),
+        koaLogger(),
+        koaCors(),
     ))
     .use(async (ctx, next) => {
         await next();

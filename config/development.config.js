@@ -1,6 +1,7 @@
 const webpack = require('webpack');
 const path = require('path');
-const config = require('./data.json');
+const config = require('./config.json');
+const viewServer = config.viewServer;
 
 // 插件
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -27,8 +28,8 @@ module.exports = function setDevMode(webpackConfig) {
     // 开发模式server
     webpackConfig.devServer = {
         contentBase: DIST_PATH,
-        host: config.host,
-        port: config.port,
+        host: viewServer.host,
+        port: viewServer.port,
         historyApiFallback: true,
         inline: true,
         hot: true
@@ -57,9 +58,9 @@ module.exports = function setDevMode(webpackConfig) {
         // 设置打包入口
         webpackConfig.entry[item.name + '/bundle'] = [
             path.resolve(__dirname, './../src/' + item.name + '/entry.js'),
-            'react-hot-loader/patch',
+            'webpack/hot/only-dev-server',
             'webpack-dev-server/client',
-            'webpack/hot/only-dev-server'
+            'react-hot-loader/patch'
         ];
     });
 }

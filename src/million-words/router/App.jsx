@@ -6,9 +6,6 @@ import Setting from './Setting';
 import Clock from './Clock';
 import Account from './Account';
 
-// 入口前缀
-const prefix = 'App';
-
 /*
  * router说明:
  * 1. 使用HashRouter: import { HashRouter as Router, Route, Switch } from 'react-router-dom';

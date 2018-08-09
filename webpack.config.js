@@ -8,8 +8,10 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const setDevMode = require('./config/development.config.js');
 const setProdMode = require('./config/production.config.js');
 const setOther = require('./config/other.config.js');
+const config = require('./config/config.json');
 
 const MODE = process.env.NODE_ENV;
+const IF_DEBUG = Boolean(process.env.NODE_ENV);
 
 const webpackConfig = {
     mode: MODE || 'development',
@@ -34,7 +36,7 @@ const webpackConfig = {
                     MiniCssExtractPlugin.loader,
                     'css-loader',
                     'sass-loader',
-                    'postcss-loader',
+                    'postcss-loader'
                 ]
             },
             {
@@ -82,7 +84,9 @@ const webpackConfig = {
     plugins: [
         // 注入常量
         new webpack.DefinePlugin({
-            __DEV__: MODE === 'development'
+            __DEV__: MODE === 'development',
+            __VERSION__: config.version,
+            __DEBUG__: IF_DEBUG
         })
     ]
 }
