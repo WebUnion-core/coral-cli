@@ -1,14 +1,10 @@
-// 入口文件(index.js)不会被babel编译，其中require的文件才会被编译
-require('babel-polyfill');
-
-const config = require('./config/config.json').dataServer;
-let app;
+let config;
+const app = require('./data/app.js');
 
 if (process.env.NODE_ENV === 'development') {
-    require('babel-register');
-    app = require('./controllers/app.js').default;
+    config = require('./config/config.json').dataServer;
 } else {
-    app = require('./build/app.js').default;
+    config = require('./config/config.json').prodServer;
 }
 
 app.listen(config.port, config.host, function(err) {

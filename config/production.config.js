@@ -36,7 +36,8 @@ module.exports = function setProdMode(webpackConfig) {
                 filename: path.resolve(__dirname, './../dist/' + item.name + '/index.html'),
                 template: path.resolve(__dirname, './../src/' + item.name + '/template.ejs'),
                 hash: false,
-                minify: true
+                minify: true,
+                version: config.version
             })
         );
 

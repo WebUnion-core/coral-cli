@@ -1,11 +1,11 @@
-import koaRouter from 'koa-router';
+const koaRouter = require('koa-router');
 const path = require('path');
 const fs = require('fs');
 const config = require('./../../config/config.json');
 const api = koaRouter();
 
 // 接口
-import Home from './home';
+const Home = require('./home');
 
 // HOME
 Object.keys(Home).forEach((key) => {
@@ -25,4 +25,4 @@ config.apps.forEach((item) => {
     });
 });
 
-export default api;
+module.exports = api;

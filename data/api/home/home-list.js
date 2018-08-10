@@ -1,6 +1,6 @@
 const data = require('./../../static/home_list.json');
 
-export default (version, api) => {
+module.exports = function(version, api) {
     api.get(`/${version}/home_list`, (ctx, next) => {
         const { response, request } = ctx;
 

@@ -26,7 +26,8 @@
                 bIsWechat: navigator.userAgent.toLowerCase().match(/micromessenger/i) == "micromessenger",
                 bIsWeibo: navigator.userAgent.toLowerCase().match(/weibo/i) == "weibo",
                 bIsHuawei: navigator.userAgent.toLowerCase().match(/huawei/i) == "huawei"
-            }
+            },
+            version: <%= htmlWebpackPlugin.options.version %>
         };
     </script>
     <script title="rem计算">

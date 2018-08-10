@@ -1,12 +1,12 @@
-import Koa from 'koa';
-import koaBody from 'koa-body';
-import koaBodyParser from 'koa-bodyparser';
-import koaJson from 'koa-json';
-import koaLogger from 'koa-logger';
-import koaCors from 'koa-cors';
-import convert from 'koa-convert';
+const Koa = require('koa');
+const koaBody = require('koa-body');
+const koaBodyParser = require('koa-bodyparser');
+const koaJson = require('koa-json');
+const koaLogger = require('koa-logger');
+const koaCors = require('koa-cors');
+const convert = require('koa-convert');
 
-import api from './api';
+const api = require('./api');
 
 const app = new Koa()
     .use(convert(require('koa-static')(__dirname + './../dist')))
@@ -22,4 +22,4 @@ const app = new Koa()
     })
     .use(api.routes(), api.allowedMethods());
 
-export default app;
+module.exports = app;

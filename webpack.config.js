@@ -85,7 +85,6 @@ const webpackConfig = {
         // 注入常量
         new webpack.DefinePlugin({
             __DEV__: MODE === 'development',
-            __VERSION__: config.version,
             __DEBUG__: IF_DEBUG
         })
     ]
