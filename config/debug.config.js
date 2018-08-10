@@ -13,6 +13,9 @@ const DIST_PATH = path.resolve(__dirname, './../dist');
 // 开发模式打包配置
 module.exports = function setDevMode(webpackConfig) {
     webpackConfig.plugins.push(
+        // 热更新
+        new webpack.HotModuleReplacementPlugin(),
+
         // CSS提取
         new MiniCssExtractPlugin({
             filename: '[name].css',
@@ -22,6 +25,16 @@ module.exports = function setDevMode(webpackConfig) {
 
     // dev工具
     webpackConfig.devtool = 'cheap-module-eval-source-map';
+
+    // 开发模式server
+    webpackConfig.devServer = {
+        contentBase: DIST_PATH,
+        host: viewServer.host,
+        port: viewServer.port,
+        historyApiFallback: true,
+        inline: true,
+        hot: true
+    };
 
     // 设置打包出口
     webpackConfig.output = {
@@ -33,6 +46,7 @@ module.exports = function setDevMode(webpackConfig) {
 
     // 设置vendor
     webpackConfig.entry['vendor'] = config['vendor'];
+
 
     config.apps.forEach(function(item) {
         // 配置页面模板
@@ -50,7 +64,10 @@ module.exports = function setDevMode(webpackConfig) {
 
         // 设置打包入口
         webpackConfig.entry[item.name + '/bundle'] = [
-            path.resolve(__dirname, './../src/' + item.name + '/entry.js')
+            path.resolve(__dirname, './../src/' + item.name + '/entry.js'),
+            'webpack/hot/only-dev-server',
+            'webpack-dev-server/client',
+            'react-hot-loader/patch'
         ];
     });
 }

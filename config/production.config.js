@@ -1,5 +1,6 @@
 const path = require('path');
 const config = require('./config.json');
+const prodServer = config.prodServer;
 
 // 插件
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -28,18 +29,20 @@ module.exports = function setProdMode(webpackConfig) {
         chunkFilename: '[name].[hash:8].js'
     };
 
+    // 设置vendor
+    webpackConfig.entry['vendor'] = config['vendor'];
+
     config.apps.forEach(function(item) {
         // 配置页面模板
-        webpackConfig.plugins.push(
-            new HtmlWebpackPlugin({
-                title: item.title,
-                filename: path.resolve(__dirname, './../dist/' + item.name + '/index.html'),
-                template: path.resolve(__dirname, './../src/' + item.name + '/template.ejs'),
-                hash: false,
-                minify: true,
-                version: config.version
-            })
-        );
+        webpackConfig.plugins.push(new HtmlWebpackPlugin({
+            title: item.title,
+            filename: path.resolve(__dirname, './../dist/' + item.name + '/index.html'),
+            template: path.resolve(__dirname, './../src/' + item.name + '/template.ejs'),
+            hash: false,
+            minify: true,
+            version: config.version,
+            site: prodServer.host + ':' + prodServer.port
+        }));
 
         // 设置打包入口
         webpackConfig.entry[item.name + '/bundle'] = [

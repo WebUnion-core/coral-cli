@@ -7,21 +7,17 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 const setDevMode = require('./config/development.config.js');
 const setProdMode = require('./config/production.config.js');
+const setDebugMode = require('./config/debug.config.js');
 const setOther = require('./config/other.config.js');
 const config = require('./config/config.json');
 
-const MODE = process.env.NODE_ENV;
-const IF_DEBUG = Boolean(process.env.NODE_ENV);
+const MODE = process.env.NODE_ENV.toLowerCase();
 
 const webpackConfig = {
-    mode: MODE || 'development',
-    entry: {
-        'vendor': [
-            'react',
-            'react-dom',
-            'react-router-dom'
-        ]
-    },
+    mode: '|production|development|'.indexOf(MODE) > 0
+        ? MODE
+        : 'none',
+    entry: {},
     module: {
         rules: [
             {
@@ -33,6 +29,7 @@ const webpackConfig = {
                 // CSS样式表打包
                 test: /\.(css|scss)$/,
                 use: [
+                    // CSS抽取
                     MiniCssExtractPlugin.loader,
                     'css-loader',
                     'sass-loader',
@@ -45,20 +42,25 @@ const webpackConfig = {
                 loader: 'url-loader?limit=8192'
             },
             {
-                // 字体及svg打包
+                // 字体、svg等打包
                 test: /\.(woff|ttf|tff|otf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
                 loader: 'file-loader'
             }
         ]
     },
+
+    // 直接指明第三方模块的绝对路径，减少查找
     resolve: {
         alias: {},
-        extensions: ['.jsx', '.js', '.scss', '.css', '.png', '.jpg'], // 最常匹配的放在最前面，减少查找
+
+        // 最常匹配的放在最前面，减少查找
+        extensions: ['.jsx', '.js', '.scss', '.css', '.png', '.jpg'],
         modules: [
             path.resolve(__dirname, './node_modules'),
             path.resolve(__dirname, './src/asset')
-        ] // 直接指明第三方模块的绝对路径，减少查找
+        ]
     },
+
     optimization: {
         splitChunks: {
             cacheGroups: {
@@ -73,19 +75,21 @@ const webpackConfig = {
         },
 
         minimizer: [
+            // JS压缩(混淆)
             new UglifyJsPlugin({
                 cache: true,
                 parallel: true,
                 sourceMap: true
             }),
-            new OptimizeCSSAssetsPlugin({})
+
+            // CSS压缩(混淆)
+            new OptimizeCSSAssetsPlugin()
         ]
     },
     plugins: [
         // 注入常量
         new webpack.DefinePlugin({
-            __DEV__: MODE === 'development',
-            __DEBUG__: IF_DEBUG
+            __DEV__: MODE === 'development'
         })
     ]
 }
@@ -96,6 +100,9 @@ switch (MODE) {
         break;
     case 'production':
         setProdMode(webpackConfig);
+        break;
+    case 'debug':
+        setDebugMode(webpackConfig);
         break;
     default:
         setOther(webpackConfig);
