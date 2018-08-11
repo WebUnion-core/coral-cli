@@ -33,7 +33,7 @@ class Container extends React.Component {
         // 请求数据
         request({
             method: 'GET',
-            url: `http://${ window.Waydua.site }/${ window.Waydua.version }/home_list`,
+            url: `http://${ window.Waydua.site }/${ window.Waydua.version }/home/main_list`,
             success: (data) => {
                 setHomeData(data, this.props[prefix]);
 

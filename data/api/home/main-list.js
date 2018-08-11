@@ -1,7 +1,7 @@
 const data = require('./../../static/home_list.json');
 
 module.exports = function(version, api) {
-    api.get(`/${version}/home_list`, (ctx, next) => {
+    api.get(`/${version}/home/main_list`, (ctx, next) => {
         const { response, request } = ctx;
 
         /**

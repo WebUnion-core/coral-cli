@@ -16,7 +16,7 @@ export default function(config) {
     if (config.method.toUpperCase() === 'GET') {
         // 使用GET
         request
-            .get(config.url + (__DEV__ ? '.json' : ''))
+            .get(config.url)
             .end((err, res) => {
                 if (err) {
                     config.fail && config.fail(err);

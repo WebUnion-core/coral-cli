@@ -58,7 +58,7 @@ class Container extends React.Component {
         return (
             <div className="account-container">
                 <div id="account-content" className="account-content">
-                { this.renderForm() }
+                    { this.renderForm() }
                 </div>
             </div>
         )
@@ -68,7 +68,7 @@ class Container extends React.Component {
 // 将state对应值绑定到props上
 function mapStateToProps(state) {
     return {
-        [prefix]: state[prefix],
+        [prefix]: state[prefix]
     }
 }
 

@@ -1,7 +1,11 @@
 {
     "version": "v2",
+    "dbPath": "mongodb://localhost:27017/million-words",
     "apps": [
-        { "name": "million-words", "title": "泛言[Million Words]" }
+        {
+            "name": "million-words",
+            "title": "泛言[Million Words]"
+        }
     ],
     "dataServer": {
         "host": "127.0.0.1",
@@ -19,5 +23,9 @@
         "react",
         "react-dom",
         "react-router-dom"
+    ],
+    "apis": [
+        "home",
+        "user"
     ]
 }

@@ -1,5 +1,5 @@
-const requestHomeList = require('./home-list.js');
+const requestMainList = require('./main-list.js');
 
-module.exports = {
-    'home_list': requestHomeList
-};
+module.exports = [
+    requestMainList
+];
