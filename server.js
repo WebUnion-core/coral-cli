@@ -1,3 +1,4 @@
+const path = require('path');
 const Koa = require('koa');
 const koaBody = require('koa-body');
 const koaBodyParser = require('koa-bodyparser');
@@ -20,7 +21,7 @@ if (process.env.NODE_ENV === 'development') {
 setModel();
 
 const app = new Koa()
-    .use(convert(require('koa-static')(__dirname + './dist')))
+    .use(convert(require('koa-static')(path.resolve(__dirname, './dist'))))
     .use(convert.compose(
         koaBody({ multipart: true }),
         koaBodyParser(),
