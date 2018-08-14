@@ -51,7 +51,7 @@ module.exports = function(version, api) {
                     };
 
                     // 将登录签名和UA保存到Cache
-                    loginTokenCache[token] = data['user_agent'];
+                    loginTokenCache[data['user_agent']] = token;
                     fs.writeFileSync(
                         path.resolve(__dirname, cacheFilePath),
                         JSON.stringify(loginTokenCache, null, 4),
