@@ -39,6 +39,7 @@ export default class Register extends React.Component {
             data: {
                 'phone': this.refs['phone'].value,
                 'code': this.refs['code'].value,
+                'user_agent': window.Waydua.userAgent,
                 'password': this.refs['password'].value
             },
             success: (data) => {

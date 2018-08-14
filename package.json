@@ -15,6 +15,7 @@
   "author": "WebUnion",
   "license": "ISC",
   "devDependencies": {
+    "ammunition-storage": "^0.0.2",
     "animejs": "^2.2.0",
     "autoprefixer": "^8.6.4",
     "babel-cli": "^6.26.0",

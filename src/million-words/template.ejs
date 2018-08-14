@@ -16,6 +16,7 @@
 
     <script title="公共全局参数">
         window.Waydua = {
+            userAgent: window.navigator.userAgent,
             browser: {
                 bISPC: !/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent),
                 bIsIOS: !!navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/),

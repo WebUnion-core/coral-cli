@@ -1,5 +1,5 @@
 {
-    "version": "v2",
+    "version": "v3",
     "dbPath": "mongodb://localhost:27017/million-words",
     "apps": [
         {
@@ -8,15 +8,15 @@
         }
     ],
     "dataServer": {
-        "host": "127.0.0.1",
+        "host": "192.168.1.101",
         "port": 2018
     },
     "viewServer": {
-        "host": "127.0.0.1",
+        "host": "192.168.1.101",
         "port": 2015
     },
     "prodServer": {
-        "host": "127.0.0.1",
+        "host": "192.168.1.101",
         "port": 8888
     },
     "vendor": [

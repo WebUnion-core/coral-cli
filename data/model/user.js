@@ -3,16 +3,17 @@ const Schema = mongoose.Schema;
 
 // 实例化UserSchema
 const UserSchema = new Schema({
-    name: String,
-    code: String,
-    password: String,
+    'phone': String,
+    'password': String,
+    'user_agent': String,
+    'name': String,
 
-    meta: {
-        createdAt: {
+    'meta': {
+        'createdAt': {
             type: Date,
             default: Date.now()
         },
-        updatedAt: {
+        'updatedAt': {
             type: Date,
             default: Date.now()
         }

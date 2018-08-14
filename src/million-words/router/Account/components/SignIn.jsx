@@ -38,10 +38,11 @@ export default class SignIn extends React.Component {
             url: `http://${ window.Waydua.site }/${ window.Waydua.version }/user/login`,
             data: {
                 'name': this.refs['userName'].value,
-                'password': this.refs['password'].value
+                'password': this.refs['password'].value,
+                'user_agent': window.Waydua.userAgent
             },
             success: (data) => {
-                console.log(data);
+                alert(JSON.stringify(data));
             },
             fail: (err) => {
                 console.error(err);
@@ -53,7 +54,7 @@ export default class SignIn extends React.Component {
         return (
             <form className="fillin-form">
                 <img className="logo" src={ require('./../../../images/logo.png') } />
-                <input ref="userName" className="input" type="text" placeholder="请输入用户名" />
+                <input ref="userName" className="input" type="text" placeholder="请输入用户名或手机号" />
                 <input ref="password" className="input" type="password" placeholder="请输入密码" />
                 <p className="register-text" onClick={ this.clickRegisterText }>点击前往注册</p>
                 <button className="btn" onClick={ () => this.clickSignIn() }>登录</button>

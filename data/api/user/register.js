@@ -1,11 +1,19 @@
 const mongoose = require('mongoose');
+const ammunition = require('ammunition-storage');
 
 module.exports = function(version, api) {
     api.post(`/${version}/user/register`, async (ctx, next) => {
         const { response, request } = ctx;
         const User = mongoose.model('User');
+        const data = { ...request.body };
 
-        const user = new User(request.body);
+        // 指定数据加密
+        Object.assign(data, {
+            password: ammunition.md5(data.password),
+            name: data.phone
+        });
+
+        const user = new User(data);
         const saveInfo = await user.save(); // 保存数据
 
         ctx.set({
@@ -16,12 +24,7 @@ module.exports = function(version, api) {
 
         if (saveInfo) {
             ctx.body = {
-                result: 1,
-                data: {
-                    phone: request.body.phone,
-                    code: request.body.code,
-                    password: request.body.password
-                }
+                result: 1
             };
         } else {
             ctx.body = {
