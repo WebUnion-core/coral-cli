@@ -31,7 +31,7 @@ module.exports = function(version, api) {
                 } else {
                     const cacheFilePath = './../../static/login_token.json';
                     const loginTokenCache = require(cacheFilePath);
-                    const token = ammunition.md5(resData[0]['_id']);
+                    const token = resData[0]['_id'];
 
                     // 将登录签名保存到cookie
                     ctx.cookies.set(
@@ -51,7 +51,7 @@ module.exports = function(version, api) {
                     };
 
                     // 将登录签名和UA保存到Cache
-                    loginTokenCache[token] = token;
+                    loginTokenCache[token] = data['user_agent'];
                     fs.writeFileSync(
                         path.resolve(__dirname, cacheFilePath),
                         JSON.stringify(loginTokenCache, null, 4),
