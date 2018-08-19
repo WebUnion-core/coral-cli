@@ -3,6 +3,7 @@ import React from 'react';
 
 // 公共模块
 import request from './../../../common/modules/request.js';
+import cookieUtil from './../../../common/modules/cookie-util.js';
 
 export default class SignIn extends React.Component {
     constructor(props) {
@@ -42,7 +43,13 @@ export default class SignIn extends React.Component {
                 'user_agent': window.Waydua.userAgent
             },
             success: (data) => {
-                alert(JSON.stringify(data));
+                if (data['result'] === 1) {
+                    cookieUtil.set(
+                        'login_token',
+                        data['login_token'],
+                        30
+                    );
+                }
             },
             fail: (err) => {
                 console.error(err);

@@ -9,7 +9,7 @@
     "build-prod": "set NODE_ENV=production&&node ./bin/before-pack.js&&webpack",
     "start-dev-server": "set NODE_ENV=development&&node server.js",
     "start-prod-server": "set NODE_ENV=production&&node server.js",
-    "watch": "nodemon --exec npm run start-dev-server",
+    "watch": "set NODE_ENV=debug&&nodemon --exec node server.js",
     "build-sprite": "webpack&&node ./bin/reset-sprite.js"
   },
   "author": "WebUnion",

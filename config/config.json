@@ -1,5 +1,5 @@
 {
-    "version": "v3",
+    "version": "v4",
     "dbPath": "mongodb://localhost:27017/million-words",
     "apps": [
         {

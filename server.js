@@ -12,7 +12,7 @@ const setModel = require('./data/model');
 
 let config;
 
-if (process.env.NODE_ENV === 'development') {
+if (JSON.stringify(['development', 'debug']).indexOf(process.env.NODE_ENV) > 0) {
     config = require('./config/config.json').dataServer;
 } else {
     config = require('./config/config.json').prodServer;

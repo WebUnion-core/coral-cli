@@ -26,37 +26,28 @@ module.exports = function(version, api) {
                 if (resData.length === 0) {
                     ctx.body = {
                         result: -1,
-                        msg: '查无此人'
+                        msg: '用户不存在'
                     };
                 } else {
                     const cacheFilePath = './../../static/login_token.json';
                     const loginTokenCache = require(cacheFilePath);
                     const token = resData[0]['_id'];
 
-                    // 将登录签名保存到cookie
-                    ctx.cookies.set(
-                        'login_token',
-                        token,
-                        {
-                            maxAge: 10 * 60 * 1000, // cookie有效时长
-                            expires: new Date('2018-09-01'), // cookie失效时间
-                            httpOnly: false, // 是否只用于http请求中获取
-                            overwrite: true // 是否允许重写
-                        }
-                    );
-
                     // 反馈页面
                     ctx.body = {
-                        result: 1
+                        'result': 1,
+                        'login_token': token
                     };
 
                     // 将登录签名和UA保存到Cache
-                    loginTokenCache[token] = data['user_agent'];
-                    fs.writeFileSync(
-                        path.resolve(__dirname, cacheFilePath),
-                        JSON.stringify(loginTokenCache, null, 4),
-                        'utf-8'
-                    );
+                    if (process.env.NODE_ENV !== 'debug') {
+                        loginTokenCache[token] = data['user_agent'];
+                        fs.writeFileSync(
+                            path.resolve(__dirname, cacheFilePath),
+                            JSON.stringify(loginTokenCache, null, 4),
+                            'utf-8'
+                        );
+                    }
                 }
             }
         });

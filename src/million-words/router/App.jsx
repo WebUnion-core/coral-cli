@@ -8,6 +8,7 @@ import Account from './Account';
 
 // 公共模块
 import request from './../common/modules/request.js';
+import cookieUtil from './../common/modules/cookie-util.js';
 
 /*
  * router说明:
@@ -22,20 +23,25 @@ export default class App extends React.Component {
     }
 
     componentWillMount () {
-        // // 请求数据
-        // request({
-        //     method: 'POST',
-        //     url: `http://${ window.Waydua.site }/${ window.Waydua.version }/user/check_token`,
-        //     data: {
-        //
-        //     },
-        //     success: (data) => {
-        //         console.log(data);
-        //     },
-        //     fail: (err) => {
-        //         console.error(err);
-        //     }
-        // });
+        // 请求数据
+        request({
+            method: 'POST',
+            url: `http://${ window.Waydua.site }/${ window.Waydua.version }/user/check_token`,
+            data: {
+                'user_agent': window.Waydua.userAgent,
+                'login_token': cookieUtil.get('login_token')
+            },
+            success: (data) => {
+                if (data['result'] === 1) {
+                    alert('自动登录账号');
+                } else {
+                    alert('需要跳转登录');
+                }
+            },
+            fail: (err) => {
+                console.error(err);
+            }
+        });
     }
 
     render () {
