@@ -2,17 +2,12 @@
 export default (state = {}, action) => {
     switch (action.type) {
         case 'SET_PUBLIC_DATA':
-            return state = {
+            return {
                 publicData: { ...action.publicData }
             };
         default:
-            return state = {
-                publicData: {
-                    footTabs: [
-                        { name: 'INDEX', link: '/million-words/', icon: 'icon-11-home' },
-                        { name: 'SETTING', link: '/million-words/setting', icon: 'icon-11-setting' }
-                    ]
-                }
+            return {
+                publicData: {}
             };
     }
 }

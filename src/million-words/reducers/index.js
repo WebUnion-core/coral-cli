@@ -4,6 +4,7 @@ import Home from './Home.js';
 import Setting from './Setting.js';
 import Clock from './Clock.js';
 import Account from './Account.js';
+import OwnMsg from './OwnMsg.js';
 
 // 使用redux的combineReducers方法将所有reducer打包起来
 const rootReducer = combineReducers({
@@ -11,7 +12,8 @@ const rootReducer = combineReducers({
     Home,
     Setting,
     Clock,
-    Account
+    Account,
+    OwnMsg
 });
 
 export default rootReducer;

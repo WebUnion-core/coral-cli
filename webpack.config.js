@@ -11,7 +11,9 @@ const setDebugMode = require('./config/debug.config.js');
 const setOther = require('./config/other.config.js');
 const config = require('./config/config.json');
 
-const MODE = process.env.NODE_ENV.toLowerCase();
+const MODE = process.env.NODE_ENV
+    ? process.env.NODE_ENV.toLowerCase()
+    : 'none';
 
 const webpackConfig = {
     mode: '|production|development|'.indexOf(MODE) > 0

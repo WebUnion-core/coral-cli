@@ -1,4 +1,4 @@
-import anime from 'animejs'
+import anime from 'animejs';
 import React from 'react';
 
 // 公共模块
@@ -49,6 +49,7 @@ export default class SignIn extends React.Component {
                         data['login_token'],
                         30
                     );
+                    window.location.reload();
                 }
             },
             fail: (err) => {
@@ -61,8 +62,8 @@ export default class SignIn extends React.Component {
         return (
             <form className="fillin-form">
                 <img className="logo" src={ require('./../../../images/logo.png') } />
-                <input ref="userName" className="input" type="text" placeholder="请输入用户名或手机号" />
-                <input ref="password" className="input" type="password" placeholder="请输入密码" />
+                <input ref="userName" className="input" type="text" placeholder="请输入用户名或手机号" autoComplete="off" />
+                <input ref="password" className="input" type="password" placeholder="请输入密码" autoComplete="off" />
                 <p className="register-text" onClick={ this.clickRegisterText }>点击前往注册</p>
                 <button className="btn" onClick={ () => this.clickSignIn() }>登录</button>
             </form>

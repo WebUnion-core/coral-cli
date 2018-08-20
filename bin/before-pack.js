@@ -8,9 +8,9 @@ const babelRc = JSON.parse(fs.readFileSync(BABELRC_PATH, 'utf-8'));
 
 // 移除目标
 function deleteTarget(data, target) {
-    data.map(function(item) {
+    data.forEach(function(item, index) {
         if (item === target) {
-            return target;
+            data.splice(index, 1);
         }
     });
 

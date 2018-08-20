@@ -13,6 +13,11 @@ const spriteConfig = [];
 module.exports = function setOther(webpackConfig) {
     const srcData = fs.readdirSync(SRC_PATH);
 
+    // 伪入口
+    webpackConfig.entry['sprite_log'] = [
+        path.resolve(__dirname, './../src/asset/sprite-entry.js')
+    ];
+
     spriteConfig.push({
         // 目标小图标
         src: {

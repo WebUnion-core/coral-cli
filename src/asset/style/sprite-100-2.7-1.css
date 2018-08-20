@@ -16,14 +16,14 @@ To change `display` (e.g. `display: inline-block;`), we suggest using a common C
 // HTML
 <i class="icon icon-home"></i>
 */
-.icon-271-cloud {
+.icon-217-share {
   background-image: url(./../images/sprite-100-2.7-1.png);
   background-position: 0px 0rem;
   background-size: 2.7rem;
   width: 2.7rem;
   height: 2.7rem;
 }
-.icon-217-share {
+.icon-217-shopping-cart {
   background-image: url(./../images/sprite-100-2.7-1.png);
   background-position: 0px -2.7rem;
   background-size: 2.7rem;
@@ -58,51 +58,16 @@ To change `display` (e.g. `display: inline-block;`), we suggest using a common C
   width: 2.7rem;
   height: 2.7rem;
 }
-.icon-217-shopping-cart {
+.icon-271-gallery {
   background-image: url(./../images/sprite-100-2.7-1.png);
   background-position: 0px -16.200000000000003rem;
   background-size: 2.7rem;
   width: 2.7rem;
   height: 2.7rem;
 }
-.icon-271-gallery {
-  background-image: url(./../images/sprite-100-2.7-1.png);
-  background-position: 0px -18.900000000000002rem;
-  background-size: 2.7rem;
-  width: 2.7rem;
-  height: 2.7rem;
-}
-.icon-271-map {
-  background-image: url(./../images/sprite-100-2.7-1.png);
-  background-position: 0px -21.6rem;
-  background-size: 2.7rem;
-  width: 2.7rem;
-  height: 2.7rem;
-}
 .icon-271-music {
   background-image: url(./../images/sprite-100-2.7-1.png);
-  background-position: 0px -24.3rem;
-  background-size: 2.7rem;
-  width: 2.7rem;
-  height: 2.7rem;
-}
-.icon-271-search {
-  background-image: url(./../images/sprite-100-2.7-1.png);
-  background-position: 0px -27rem;
-  background-size: 2.7rem;
-  width: 2.7rem;
-  height: 2.7rem;
-}
-.icon-271-theme {
-  background-image: url(./../images/sprite-100-2.7-1.png);
-  background-position: 0px -29.700000000000003rem;
-  background-size: 2.7rem;
-  width: 2.7rem;
-  height: 2.7rem;
-}
-.icon-271-user {
-  background-image: url(./../images/sprite-100-2.7-1.png);
-  background-position: 0px -32.400000000000006rem;
+  background-position: 0px -18.900000000000002rem;
   background-size: 2.7rem;
   width: 2.7rem;
   height: 2.7rem;

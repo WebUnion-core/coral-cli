@@ -1,6 +1,6 @@
 import './style/index.scss';
 
-import anime from 'animejs'
+import anime from 'animejs';
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -52,9 +52,6 @@ class Container extends React.Component {
     }
 
     render() {
-        const { setAccountData } = this.props;
-        const { clockData } = this.props[prefix];
-
         return (
             <div className="account-container">
                 <div id="account-content" className="account-content">

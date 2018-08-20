@@ -2,6 +2,18 @@
     "scrollList": null,
     "halfSideList": null,
     "fullRowList": null,
+    "footTabs": [
+        {
+            "name": "首页",
+            "link": "/",
+            "icon": "icon-151-home"
+        },
+        {
+            "name": "个人",
+            "link": "/own_msg",
+            "icon": "icon-151-user"
+        }
+    ],
     "topIconList": [
         {
             "icon": "icon-271-clock",
@@ -9,23 +21,8 @@
             "link": "/clock"
         },
         {
-            "icon": "icon-271-user",
-            "text": "账户",
-            "link": "/account"
-        },
-        {
-            "icon": "icon-271-search",
-            "text": "搜索",
-            "link": "/"
-        },
-        {
             "icon": "icon-271-music",
             "text": "音乐",
-            "link": "/"
-        },
-        {
-            "icon": "icon-217-share",
-            "text": "分享",
             "link": "/"
         },
         {

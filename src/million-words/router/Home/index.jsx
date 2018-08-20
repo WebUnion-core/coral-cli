@@ -49,10 +49,8 @@ class Container extends React.Component {
     }
 
     render() {
-        const { homeData } = this.props[prefix],
-            { footTabs } = this.props['Public'].publicData;
-
-        console.log(`${prefix} props => `, this.props);
+        const { homeData } = this.props[prefix];
+        const { footTabs = [] } = homeData;
 
         return (
             <div className="container main-container">

@@ -2,11 +2,12 @@
 export default (state = {}, action) => {
     switch (action.type) {
         case 'SET_HOME_DATA':
-            return state = {
+            state = {
                 homeData: { ...action.homeData }
             };
+            return state;
         default:
-            return state = {
+            state = {
                 homeData: {
                     title: 'USER_NAME',
                     scrollList: null,
@@ -15,5 +16,6 @@ export default (state = {}, action) => {
                     topIconList: null
                 }
             };
+            return state;
     }
 }
