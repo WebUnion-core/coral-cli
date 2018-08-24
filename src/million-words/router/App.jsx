@@ -1,15 +1,17 @@
 import React from 'react';
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 
-import Home from './Home';
-import Setting from './Setting';
-import Clock from './Clock';
 import Account from './Account';
-import OwnMsg from './OwnMsg';
 
 // 公共模块
 import request from './../common/modules/request.js';
 import cookieUtil from './../common/modules/cookie-util.js';
+const config = require('./../data.json');
+
+const menuModules = [];
+config.menus.forEach((item) => {
+    menuModules.push(require('./' + item.path + '/index.js').default);
+});
 
 /*
  * router说明:
@@ -63,11 +65,11 @@ export default class App extends React.Component {
                     <Router>
                         <section>
                             <Switch>
-                                <Route path="/" component={ Home } exact />
-                                <Route path="/setting/" component={ Setting } exact />
-                                <Route path="/clock/" component={ Clock } exact />
-                                <Route path="/account/" component={ Account } exact />
-                                <Route path="/own_msg/" component={ OwnMsg } exact />
+                                {
+                                    config.menus.map(
+                                        (item, index) => <Route key={ index } path={ item.route } component={ menuModules[index] } exact />
+                                    )
+                                }
                             </Switch>
                         </section>
                     </Router>

@@ -43,15 +43,19 @@ npm run start-prod-server
 
 ### 首页 ###
 
-![image](./asset/intro/2018-08-04-23-41-12.jpg?v=1)
+![image](./asset/intro/2018-08-24-20-39-28.jpg?v=1)
 
 ### 闹钟应用 ###
 
-![image](./asset/intro/2018-08-04-23-42-53.jpg?v=1)
+![image](./asset/intro/2018-08-24-20-41-11.jpg?v=1)
 
 ### 登录/注册 ###
 
-![image](./asset/intro/2018-08-08-23-39-46.jpg?v=1)
+![image](./asset/intro/2018-08-08-23-39-46.jpg?v=2)
+
+### 用户中心 ###
+
+![image](./asset/intro/2018-08-24-20-31-58.jpg?v=2)
 
 ---
 

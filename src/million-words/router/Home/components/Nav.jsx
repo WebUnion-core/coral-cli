@@ -12,11 +12,11 @@ export default class Nav extends React.Component {
         return (
             <nav className="nav-container">
                 <figure className="bg-container">
-                    <img className="bg-img" src={ require('./../../../images/w1.jpg') } />
+                    <img className="bg-img" src={ `${window.Waydua.cdn}w1.jpg` } />
                 </figure>
 
                 <figure className="avator-container">
-                    <img className="avator" src={ require('./../../../images/w2.png') } />
+                    <img className="avator" src={ `${window.Waydua.cdn}w2.png` } />
                     <strong className="user-name">{ title }</strong>
                 </figure>
             </nav>

@@ -30,44 +30,58 @@ To change `display` (e.g. `display: inline-block;`), we suggest using a common C
   width: 1.5rem;
   height: 1.5rem;
 }
-.icon-151-close {
+.icon-151-black-arrow {
   background-image: url(./../images/sprite-50-1.5-1.png);
   background-position: 0px -3rem;
   background-size: 1.5rem;
   width: 1.5rem;
   height: 1.5rem;
 }
-.icon-151-home-active {
+.icon-151-close {
   background-image: url(./../images/sprite-50-1.5-1.png);
   background-position: 0px -4.5rem;
   background-size: 1.5rem;
   width: 1.5rem;
   height: 1.5rem;
 }
-.icon-151-home {
+.icon-151-edit {
   background-image: url(./../images/sprite-50-1.5-1.png);
   background-position: 0px -6rem;
   background-size: 1.5rem;
   width: 1.5rem;
   height: 1.5rem;
 }
-.icon-151-setting {
+.icon-151-home-active {
   background-image: url(./../images/sprite-50-1.5-1.png);
   background-position: 0px -7.5rem;
   background-size: 1.5rem;
   width: 1.5rem;
   height: 1.5rem;
 }
-.icon-151-user-active {
+.icon-151-home {
   background-image: url(./../images/sprite-50-1.5-1.png);
   background-position: 0px -9rem;
   background-size: 1.5rem;
   width: 1.5rem;
   height: 1.5rem;
 }
-.icon-151-user {
+.icon-151-setting {
   background-image: url(./../images/sprite-50-1.5-1.png);
   background-position: 0px -10.5rem;
+  background-size: 1.5rem;
+  width: 1.5rem;
+  height: 1.5rem;
+}
+.icon-151-user-active {
+  background-image: url(./../images/sprite-50-1.5-1.png);
+  background-position: 0px -12rem;
+  background-size: 1.5rem;
+  width: 1.5rem;
+  height: 1.5rem;
+}
+.icon-151-user {
+  background-image: url(./../images/sprite-50-1.5-1.png);
+  background-position: 0px -13.5rem;
   background-size: 1.5rem;
   width: 1.5rem;
   height: 1.5rem;

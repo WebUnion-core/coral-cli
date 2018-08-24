@@ -4,14 +4,14 @@
     "apps": [
         {
             "name": "million-words",
-            "title": "泛言[Million Words]"
+            "title": "【Million Words】"
         }
     ],
     "dataServer": {
         "host": "192.168.1.101",
         "port": 2018
     },
-    "viewServer": {
+    "debugServer": {
         "host": "192.168.1.101",
         "port": 2015
     },
@@ -22,7 +22,10 @@
     "vendor": [
         "react",
         "react-dom",
-        "react-router-dom"
+        "redux",
+        "animejs",
+        "superagent",
+        "swiper"
     ],
     "apis": [
         "home",

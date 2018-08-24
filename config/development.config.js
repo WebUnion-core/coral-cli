@@ -1,7 +1,5 @@
-const webpack = require('webpack');
 const path = require('path');
 const config = require('./config.json');
-const viewServer = config.viewServer;
 const dataServer = config.dataServer;
 
 // 插件
@@ -44,7 +42,8 @@ module.exports = function setDevMode(webpackConfig) {
                 hash: false,
                 minify: false,
                 version: config.version,
-                site: dataServer.host + ':' + dataServer.port
+                site: dataServer.host + ':' + dataServer.port,
+                cdn: 'https://raw.githubusercontent.com/WebUnion-core/bona-storm/master/asset/img/'
             })
         );
 

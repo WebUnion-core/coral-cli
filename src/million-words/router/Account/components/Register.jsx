@@ -10,7 +10,7 @@ export default class Register extends React.Component {
     }
 
     // 点击跳转登录
-    clickSigInText = (event) => {
+    clickSigInText = () => {
         const formElem = document.getElementById('account-content');
 
         formElem.style.visibility = 'hidden';
@@ -54,7 +54,7 @@ export default class Register extends React.Component {
     render() {
         return (
             <form className="fillin-form">
-                <img className="logo" src={ require('./../../../images/logo.png') } />
+                <img className="logo" src={ `${window.Waydua.cdn}logo.png` } />
                 <input ref="phone" className="input" type="text" placeholder="请输入手机号" />
                 <input ref="code" className="input" type="text" placeholder="请输入验证码" />
                 <input ref="password" className="input" type="password" placeholder="请输入密码" />

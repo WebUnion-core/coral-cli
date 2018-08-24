@@ -61,7 +61,7 @@ export default class SignIn extends React.Component {
     render() {
         return (
             <form className="fillin-form">
-                <img className="logo" src={ require('./../../../images/logo.png') } />
+                <img className="logo" src={ `${window.Waydua.cdn}logo.png` } />
                 <input ref="userName" className="input" type="text" placeholder="请输入用户名或手机号" autoComplete="off" />
                 <input ref="password" className="input" type="password" placeholder="请输入密码" autoComplete="off" />
                 <p className="register-text" onClick={ this.clickRegisterText }>点击前往注册</p>

@@ -1,4 +1,6 @@
-$themeColor: #00A79D;
+@import "./../../../common/style/base";
+@import "./../../../common/style/animate";
+@import "./../../../common/style/swiper.min.scss";
 
 .clock-container {
     overflow: hidden;
@@ -46,7 +48,7 @@ $themeColor: #00A79D;
             position: relative;
             width: 100%;
             height: 22.5rem;
-            background-image: url(./../../../images/clock.png);
+            background-image: url(https://raw.githubusercontent.com/WebUnion-core/bona-storm/master/asset/img/clock.png);
             background-size: 100% 100%;
 
             .color-line {

@@ -4,7 +4,7 @@
   "description": "Bona-Storm",
   "main": "server.js",
   "scripts": {
-    "dev": "set NODE_ENV=debug&&node ./bin/before-pack.js&&webpack-dev-server",
+    "dev": "set NODE_ENV=debug&&node ./bin/before-pack.js&&webpack-dev-server --profile",
     "build-dev": "set NODE_ENV=development&&node ./bin/before-pack.js&&webpack",
     "build-prod": "set NODE_ENV=production&&node ./bin/before-pack.js&&webpack",
     "start-dev-server": "set NODE_ENV=development&&node server.js",

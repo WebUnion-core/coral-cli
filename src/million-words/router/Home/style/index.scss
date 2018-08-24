@@ -1,7 +1,6 @@
-@import url("./../../../common/style/animate.scss");
-@import url("./../../../common/style/swiper.min.scss");
-
-$themeColor: #00A79D;
+@import "./../../../common/style/base";
+@import "./../../../common/style/animate";
+@import "./../../../common/style/swiper.min.scss";
 
 /* 导航 */
 .nav-container {

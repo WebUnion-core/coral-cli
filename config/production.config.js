@@ -41,7 +41,8 @@ module.exports = function setProdMode(webpackConfig) {
             hash: false,
             minify: true,
             version: config.version,
-            site: prodServer.host + ':' + prodServer.port
+            site: prodServer.host + ':' + prodServer.port,
+            cdn: 'https://raw.githubusercontent.com/WebUnion-core/bona-storm/master/asset/img/'
         }));
 
         // 设置打包入口

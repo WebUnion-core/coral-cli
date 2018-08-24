@@ -1,0 +1,25 @@
+$themeColor: #00A79D;
+$pureWhite: #ffffff;
+$lightBlack: #434343;
+$lightGray: #ececec;
+
+/* 快速转换rem
+ * $px为需要转换的字号
+ */
+@function pxToRem($px){
+	@return $px / 16px * 1rem;
+}
+
+// 竖直居中
+.verticalMiddle {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+// flex居中
+.flexCenter {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}

@@ -9,23 +9,19 @@ const setDevMode = require('./config/development.config.js');
 const setProdMode = require('./config/production.config.js');
 const setDebugMode = require('./config/debug.config.js');
 const setOther = require('./config/other.config.js');
-const config = require('./config/config.json');
 
-const MODE = process.env.NODE_ENV
-    ? process.env.NODE_ENV.toLowerCase()
-    : 'none';
+const MODE = process.env.NODE_ENV ? process.env.NODE_ENV.toLowerCase() : 'none';
 
 const webpackConfig = {
-    mode: '|production|development|'.indexOf(MODE) > 0
-        ? MODE
-        : 'none',
+    mode: '|production|development|'.indexOf(MODE) > 0 ? MODE : 'none',
     entry: {},
     module: {
         rules: [
             {
                 // 脚本打包
                 test: /\.(js|jsx)$/,
-                loader: 'babel-loader'
+                loader: 'babel-loader?cacheDirectory=true',
+                exclude: /node_modules/
             },
             {
                 // CSS样式表打包
@@ -58,8 +54,7 @@ const webpackConfig = {
         // 最常匹配的放在最前面，减少查找
         extensions: ['.jsx', '.js', '.scss', '.css', '.png', '.jpg'],
         modules: [
-            path.resolve(__dirname, './node_modules'),
-            path.resolve(__dirname, './src/asset')
+            path.resolve(__dirname, './node_modules')
         ]
     },
 
@@ -70,8 +65,8 @@ const webpackConfig = {
                 vendor: {
                     test: /node_modules/, // 指定是node_modules下的第三方包
                     chunks: 'initial',
-                    name: 'vendor', // 打包后的文件名，任意命名
-                    priority: -10 // 设置优先级，防覆盖
+                    name: 'vendor' // 打包后的文件名，任意命名
+                    // priority: 10 // 设置优先级，防覆盖
                 }
             }
         },

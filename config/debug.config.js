@@ -1,7 +1,7 @@
 const webpack = require('webpack');
 const path = require('path');
 const config = require('./config.json');
-const viewServer = config.viewServer;
+const debugServer = config.debugServer;
 const dataServer = config.dataServer;
 
 // 插件
@@ -29,8 +29,8 @@ module.exports = function setDevMode(webpackConfig) {
     // 开发模式server
     webpackConfig.devServer = {
         contentBase: DIST_PATH,
-        host: viewServer.host,
-        port: viewServer.port,
+        host: debugServer.host,
+        port: debugServer.port,
         historyApiFallback: true,
         inline: true,
         hot: true
@@ -44,10 +44,6 @@ module.exports = function setDevMode(webpackConfig) {
         chunkFilename: '[name].js'
     };
 
-    // 设置vendor
-    webpackConfig.entry['vendor'] = config['vendor'];
-
-
     config.apps.forEach(function(item) {
         // 配置页面模板
         webpackConfig.plugins.push(
@@ -58,16 +54,17 @@ module.exports = function setDevMode(webpackConfig) {
                 hash: false,
                 minify: false,
                 version: config.version,
-                site: dataServer.host + ':' + dataServer.port
+                site: dataServer.host + ':' + dataServer.port,
+                cdn: 'https://raw.githubusercontent.com/WebUnion-core/bona-storm/master/asset/img/'
             })
         );
 
         // 设置打包入口
         webpackConfig.entry[item.name + '/bundle'] = [
             path.resolve(__dirname, './../src/' + item.name + '/entry.js'),
-            'webpack/hot/only-dev-server',
+            'react-hot-loader/patch',
             'webpack-dev-server/client',
-            'react-hot-loader/patch'
+            'webpack/hot/only-dev-server'
         ];
     });
 }

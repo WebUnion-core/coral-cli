@@ -12,6 +12,9 @@ import TabsFooter from './../../common/components/tabs-footer';
 const prefix = 'OwnMsg';
 
 // 子组件
+import HeadCanvas from './components/HeadCanvas.jsx';
+import FuncBlocks from './components/FuncBlocks.jsx';
+import DetailList from './components/DetailList.jsx';
 
 class Container extends React.Component {
     constructor(props) {
@@ -30,6 +33,9 @@ class Container extends React.Component {
 
         return (
             <div className="container ownmsg-container">
+                <HeadCanvas />
+                <FuncBlocks />
+                <DetailList />
                 <TabsFooter list={ footTabs } defaultIndex={ 1 } />
             </div>
         )

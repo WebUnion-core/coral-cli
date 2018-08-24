@@ -29,7 +29,8 @@
                 bIsHuawei: navigator.userAgent.toLowerCase().match(/huawei/i) == "huawei"
             },
             version: '<%= htmlWebpackPlugin.options.version %>',
-            site: '<%= htmlWebpackPlugin.options.site %>'
+            site: '<%= htmlWebpackPlugin.options.site %>',
+            cdn: '<%= htmlWebpackPlugin.options.cdn %>'
         };
     </script>
     <script title="rem计算">
@@ -37,9 +38,7 @@
             var docEl = doc.documentElement; // 根元素
             var resizeEvt = 'onorientationchange' in window ? 'onorientationchange' : 'resize'; // 兼容屏幕变化事件
             var recalc = function() {
-                var clientWidth = docEl.clientWidth > win.innerWidth
-                                  ? win.innerWidth
-                                  : docEl.clientWidth; // 处理一些移动设备中获取到怪异设备宽度的情况
+                var clientWidth = Math.min(docEl.clientWidth, win.innerWidth); // 处理一些移动设备中获取到怪异设备宽度的情况
                 var fontSize;
 
                 if (clientWidth >= 720) { // 大于峰值规定一致的字体大小
@@ -61,5 +60,4 @@
 <body>
     <main id="app"></main>
 </body>
-
 </html>
