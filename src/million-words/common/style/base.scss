@@ -3,14 +3,32 @@ $pureWhite: #ffffff;
 $lightBlack: #434343;
 $lightGray: #ececec;
 
-/* 快速转换rem
+/*
+ * https://github.com/ant-design/ant-design-mobile/wiki/%E8%AE%BE%E8%AE%A1%E5%8F%98%E9%87%8F%E8%A1%A8%E5%8F%8A%E5%91%BD%E5%90%8D%E8%A7%84%E8%8C%83
+ */
+$color-text-base: #434343; // 默认文字
+$color-text-placeholder: #ececec; // placeholder
+$color-link: #108119; // link
+$color-shadow: rgba(0,0,0,0.25); // 阴影色
+$fill-base: #ffffff; // 组件默认背景
+$fill-body: #fcfcfc; // 页面背景
+$fill-body-heavy: #0EA198; // 页面背景深色
+$fill-tap: #dddddd; // 默认背景按下
+$fill-mask: rgba(0,0,0,0.5); // 遮罩
+$fill-overlay-inverse: rgba(0,0,0,0.8); // 浮层背景反色，toast等
+$brand-primary: #00A79D; // 主色
+$border-color-base: #dddddd; // 基本边框色
+$border-color-shallow: #ececec; // 基本边框浅色
+
+/*
+ * 快速转换rem ->
  * $px为需要转换的字号
  */
 @function pxToRem($px){
 	@return $px / 16px * 1rem;
 }
 
-// 竖直居中
+// position竖直居中
 .verticalMiddle {
 	position: absolute;
 	top: 50%;
@@ -22,4 +40,50 @@ $lightGray: #ececec;
 	display: flex;
 	align-items: center;
 	justify-content: center;
+}
+
+// 显示
+.show {
+	display: block;
+}
+
+// 隐藏
+.hide {
+	display: none;
+}
+
+// 容器
+.container {
+	overflow: hidden;
+
+	&::after {
+		display: block;
+		width: 100%;
+		height: 3.3125rem;
+		content: '';
+	}
+}
+
+// flex完全居中
+.flex-complete-middle {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+// flex竖直居中
+.flex-vertical-middle {
+	display: flex;
+	justify-content: center;
+}
+
+// flex水平居中
+.flex-horizontal-middle {
+	display: flex;
+	align-items: center;
+}
+
+// icon
+.icon {
+	display: inline-block;
 }

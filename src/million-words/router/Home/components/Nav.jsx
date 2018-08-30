@@ -15,10 +15,10 @@ export default class Nav extends React.Component {
                     <img className="bg-img" src={ `${window.Waydua.cdn}w1.jpg` } />
                 </figure>
 
-                <figure className="avator-container">
+                {/* <figure className="avator-container">
                     <img className="avator" src={ `${window.Waydua.cdn}w2.png` } />
                     <strong className="user-name">{ title }</strong>
-                </figure>
+                </figure> */}
             </nav>
         )
     }

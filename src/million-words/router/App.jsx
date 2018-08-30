@@ -1,13 +1,17 @@
 import React from 'react';
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
+import './../common/style/reset.scss';
 
+// 组件
 import Account from './Account';
 
 // 公共模块
+import { getRequestPath } from './../common/modules/tools.js';
 import request from './../common/modules/request.js';
 import cookieUtil from './../common/modules/cookie-util.js';
 const config = require('./../data.json');
 
+// 整合菜单
 const menuModules = [];
 config.menus.forEach((item) => {
     menuModules.push(require('./' + item.path + '/index.js').default);
@@ -33,7 +37,7 @@ export default class App extends React.Component {
         // 请求数据
         request({
             method: 'POST',
-            url: `http://${ window.Waydua.site }/${ window.Waydua.version }/user/check_token`,
+            url: `${ getRequestPath() }/user/check_token`,
             data: {
                 'user_agent': window.Waydua.userAgent,
                 'login_token': cookieUtil.get('login_token')
@@ -59,20 +63,21 @@ export default class App extends React.Component {
     renderRouter () {
         switch (this.state.routerType) {
             case 'ONLY_LOGIN':
-                return <Router><Route path="/" component={ Account } /></Router>
+                return <Route path="/" component={ Account } />
             case 'NORMAL':
                 return (
-                    <Router>
-                        <section>
-                            <Switch>
-                                {
-                                    config.menus.map(
-                                        (item, index) => <Route key={ index } path={ item.route } component={ menuModules[index] } exact />
-                                    )
-                                }
-                            </Switch>
-                        </section>
-                    </Router>
+                    <Switch>
+                        {
+                            config.menus.map(
+                                (item, index) => (
+                                    <Route key={ index }
+                                        path={ item.route }
+                                        component={ menuModules[index] }
+                                        exact />
+                                )
+                            )
+                        }
+                    </Switch>
                 );
             default:
                 return '';
@@ -80,6 +85,6 @@ export default class App extends React.Component {
     }
 
     render () {
-        return this.renderRouter();
+        return <Router><section>{ this.renderRouter() }</section></Router>;
     }
 }

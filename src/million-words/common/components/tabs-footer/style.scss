@@ -1,4 +1,8 @@
+@import "./../../style/base.scss";
+
 .tabs-footer-list {
+    @extend .flex-complete-middle;
+
     position: fixed;
     bottom: 0;
     width: 100%;

@@ -1,76 +1,46 @@
-@import "./../../../common/style/base";
-@import "./../../../common/style/animate";
+@import "./../../../common/style/base.scss";
 @import "./../../../common/style/swiper.min.scss";
 
 /* 导航 */
 .nav-container {
     position: relative;
-    border-bottom: 2.2rem solid #046761;
     opacity: 0.85;
 
     .bg-container {
         position: relative;
         overflow: hidden;
         width: 100%;
-        height: 7rem;
+        height: pxToRem(144px);
 
         .bg-img {
-            width: 150%;
+            width: 200%;
+            height: 100%;
             animation: slide 20s linear 1s infinite alternate;
-        }
-    }
-
-    .avator-container {
-        position: absolute;
-        bottom: 0;
-        width: 98%;
-        height: 3.5rem;
-
-        .avator {
-            display: block;
-            float: right;
-            box-sizing: border-box;
-            width: 3.75rem;
-            height: 3.75rem;
-            margin-top: 1.75rem;
-            border-radius: 3.75rem 3.75rem;
-            background-color: #ffffff;
-            border: 0.2rem solid #0EA198;
-        }
-
-        .user-name {
-            position: absolute;
-            bottom: 0;
-            right: 4.25rem;
-            color: #ffffff;
-            top: 3.8rem;
-            margin: auto;
-            height: 1rem;
         }
     }
 }
 
 /* 顶部icon列表 */
 .top-icon-list-container {
-    border-bottom: 0.3rem solid #ececec;
+    border-bottom: 0.3rem solid $border-color-base;
 
     .top-icon-list {
         overflow: hidden;
-        padding: 1.1rem 0 0;
+        padding: pxToRem(17.6px) 0 0;
 
         .top-icon-item {
             float: left;
             width: 20%;
-            padding-bottom: 0.8rem;
+            padding-bottom: pxToRem(12.8px);
             text-align: center;
 
             .icon {
-                border-radius: 0.35rem 0.35rem;
-                background-color: $themeColor;
+                border-radius: pxToRem(5.6px) pxToRem(5.6px);
+                background-color: $brand-primary;
             }
 
             .text {
-                font-size: 0.65rem;
+                font-size: pxToRem(10.6px);
             }
         }
     }
@@ -80,34 +50,32 @@
 .full-row-list-container {
     .full-row-list {
         .full-row-item {
-            display: flex;
-            align-items: center;
-            height: 6rem;
-            border-bottom: 1px solid #dcdcdc;
+            @extend .flex-horizontal-middle;
+
+            height: pxToRem(96px);
+            border-bottom: 1px solid $border-color-base;
             box-sizing: border-box;
 
             .figure {
-                width: 4rem;
-                height: 4rem;
-                margin: 1rem;
-                border: 1px solid #dcdcdc;
+                width: pxToRem(64px);
+                height: pxToRem(64px);
+                margin: pxToRem(16px);
+                border: 1px solid $border-color-base;
             }
-
-            .text {}
         }
     }
 }
 
 /* 滚动列表 */
 .scroll-list-container {
-    background-color: #ffffff;
+    background-color: $fill-base;
     padding: 0 20px;
-    border-bottom: 0.3rem solid #ececec;
+    border-bottom: pxToRem(4.8px) solid $border-color-base;
 
     .scroll-list {
         position: relative;
         width: 200%;
-        height: 8rem;
+        height: pxToRem(128px);
 
         .scroll-item {
             display: flex;
@@ -117,10 +85,9 @@
             -webkit-box-align: center;
             -ms-flex-align: center;
             align-items: center;
-            margin: 1rem 0;
-            height: 6rem;
-            background-color: #ffffff;
-            border: 1px solid #dcdcdc;
+            margin: pxToRem(16px) 0;
+            height: pxToRem(96px);
+            border: 1px solid $border-color-base;
             box-sizing: border-box;
         }
     }
@@ -129,20 +96,19 @@
 /* 半侧列表 */
 .half-side-list-container {
     overflow: hidden;
-    border-bottom: 0.3rem solid #ececec;
+    border-bottom: pxToRem(4.8px) solid $border-color-base;
 
     .half-side-list {
         .half-side-item {
+            @extend .flex-complete-middle;
+
             float: left;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             width: 50%;
-            height: 6rem;
+            height: pxToRem(96px);
             box-sizing: border-box;
 
             &:first-of-type {
-                border-right: 1px solid #dcdcdc;
+                border-right: 1px solid $border-color-base;
             }
         }
     }

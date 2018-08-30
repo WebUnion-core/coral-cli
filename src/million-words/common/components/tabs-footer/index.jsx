@@ -27,7 +27,7 @@ export default class TabsFooter extends React.Component {
             { activeIndex } = this.state;
 
         return (
-            <ul className="tabs-footer-list flex-center">
+            <ul className="tabs-footer-list">
                 {
                     list.map((item, index) => {
                         const ifActive = item.link
