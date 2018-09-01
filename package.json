@@ -4,6 +4,7 @@
   "description": "Bona-Storm",
   "main": "server.js",
   "scripts": {
+    "mwbuilder": "node ./bin/mwbuilder.js",
     "dev": "set NODE_ENV=debug&&node ./bin/before-pack.js&&webpack-dev-server --profile",
     "build-dev": "set NODE_ENV=development&&node ./bin/before-pack.js&&webpack",
     "build-prod": "set NODE_ENV=production&&node ./bin/before-pack.js&&webpack",
@@ -56,6 +57,7 @@
     "webpack-spritesmith": "^0.5.1"
   },
   "dependencies": {
+    "ammunition-storage": "^0.0.2",
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "koa": "^2.5.2",

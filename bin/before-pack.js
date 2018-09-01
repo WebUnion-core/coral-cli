@@ -4,7 +4,7 @@ const path = require('path');
 
 const MODE = process.env.NODE_ENV.toLowerCase();
 const BABELRC_PATH = path.resolve(__dirname, './../.babelrc');
-const babelRc = JSON.parse(fs.readFileSync(BABELRC_PATH, 'utf-8'));
+const BABELRC_DATA = JSON.parse(fs.readFileSync(BABELRC_PATH, 'utf-8'));
 
 // 移除目标
 function deleteTarget(data, target) {
@@ -36,19 +36,28 @@ function addTarget(data, target) {
 
 switch (MODE) {
     case 'development':
-        babelRc['plugins'] = deleteTarget(babelRc['plugins'], 'react-hot-loader/babel');
+        BABELRC_DATA['plugins'] = deleteTarget(
+            BABELRC_DATA['plugins'],
+            'react-hot-loader/babel'
+        );
         break;
     case 'production':
-        babelRc['plugins'] = deleteTarget(babelRc['plugins'], 'react-hot-loader/babel');
+        BABELRC_DATA['plugins'] = deleteTarget(
+            BABELRC_DATA['plugins'],
+            'react-hot-loader/babel'
+        );
         break;
     case 'debug':
-        babelRc['plugins'] = addTarget(babelRc['plugins'], 'react-hot-loader/babel');
+        BABELRC_DATA['plugins'] = addTarget(
+            BABELRC_DATA['plugins'],
+            'react-hot-loader/babel'
+        );
         break;
     default:
 }
 
 fs.writeFileSync(
     BABELRC_PATH,
-    JSON.stringify(babelRc, null, 4),
+    JSON.stringify(BABELRC_DATA, null, 4),
     'utf-8'
 );
