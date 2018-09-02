@@ -1,0 +1,63 @@
+@import "./../../style/base.scss";
+
+.normal-dialog-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: $fill-mask;
+    color: $color-text-base;
+    z-index: 900;
+
+    .dialog-body {
+        display: inline-block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 85%;
+        background-color: $fill-base;
+        border-radius: 4px 4px;
+        transform: translate(-50%,-50%);
+
+        .title {
+            height: pxToRem(50px);
+            line-height: pxToRem(53px);
+            font-size: pxToRem(18px);
+            padding: 0 pxToRem(15px);
+
+            .text {
+                display: inline-block;
+            }
+        }
+
+        .content {
+            padding: 0 pxToRem(15px) pxToRem(16px);
+            font-size: pxToRem(16px);
+        }
+
+        .btn-list {
+            @extend .flex-complete-middle;
+
+            height: pxToRem(60px);
+            padding: 0 5% pxToRem(5px);
+            flex-wrap: wrap;
+            justify-content: space-between;
+
+            .btn-item {
+                width: 47.5%;
+                height: 70%;
+
+                .btn {
+                    width: 100%;
+                    height: 100%;
+                    border: 0;
+                    border-radius: 3px 3px;
+                    background-color: $brand-primary-heavy;
+                    color: $fill-base;
+                    font-size: pxToRem(15px);
+                }
+            }
+        }
+    }
+}

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default class HeadCanvas extends React.Component {
     constructor(props) {
@@ -9,7 +10,7 @@ export default class HeadCanvas extends React.Component {
         return (
             <header className="head-canvas-container">
                 <figure className="avatar-container"></figure>
-                <i className="edit-icon icon-151-edit" />
+                <Link to="/userInfo/"><i className="edit-icon icon-151-edit" /></Link>
                 <div className="info-cont">
                     <strong className="name">WJT20</strong>
                     <small className="id">ID: 6588888</small>

@@ -1,13 +1,8 @@
-$themeColor: #00A79D;
-$pureWhite: #ffffff;
-$lightBlack: #434343;
-$lightGray: #ececec;
-
 /*
  * https://github.com/ant-design/ant-design-mobile/wiki/%E8%AE%BE%E8%AE%A1%E5%8F%98%E9%87%8F%E8%A1%A8%E5%8F%8A%E5%91%BD%E5%90%8D%E8%A7%84%E8%8C%83
  */
 $color-text-base: #434343; // 默认文字
-$color-text-placeholder: #ececec; // placeholder
+$color-text-placeholder: #a3a3a3; // placeholder
 $color-link: #108119; // link
 $color-shadow: rgba(0,0,0,0.25); // 阴影色
 $fill-base: #ffffff; // 组件默认背景
@@ -17,6 +12,7 @@ $fill-tap: #dddddd; // 默认背景按下
 $fill-mask: rgba(0,0,0,0.5); // 遮罩
 $fill-overlay-inverse: rgba(0,0,0,0.8); // 浮层背景反色，toast等
 $brand-primary: #00A79D; // 主色
+$brand-primary-heavy: #086560; // 主色深色
 $border-color-base: #dddddd; // 基本边框色
 $border-color-shallow: #ececec; // 基本边框浅色
 
@@ -74,16 +70,33 @@ $border-color-shallow: #ececec; // 基本边框浅色
 // flex竖直居中
 .flex-vertical-middle {
 	display: flex;
-	justify-content: center;
+	align-items: center;
 }
 
 // flex水平居中
 .flex-horizontal-middle {
 	display: flex;
-	align-items: center;
+	justify-content: center;
 }
 
 // icon
 .icon {
 	display: inline-block;
+}
+
+// 1px水平线
+.horizontal-line {
+	position: relative;
+
+	&::after {
+		content: '';
+		display: inline-block;
+		position: absolute;
+		bottom: 0;
+		left: -50%;
+		width: 200%;
+		height: 1px;
+		transform: scale(0.5);
+		background-color: $border-color-base;
+	}
 }

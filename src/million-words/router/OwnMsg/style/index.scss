@@ -6,7 +6,7 @@
     .head-canvas-container {
         position: relative;
         height: pxToRem(162px);
-        background-color: $themeColor;
+        background-color: $brand-primary;
 
         .avatar-container {
             @extend .verticalMiddle;
@@ -14,7 +14,7 @@
             left: pxToRem(18px);
             width: pxToRem(65px);
             height: pxToRem(65px);
-            background-color: $pureWhite;
+            background-color: $fill-base;
             border-radius: 50% 50%;
         }
 
@@ -30,7 +30,7 @@
             @extend .verticalMiddle;
 
             left: pxToRem(96px);
-            color: $pureWhite;
+            color: $fill-base;
 
             .name {
                 font-size: pxToRem(16px);
@@ -52,7 +52,7 @@
     .func-blocks-list {
         overflow: hidden;
         width: 100%;
-        border-bottom: 0.3rem solid $lightGray;
+        border-bottom: 0.3rem solid $border-color-base;
 
         .block-item {
             @extend .flexCenter;
@@ -72,7 +72,7 @@
 
                 .item-title {
                     font-size: pxToRem(12px);
-                    color: $lightBlack;
+                    color: $color-text-base;
                 }
             }
         }

@@ -14,7 +14,7 @@ const config = require('./../data.json');
 // 整合菜单
 const menuModules = [];
 config.menus.forEach((item) => {
-    menuModules.push(require('./' + item.name + '/index.js').default);
+    menuModules.push(require('./' + item.name + '/index.jsx').default);
 });
 
 /*

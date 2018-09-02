@@ -4,7 +4,7 @@ const setOwnMsgData = (newData = {}, props) => {
     Object.assign(ownMsgData, newData);
 
     return {
-        type: 'SET_Setting_DATA', // type属性一定要有
+        type: 'SET_UserInfo_DATA', // type属性一定要有
         ownMsgData
     }
 };

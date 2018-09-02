@@ -17,8 +17,8 @@
             "route": "/own_msg/"
         },
         {
-            "name": "Setting",
-            "path": "/setting/"
+            "name": "UserInfo",
+            "path": "/userInfo/"
         }
     ]
 }

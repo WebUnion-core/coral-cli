@@ -10,7 +10,7 @@ import Swiper from 'swiper';
 import request from './../../common/modules/request.js';
 
 // 通用组件
-import TabsFooter from './../../common/components/tabs-footer';
+import TabsFooter from './../../common/components/TabsFooter';
 
 // 子组件
 import Nav from './components/Nav.jsx';

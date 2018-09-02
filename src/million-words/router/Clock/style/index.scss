@@ -9,7 +9,7 @@
     .head-tabs-container {
         position: relative;
         height: 3.79rem;
-        background-color: $themeColor;
+        background-color: $brand-primary;
         color: #ffffff;
 
         .icon {
@@ -42,7 +42,7 @@
     .clock-displayer-container {
         position: relative;
         width: 100%;
-        background-color: $themeColor;
+        background-color: $brand-primary;
 
         .clock-bg {
             position: relative;

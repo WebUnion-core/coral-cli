@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import actions from './../../actions';
 
 // 通用组件
-import TabsFooter from './../../common/components/tabs-footer';
+import TabsFooter from './../../common/components/TabsFooter';
 
 // 入口前缀
 const prefix = 'OwnMsg';
