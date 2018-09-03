@@ -10,7 +10,7 @@ const prefix = 'UserInfo';
 
 // 公共组件
 import HeadBar from './../../common/components/HeadBar';
-import NormalDialog from './../../common/components/NormalDialog';
+import EditTextDialog from './../../common/components/EditTextDialog';
 
 // 子组件
 import FirstLevelList from './components/FirstLevelList.jsx';
@@ -43,14 +43,27 @@ class Container extends React.Component {
                 <HeadBar title="个人信息" />
                 <FirstLevelList
                     toggleShow={ this.toggleShow } />
-                <NormalDialog
+                <EditTextDialog
                     ifShowDialog={ ifShowDialog }
                     title="修改昵称"
-                    content="......"
                     btns={
                         [
-                            { text: '取消', listener: () => alert('取消') },
-                            { text: '确定', listener: () => alert('确定') }
+                            {
+                                text: '取消'
+                            },
+                            {
+                                text: '确定',
+                                listener: (data) => alert(data.name)
+                            }
+                        ]
+                    }
+                    exitTextList={
+                        [
+                            {
+                                placeholder: '请输入昵称',
+                                field: 'name',
+                                type: 'text'
+                            }
                         ]
                     } />
             </div>

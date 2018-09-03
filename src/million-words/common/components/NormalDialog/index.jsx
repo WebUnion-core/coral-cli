@@ -4,7 +4,11 @@ import React from 'react';
 /*
  * props选项
  * 1. title => 标题文本
- * 2. btns => { text => 按钮文本, listener => 按钮点击回调 }
+ * 2. btns => 按钮组 => [{
+ *        1. text => 按钮文本,
+ *        2. listener => 按钮点击回调,
+ *        3. ifAutoClose => 点击后是否自动关闭
+ *    }]
  * 3. closeListener => 点击关闭回调
  * 4. content => 展示内容
  */
@@ -17,7 +21,7 @@ export default class NormalDialog extends React.Component {
         }
     }
 
-    // 更新外传状态
+    // 更新外部传入的状态
     componentWillReceiveProps (nextProps) {
         this.setState({
             ifShowDialog: Boolean(nextProps.ifShowDialog)
@@ -32,42 +36,90 @@ export default class NormalDialog extends React.Component {
         });
     }
 
+    // 点击关闭
+    clickClose = (event) => {
+        const { closeListener } = this.props;
+        if (closeListener) {
+            closeListener();
+        }
+        this.toggleShow();
+        event.stopPropagation();
+        event.preventDefault();
+    }
+
+    // 点击按钮
+    clickBtn (event, btn) {
+        const { listener, ifAutoClose = true } = btn;
+        if (ifAutoClose) {
+            this.toggleShow();
+        }
+
+        if (listener) {
+            listener(this.state);
+        }
+        event.stopPropagation();
+        event.preventDefault();
+    }
+
+    // 点击背景
+    clickBackground = (event) => {
+        if (event.target === this.refs.dialogBackground) {
+            this.toggleShow(false);
+        }
+        event.stopPropagation();
+        event.preventDefault();
+    }
+
+    // 渲染按钮列表
+    renderBtnsList (btns) {
+        return (
+            btns.map((item, index) => {
+                const { text } = item;
+                return (
+                    <li key={ index } className="btn-item">
+                        <button
+                            className="btn"
+                            onClick={
+                                (event) => this.clickBtn(event, item)
+                            }>
+                            { text }
+                        </button>
+                    </li>
+                )
+            })
+        )
+    }
+
     render () {
         const {
-            title = '',
-            content = '',
-            btns
+            title = '', content = '',
+            btns,
+            closeListener
         } = this.props;
         const { ifShowDialog } = this.state;
 
         return (
             <section className="normal-dialog-container"
-                style={{ display: ifShowDialog ? 'block' : 'none' }}>
+                style={{ display: ifShowDialog ? 'block' : 'none' }}
+                ref="dialogBackground"
+                onClick={ this.clickBackground }>
+
                 <div className="dialog-body">
                     <h2 className="title">
                         <div className="text"
                             dangerouslySetInnerHTML={{ __html: title }} />
-                        <i className="icon close-icon" />
+                        <i className="icon close-icon icon-11-gray-close"
+                            onClick={ this.clickClose } />
                     </h2>
+
                     <div className="content"
                         dangerouslySetInnerHTML={{ __html: content }} />
+
                     <ul className="btn-list">
-                        {
-                            btns.map((item, index) => {
-                                const { text, listener = () => {} } = item;
-                                return (
-                                    <li key={ index } className="btn-item">
-                                        <button
-                                            className="btn"
-                                            onClick={ listener }>
-                                            { text }
-                                        </button>
-                                    </li>
-                                )
-                            })
-                        }
+                        { this.renderBtnsList(btns) }
                     </ul>
                 </div>
+
             </section>
         )
     }

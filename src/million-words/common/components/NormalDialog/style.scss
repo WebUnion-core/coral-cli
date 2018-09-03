@@ -1,6 +1,6 @@
 @import "./../../style/base.scss";
 
-.normal-dialog-container {
+.normal-dialog-style {
     position: fixed;
     top: 0;
     left: 0;
@@ -21,6 +21,7 @@
         transform: translate(-50%,-50%);
 
         .title {
+            position: relative;
             height: pxToRem(50px);
             line-height: pxToRem(53px);
             font-size: pxToRem(18px);
@@ -28,6 +29,11 @@
 
             .text {
                 display: inline-block;
+            }
+
+            .close-icon {
+                @extend .position-vertical-middle;
+                right: pxToRem(15px);
             }
         }
 
@@ -38,7 +44,6 @@
 
         .btn-list {
             @extend .flex-complete-middle;
-
             height: pxToRem(60px);
             padding: 0 5% pxToRem(5px);
             flex-wrap: wrap;

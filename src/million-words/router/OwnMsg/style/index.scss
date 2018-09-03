@@ -9,7 +9,7 @@
         background-color: $brand-primary;
 
         .avatar-container {
-            @extend .verticalMiddle;
+            @extend .position-vertical-middle;
 
             left: pxToRem(18px);
             width: pxToRem(65px);
@@ -27,7 +27,7 @@
         }
 
         .info-cont {
-            @extend .verticalMiddle;
+            @extend .position-vertical-middle;
 
             left: pxToRem(96px);
             color: $fill-base;

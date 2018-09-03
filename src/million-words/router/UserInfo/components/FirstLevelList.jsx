@@ -14,7 +14,7 @@ export default class FirstLevelList extends React.Component {
                     <span className="field">头像</span>
                     <figure className="right figure"></figure>
                 </li>
-                <li className="list-item" onClick={ () => toggleShow() }>
+                <li className="list-item" onClick={ () => toggleShow(true) }>
                     <span className="field">昵称</span>
                     <span className="right value">WJT20</span>
                 </li>
