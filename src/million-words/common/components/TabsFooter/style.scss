@@ -1,0 +1,33 @@
+@import "./../../style/base.scss";
+
+.tabs-footer-list {
+    @extend .flex-complete-middle;
+
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 0.28rem 0;
+    background-color: #ffffff;
+    box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.25);
+
+    .item {
+        &.active {
+            color: #046761;
+        }
+
+        .row {
+            display: inline-block;
+            width: 100%;
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        .icon {
+            vertical-align: bottom;
+        }
+
+        .text {
+            font-size: 0.7rem;
+        }
+    }
+}

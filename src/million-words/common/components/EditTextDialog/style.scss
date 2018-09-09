@@ -1,0 +1,22 @@
+@import "./../../style/base.scss";
+@import "./../NormalDialog/style.scss";
+
+.edit-text-dialog-style {
+    .edit-text-list {
+        padding: 0 pxToRem(15px);
+
+        .edit-text-item {
+            @extend .flex-complete-middle;
+
+            .input {
+                height: pxToRem(45px);
+                box-sizing: border-box;
+                width: 100%;
+                padding: pxToRem(3px) pxToRem(10px) 0;
+                margin: pxToRem(10px) 0;
+                border: 1px solid $border-color-base;
+                font-size: pxToRem(16.5px);
+            }
+        }
+    }
+}

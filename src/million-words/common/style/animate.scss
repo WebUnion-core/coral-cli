@@ -1,0 +1,23 @@
+@keyframes slide-left-to-right {
+    from {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(-33.33%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slide-top-to-bottom {
+    from {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-33.33%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}

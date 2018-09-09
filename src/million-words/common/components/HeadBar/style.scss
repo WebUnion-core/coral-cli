@@ -1,0 +1,22 @@
+@import "./../../style/base.scss";
+
+.head-bar-container {
+    height: pxToRem(50px);
+
+    .head-bar {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        height: inherit;
+        line-height: pxToRem(53px);
+        background-color: $brand-primary-heavy;
+        color: $fill-base;
+        font-size: pxToRem(18px);
+        padding: 0 pxToRem(8px);
+
+        .icon {
+            vertical-align: middle;
+            margin: pxToRem(-4px) pxToRem(8px) 0 0;
+        }
+    }
+}

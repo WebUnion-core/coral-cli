@@ -1,0 +1,24 @@
+{
+    "menus": [
+        {
+            "name": "Home",
+            "route": "/"
+        },
+        {
+            "name": "Account",
+            "route": "/account/"
+        },
+        {
+            "name": "Clock",
+            "route": "/clock/"
+        },
+        {
+            "name": "OwnMsg",
+            "route": "/own_msg/"
+        },
+        {
+            "name": "UserInfo",
+            "path": "/userInfo/"
+        }
+    ]
+}
