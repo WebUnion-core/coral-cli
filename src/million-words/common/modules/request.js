@@ -1,4 +1,4 @@
-const request = require("superagent");
+const request = require('superagent');
 
 /**
  * 封装请求参数说明:
@@ -7,6 +7,7 @@ const request = require("superagent");
  * data: Object，发送数据
  * success: Function，请求成功调用函数
  * fail: Function，请求失败调用函数
+ * type: String，请求类型
  */
 export default function(config) {
     if (typeof config.method !== 'string') {
@@ -26,18 +27,35 @@ export default function(config) {
             });
     } else {
         // 默认使用POST
-        request
-            .post(config.url)
-            .send({
-                ...config.data
-            })
-            .type('application/x-www-form-urlencoded')
-            .end((err, res) => {
-                if (err) {
-                    config.fail && config.fail(err);
-                } else {
-                    config.success && config.success(JSON.parse(res.text));
-                }
-            });
+        switch (config.type) {
+            case 'multipart/form-data':
+                request
+                    .post(config.url)
+                    .send(config.data)
+                    .end((err, res) => {
+                        if (err) {
+                            config.fail &&
+                                config.fail(err);
+                        } else {
+                            config.success &&
+                                config.success(JSON.parse(res.text));
+                        }
+                    });
+                break;
+            default:
+                request
+                    .post(config.url)
+                    .send({ ...config.data })
+                    .type('application/x-www-form-urlencoded')
+                    .end((err, res) => {
+                        if (err) {
+                            config.fail &&
+                                config.fail(err);
+                        } else {
+                            config.success &&
+                                config.success(JSON.parse(res.text));
+                        }
+                    });
+        }
     }
 }

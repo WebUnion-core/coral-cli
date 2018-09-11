@@ -8,6 +8,10 @@ import actions from './../../actions';
 // 入口前缀
 const prefix = 'UserInfo';
 
+// 公共模块
+import request from './../../common/modules/request.js';
+import cookieUtil from './../../common/modules/cookie-util.js';
+
 // 公共组件
 import HeadBar from './../../common/components/HeadBar';
 import EditTextDialog from './../../common/components/EditTextDialog';
@@ -27,6 +31,30 @@ class Container extends React.Component {
 
     componentWillMount () {
         console.log(`${prefix} props => `, this.props);
+    }
+
+    // 上传头像数据
+    postAvatorData (receiveParams) {
+        const { formData } = receiveParams;
+        const { site, version } = window.Waydua;
+
+        // 传递用户token
+        formData.append('user_token', cookieUtil.get('login_token'));
+
+        console.log(formData.getAll('user_token'));
+
+        request({
+            method: 'POST',
+            url: `http://${ site }/${ version }/file/upload_avator`,
+            data: formData,
+            type: 'multipart/form-data',
+            success: (data) => {
+                console.log(data);
+            },
+            fail: (err) => {
+                console.error(err);
+            }
+        });
     }
 
     // 切换输入型对话框状态
@@ -52,12 +80,9 @@ class Container extends React.Component {
         const uploadImgDialogProps = {
             ifShowDialog: ifShowUploadImgDialog,
             title: '修改头像',
-            btns: [
-                {
-                    text: '上传',
-                    listener: (data) => alert(data.name)
-                }
-            ]
+            receiveParams: (data) => {
+                this.postAvatorData(data);
+            }
         };
         const editTextDialogProps = {
             ifShowDialog: ifShowEditTextDialog,

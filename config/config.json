@@ -4,7 +4,7 @@
     "apps": [
         {
             "name": "million-words",
-            "title": "【Million Words】"
+            "title": "MW"
         }
     ],
     "dataServer": {
@@ -29,6 +29,7 @@
     ],
     "apis": [
         "home",
-        "user"
+        "user",
+        "file"
     ]
 }

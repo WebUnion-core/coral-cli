@@ -8,26 +8,29 @@ const koaCors = require('koa-cors');
 const convert = require('koa-convert');
 
 const api = require('./data/api');
-const setModel = require('./data/model');
+const setModel = require('./data/model')();
+const mode = ['development', 'debug'];
 
 let config;
 
-if (JSON.stringify(['development', 'debug']).indexOf(process.env.NODE_ENV) > 0) {
+if (JSON.stringify(mode).indexOf(process.env.NODE_ENV) > 0) {
     config = require('./config/config.json').dataServer;
 } else {
     config = require('./config/config.json').prodServer;
 }
 
-setModel();
-
 const app = new Koa()
-    .use(convert(require('koa-static')(path.resolve(__dirname, './dist'))))
+    .use(convert(
+        require('koa-static')(path.resolve(__dirname, './dist'))
+    ))
     .use(convert.compose(
-        koaBody({ multipart: true }),
+        koaBody({
+            multipart: true
+        }),
         koaBodyParser(),
         koaJson(),
         koaLogger(),
-        koaCors(),
+        koaCors()
     ))
     .use(async (ctx, next) => {
         await next();
@@ -38,6 +41,10 @@ app.listen(config.port, config.host, function(err) {
     if (err) {
         throw new Error(err);
     } else {
-        console.log('The server is listening in => http://' + config.host + ':' + config.port);
+        console.log(`The server is listening in => http://${
+            config.host
+        }:${
+            config.port
+        }`);
     }
 });

@@ -28,7 +28,7 @@ function getTransformResultSize(tgtSize, width, height) {
         // 宽大于高
         scale = height / tgtSize;
         Object.assign(trsResult, {
-            width: width / scale,
+            width: Math.floor(width / scale),
             height: tgtSize
         });
     } else {
@@ -46,52 +46,74 @@ function getTransformResultSize(tgtSize, width, height) {
 /*
  * props选项
  * 1. title => 标题文本
- * 2. btns => 按钮组 => [{
- *        1. text => 按钮文本,
- *        2. listener => 按钮点击回调,
- *        3. ifAutoClose => 点击后是否自动关闭
- *    }]
- * 3. closeListener => 点击关闭回调
- * 4. ifShowDialog => 显示状态
+ * 2. closeListener => 点击关闭回调
+ * 3. ifShowDialog => 显示状态
  */
 export default class UploadImgDialog extends NormalDialog {
     constructor (props) {
         super(props);
         this.state = {
             ifShowVerIcon: false,
-            ifShowHorIcon: false
+            ifShowHorIcon: false,
+            formData: null,
+            width: 0,
+            height: 0
         };
+
+        this.btns = [
+            {
+                id: 'selectImg',
+                text: '选择图片',
+                ifAutoClose: false,
+                listener: () => {
+                    this.refs.selectFile.click();
+                }
+            },
+            {
+                text: '上传',
+                listener: () => {
+                    const previewBody = this.refs.previewBody;
+                    const offsetX = previewBody.scrollLeft;
+                    const offsetY = previewBody.scrollTop;
+
+                    this.props.receiveParams({
+                        ...this.state,
+                        offsetX,
+                        offsetY
+                    });
+                }
+            }
+        ]
     }
 
     // 选择图片
     changeSelectImg = () => {
-        const formData = new FormData(); // 创建FormData对象
         const imgData = this.refs.selectFile.files[0]; // 获取文件流数据
         const tgtSize = this.refs.previewBody.offsetWidth;
         const drawing = this.refs.drawing;
         const context = drawing.getContext('2d');
-        let ifShowVerIcon = false;
-        let ifShowHorIcon = false;
 
+        const formData = new FormData(); // 创建FormData对象
         formData.append('image', imgData); // 文件流数据转为FormData数据
+
+        this.setState({
+            formData
+        });
 
         getBaseUrl(imgData, (img) => {
             const { width, height } = getTransformResultSize(
                 tgtSize,
-                img.width,
-                img.height
+                img.width, img.height
             );
 
-            if (width > height) {
-                ifShowHorIcon = true;
-            } else {
-                ifShowVerIcon = true;
-            }
             this.setState({
-                ifShowVerIcon,
-                ifShowHorIcon
+                ifShowVerIcon: width <= height,
+                ifShowHorIcon: width > height,
+                width,
+                height
             });
 
+            // 绘图
             Object.assign(drawing, {
                 width,
                 height
@@ -106,25 +128,13 @@ export default class UploadImgDialog extends NormalDialog {
 
     render () {
         const {
-            title = '',
-            btns
+            title = ''
         } = this.props;
         const {
             ifShowDialog,
             ifShowVerIcon,
             ifShowHorIcon
         } = this.state;
-
-        if (btns[0].id !== 'selectImg') {
-            btns.unshift({
-                id: 'selectImg',
-                text: '选择图片',
-                ifAutoClose: false,
-                listener: () => {
-                    this.refs.selectFile.click();
-                }
-            });
-        }
 
         return (
             <section className="normal-dialog-style upload-img-dialog-style"
@@ -144,11 +154,11 @@ export default class UploadImgDialog extends NormalDialog {
                         <div className="outside-cont">
                             {
                                 ifShowVerIcon &&
-                                <i className="icon icon-self-top" />
+                                    <i className="icon icon-self-top" />
                             }
                             {
                                 ifShowHorIcon &&
-                                <i className="icon icon-self-left" />
+                                    <i className="icon icon-self-left" />
                             }
                             <figure className="preview-body"
                                 ref="previewBody"
@@ -166,7 +176,7 @@ export default class UploadImgDialog extends NormalDialog {
                     </div>
 
                     <ul className="btn-list">
-                        { this.renderBtnsList(btns) }
+                        { this.renderBtnsList(this.btns) }
                     </ul>
 
                     <input className="hide"
