@@ -1,18 +1,34 @@
+/**
+* api: /user/check_token
+* 功能: 自动登录校验
+*
+* 请求参数:
+* 1. login_token -> 用户token
+* 2. user_agent -> 用户设备信息
+*
+* 响应参数:
+* 1. result -> 状态值 -> 1:成功, 0:失败
+*/
+
+const loginTokenCache = require('./../../static/login_token.json');
+
+const resHeader = {
+    'Access-Control-Allow-Methods': 'POST',
+    'Cache-Control': 'no-cache',
+    'Content-Type': 'application/json;charset=UTF-8'
+};
+
 module.exports = function(version, api) {
     api.post(`/${version}/user/check_token`, (ctx, next) => {
-        const cacheFilePath = './../../static/login_token.json';
-        const loginTokenCache = require(cacheFilePath);
-        const { response, request } = ctx;
-        const data = { ...request.body };
+        const { response, request: { body } } = ctx;
 
-        // 设置响应头
-        ctx.set({
-            'Access-Control-Allow-Methods': 'POST',
-            'Cache-Control': 'no-cache',
-            'Content-Type': 'application/json;charset=UTF-8'
-        });
+        // 请求参数
+        const token = body['login_token'];
+        const userAgent = body['user_agent'];
 
-        if (loginTokenCache[data['login_token']] === data['user_agent']) {
+        ctx.set(resHeader); // 设置响应头
+
+        if (loginTokenCache[token] === userAgent) {
             ctx.body = {
                 'result': 1
             };

@@ -1,11 +1,8 @@
 const path = require('path');
 const config = require('./config.json');
 const dataServer = config.dataServer;
-
-// 插件
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-
 const DIST_PATH = path.resolve(__dirname, './../dist');
 
 // 开发模式打包配置
@@ -33,17 +30,24 @@ module.exports = function setDevMode(webpackConfig) {
     webpackConfig.entry['vendor'] = config['vendor'];
 
     config.apps.forEach(function(item) {
+        const filename = path.resolve(
+            __dirname, './../dist/' + item.name + '/index.html'
+        );
+        const template = path.resolve(
+            __dirname, './../src/' + item.name + '/template.ejs'
+        );
+
         // 配置页面模板
         webpackConfig.plugins.push(
             new HtmlWebpackPlugin({
                 title: item.title,
-                filename: path.resolve(__dirname, './../dist/' + item.name + '/index.html'),
-                template: path.resolve(__dirname, './../src/' + item.name + '/template.ejs'),
+                filename: filename,
+                template: template,
                 hash: false,
                 minify: false,
                 version: config.version,
                 site: dataServer.host + ':' + dataServer.port,
-                cdn: 'https://raw.githubusercontent.com/WebUnion-core/bona-storm/master/asset/img/'
+                cdn: config.imgcdn
             })
         );
 

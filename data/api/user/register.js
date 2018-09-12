@@ -1,6 +1,12 @@
 const mongoose = require('mongoose');
 const ammunition = require('ammunition-storage');
 
+const resHeader = {
+    'Access-Control-Allow-Methods': 'POST',
+    'Cache-Control': 'no-cache',
+    'Content-Type': 'application/json;charset=UTF-8'
+};
+
 module.exports = function(version, api) {
     api.post(`/${version}/user/register`, async (ctx, next) => {
         const { response, request } = ctx;
@@ -13,14 +19,10 @@ module.exports = function(version, api) {
             name: data.phone
         });
 
+        ctx.set(resHeader); // 设置响应头
+
         const user = new User(data);
         const saveInfo = await user.save(); // 保存数据
-
-        ctx.set({
-            'Access-Control-Allow-Methods': 'POST',
-            'Cache-Control': 'no-cache',
-            'Content-Type': 'application/json;charset=UTF-8'
-        });
 
         if (saveInfo) {
             ctx.body = {
