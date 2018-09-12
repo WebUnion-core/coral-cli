@@ -43,6 +43,33 @@ function getTransformResultSize(tgtSize, width, height) {
     return trsResult;
 }
 
+// 切割canvas图像
+function getCutImageData(params) {
+    const {
+        oriCanvas,
+        width, height,
+        offsetX, offsetY,
+        callback
+    } = params;
+    const drawing = document.createElement('canvas');
+    const context = drawing.getContext('2d');
+    let cutData;
+
+    Object.assign(drawing, {
+        width,
+        height
+    });
+
+    cutData = oriCanvas.getImageData(offsetX, offsetY, width, height);
+    context.putImageData(cutData,0,0);
+
+    drawing.toBlob(blob => {
+        if (callback) {
+            callback(blob);
+        }
+    });
+}
+
 /*
  * props选项
  * 1. title => 标题文本
@@ -56,8 +83,8 @@ export default class UploadImgDialog extends NormalDialog {
             ifShowVerIcon: false,
             ifShowHorIcon: false,
             formData: null,
-            width: 0,
-            height: 0
+            size: 0,
+            context: null
         };
 
         this.btns = [
@@ -75,11 +102,24 @@ export default class UploadImgDialog extends NormalDialog {
                     const previewBody = this.refs.previewBody;
                     const offsetX = previewBody.scrollLeft;
                     const offsetY = previewBody.scrollTop;
+                    const { size } = this.state;
 
-                    this.props.receiveParams({
-                        ...this.state,
+                    getCutImageData({
+                        oriCanvas: this.state.context,
+                        width: size,
+                        height: size,
                         offsetX,
-                        offsetY
+                        offsetY,
+                        callback: (imgData) => {
+                            const formData = new FormData(); // 创建FormData对象
+                            formData.append('image', imgData); // 文件流数据转为FormData数据
+                            this.props.receiveParams({
+                                ...this.state,
+                                offsetX,
+                                offsetY,
+                                formData
+                            });
+                        }
                     });
                 }
             }
@@ -93,24 +133,18 @@ export default class UploadImgDialog extends NormalDialog {
         const drawing = this.refs.drawing;
         const context = drawing.getContext('2d');
 
-        const formData = new FormData(); // 创建FormData对象
-        formData.append('image', imgData); // 文件流数据转为FormData数据
-
-        this.setState({
-            formData
-        });
-
         getBaseUrl(imgData, (img) => {
             const { width, height } = getTransformResultSize(
                 tgtSize,
                 img.width, img.height
             );
+            const size = width <= height ? width : height;
 
             this.setState({
                 ifShowVerIcon: width <= height,
                 ifShowHorIcon: width > height,
-                width,
-                height
+                size,
+                context
             });
 
             // 绘图

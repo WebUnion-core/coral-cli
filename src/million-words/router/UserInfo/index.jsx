@@ -37,15 +37,15 @@ class Container extends React.Component {
     postAvatorData (receiveParams) {
         const { formData } = receiveParams;
         const { site, version } = window.Waydua;
+        const { width, height, offsetX, offsetY } = receiveParams;
 
-        // 传递用户token
+        // 数据封装
         formData.append('user_token', cookieUtil.get('login_token'));
-
-        console.log(formData.getAll('user_token'));
+        console.log(formData.getAll('image'));
 
         request({
             method: 'POST',
-            url: `http://${ site }/${ version }/file/upload_avator`,
+            url: `http://${site}/${version}/file/upload_avator`,
             data: formData,
             type: 'multipart/form-data',
             success: (data) => {

@@ -1,15 +1,18 @@
 const fs = require('fs');
 const path = require('path');
-
 const FILE_PATH = path.join(__dirname, './../../static/avators');
 
+/**
+ * 1. user_token -> 用户token，用于命名图片
+ * 2. image -> 图片文件数据
+ */
 module.exports = function (version, api) {
     api.post(`/${version}/file/upload_avator`, (ctx, next) => {
         const { response, request: { files, body } } = ctx;
         const file = files['image'];
         const newPath = path.resolve(
             FILE_PATH,
-            body['user_token'][0] + '.png'
+            body['user_token'] + '.png'
         );
 
         // 创建读写流
