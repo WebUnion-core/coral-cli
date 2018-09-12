@@ -21,10 +21,12 @@
         "ecmaVersion": 8,
         "sourceType": "module",
         "ecmaFeatures": {
+            "experimentalObjectRestSpread": true,
             "jsx": true,
             "arrowFunctions": true,
-            "destructuring": true,
-            "classes": true
+            "classes": true,
+            "modules": true,
+            "defaultParams": true
         }
     },
 

@@ -18,26 +18,6 @@ module.exports = function setOther(webpackConfig) {
         path.resolve(__dirname, './../src/asset/sprite-entry.js')
     ];
 
-    spriteConfig.push({
-        // 目标小图标
-        src: {
-            cwd: path.resolve(__dirname, './../asset/intro'),
-            glob: '*.png'
-        },
-        // 输出雪碧图文件及样式文件
-        target: {
-            image: path.resolve(__dirname, './../asset/intro1.png'),
-            css: path.resolve(__dirname, './../asset/sprite-intro.scss')
-        },
-        // 样式文件中调用雪碧图地址写法
-        apiOptions: {
-            cssImageRef: './intro1.png'
-        },
-        spritesmithOptions: {
-            algorithm: 'left-right'
-        }
-    });
-
     srcData.forEach(function(item) {
         const itemPath = path.resolve(SRC_PATH, './' + item);
         const isDir = fs.statSync(itemPath).isDirectory();

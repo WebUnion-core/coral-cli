@@ -43,6 +43,11 @@ $border-color-shallow: #ececec; // 基本边框浅色
 	display: block;
 }
 
+// 显示[inline-block]
+.show-inline-block {
+	display: inline-block;
+}
+
 // 隐藏
 .hide {
 	display: none;
@@ -99,4 +104,18 @@ $border-color-shallow: #ececec; // 基本边框浅色
 		transform: scale(0.5);
 		background-color: $border-color-base;
 	}
+}
+
+// 提示上角标
+.icon-self-top {
+	display: inline-block;
+	background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAAAe1BMVEUAAAAApp0App0App0App4Ap50Ap5wAp50App0App0Ap50Ap50App0Ap50Ap5wAppwAppsApp0AppwAqJ0As5kAp5wAp50Ap50Ap5wAp50AqJwAp5sApp8AqpkArpYAp50Ap50AppwApp0App0ApZ4AppwApZ0Ap58Ap538lQ8fAAAAKHRSTlMApfv1FJHv4MefiXjTuVVRR0AtGQbBrn1taFwqJA8L5Zd/c3BkYjwgZkOpDAAAAPFJREFUSMft1NuOgjAUheFSCshRQDyPzozH/f5PqNEYlqati8RL//svvVht1Tdrk3ozUIxDiZtBYifX9FHx/cu9JS0yebQnRSR9OXkGtiBELs+t3oqDvKTrd3toeS08eUXTi7649YifWGwlxim2hdibdi4yE1d/DrEUd5VVrEMPic82MhJfpUVMxJu2kC7xkpF1lCi4VQoW3MuM8tSiCLmPAklCkQ5JoahwnylHEiAzjuCmKUdKIBFHAiDz4Z/SgiM5kIojKyANR2oga460QAxHDBBO4I35ZUkBD4sshfHJNqm+AZ1uFZ2p5lk+NurbJ7oAVhdYHU4oQEIAAAAASUVORK5CYII=);
+	background-size: 100% 100%;
+}
+
+// 提示左角标
+.icon-self-left {
+	display: inline-block;
+	background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAAAe1BMVEUAAAAApp0App0App0App4Ap50Ap5wAp50App0App0Ap50Ap50App0Ap50Ap5wAppwAppsApp0AppwAqJ0As5kAp5wAp50Ap50Ap5wAp50AqJwAp5sApp8AqpkArpYAp50Ap50AppwApp0App0ApZ4AppwApZ0Ap58Ap538lQ8fAAAAKHRSTlMApfv1FJHv4MefiXjTuVVRR0AtGQbBrn1taFwqJA8L5Zd/c3BkYjwgZkOpDAAAAM1JREFUSMft00kSgjAURdFvYmikE+wVsNe3/xUqIwmUwJtSnHFuJZWfyGTU3pHy5sKIHQALIlhfUJnJYPMNyCRzQSYvB2Sy1CCTowKZ7AEyCWDRbrjZ+ma3j9PTn7ne0eXsmVIaDujji+2JXso+XqrQL5GawsEAgTVC9Go+7pXGADupSzBALJYbeWOVKzmXygJddOgX0mLa61wvmpnguMx+Z+rYJ8pWa+ItM7/yoehEEkUnkjp0InlIJ1JuyaRy0ACMUE4e3FxI3zFOxu8DtjhYHXKTElgAAAAASUVORK5CYII=);
+	background-size: 100% 100%;
 }

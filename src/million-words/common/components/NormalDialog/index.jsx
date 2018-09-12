@@ -11,6 +11,7 @@ import React from 'react';
  *    }]
  * 3. closeListener => 点击关闭回调
  * 4. content => 展示内容
+ * 5. ifShowDialog => 显示状态
  */
 export default class NormalDialog extends React.Component {
     constructor (props) {
@@ -72,11 +73,17 @@ export default class NormalDialog extends React.Component {
 
     // 渲染按钮列表
     renderBtnsList (btns) {
+        const len = btns.length;
+
         return (
             btns.map((item, index) => {
                 const { text } = item;
+                const width = (100 - (len - 1) * 5) / len;
+
                 return (
-                    <li key={ index } className="btn-item">
+                    <li key={ index }
+                        className="btn-item"
+                        style={{ width: `${ width }%` }}>
                         <button
                             className="btn"
                             onClick={

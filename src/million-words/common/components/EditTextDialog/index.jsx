@@ -17,14 +17,11 @@ import NormalDialog from './../NormalDialog';
  *        2. field => 数据键
  *        3. type => 输入框类型
  *    }]
+ * 6. ifShowDialog => 显示状态
  */
 export default class EditTextDialog extends NormalDialog {
     constructor (props) {
         super(props);
-
-        this.state = {
-            ifShowDialog: Boolean(this.props.ifShowDialog)
-        }
     }
 
     // 改变输入文本
@@ -43,7 +40,6 @@ export default class EditTextDialog extends NormalDialog {
                         exitTextList.map((item, index) => {
                             const {
                                 placeholder = '请输入',
-                                field,
                                 type = 'text'
                             } = item;
                             return (
@@ -66,9 +62,8 @@ export default class EditTextDialog extends NormalDialog {
 
     render () {
         const {
-            title = '', content = '',
+            title = '',
             btns,
-            closeListener,
             exitTextList
         } = this.props;
         const { ifShowDialog } = this.state;
