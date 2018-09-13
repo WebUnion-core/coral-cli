@@ -6,7 +6,6 @@ module.exports = function() {
 
     if (config.dbPath) {
         mongoose.set('debug', true);
-
         mongoose.connect(config.dbPath, { useNewUrlParser: true });
 
         mongoose.connection.on('disconnected', () => {

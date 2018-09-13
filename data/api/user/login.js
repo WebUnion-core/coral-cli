@@ -1,13 +1,15 @@
 /**
  * api: /user/login
- * 功能: 请求登录
+ * 功能: 登录
  *
  * 请求参数:
  * 1. login_token -> 用户token
- * 2. user_agent -> 用户设备信息
+ * 2. user_agent -> 设备信息
  *
  * 响应参数:
  * 1. result -> 状态值 -> 1:成功, 0:失败
+ * 2. msg -> 返回信息，result为0时必定返回
+ * 3. login_token -> 登录token，交给客户端保存
  */
 
 const path = require('path');
@@ -52,27 +54,27 @@ module.exports = function(version, api) {
         }, function (err, resData) {
             if (err) {
                 throw new Error(err);
+            }
+
+            ctx.set(resHeader); // 设置响应头
+
+            if (resData.length === 0) {
+                // 用户不存在
+                ctx.body = {
+                    result: 0,
+                    msg: '用户不存在'
+                };
             } else {
-                ctx.set(resHeader); // 设置响应头
+                // 用户存在
+                const token = resData[0]['_id'];
 
-                if (resData.length === 0) {
-                    // 用户不存在
-                    ctx.body = {
-                        result: -1,
-                        msg: '用户不存在'
-                    };
-                } else {
-                    // 用户存在
-                    const token = resData[0]['_id'];
+                // 反馈页面
+                ctx.body = {
+                    'result': 1,
+                    'login_token': token
+                };
 
-                    // 反馈页面
-                    ctx.body = {
-                        'result': 1,
-                        'login_token': token
-                    };
-
-                    updateTokenCache(token, userAgent);
-                }
+                updateTokenCache(token, userAgent);
             }
         });
     });

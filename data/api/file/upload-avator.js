@@ -9,7 +9,7 @@
 * 响应参数:
 * 1. result -> 状态值 -> 1:成功, 0:失败
 * 2. data
-*    url -> 图片URL
+*    1. url -> 图片URL
 */
 
 const fs = require('fs');
