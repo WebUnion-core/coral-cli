@@ -8,11 +8,11 @@ const koaCors = require('koa-cors');
 const convert = require('koa-convert');
 
 const api = require('./data/api');
-const setModel = require('./data/model')();
-const mode = ['development', 'debug'];
-
 let config;
 
+require('./data/model')();
+
+const mode = ['development', 'debug'];
 if (JSON.stringify(mode).indexOf(process.env.NODE_ENV) > 0) {
     config = require('./config/config.json').dataServer;
 } else {

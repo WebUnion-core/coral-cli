@@ -3,7 +3,7 @@
 
 > 使用 react + redux + webpack4 + koa + mongodb 技术栈。
 
-目前内置一个开发中的 webapp，名为 Million-Words(中文名: 泛言)，启动后本地服务访问`127.0.0.1:2015/million-words/`。
+目前内置一个开发中的 webapp，名为 MW，启动后本地服务访问`127.0.0.1:2015/mw/`。
 
 ## 安装 ##
 
@@ -39,7 +39,7 @@ npm run start-dev-server
 npm run start-prod-server
 ```
 
-## [Million-Words]预览 ##
+## [MW]预览 ##
 
 ### 首页 ###
 

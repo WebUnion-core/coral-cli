@@ -14,6 +14,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const { server } = require('./../../common');
 
 const FILE_PATH = path.join(__dirname, './../../static/avators');
 const resHeader = {
@@ -45,7 +46,7 @@ module.exports = function (version, api) {
         ctx.body = {
             'result': 1,
             'data': {
-                // 'url':
+                'url': `http://${server.host}:${server.port}/avator/${token}`
             }
         };
     });

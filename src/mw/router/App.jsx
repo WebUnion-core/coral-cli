@@ -22,7 +22,7 @@ config.menus.forEach((item) => {
  * 1. 使用HashRouter: import { HashRouter as Router, Route, Switch } from 'react-router-dom';
  *    写法为: <Route path='/' component={ Home } />
  * 2. 使用BrowserRouter: import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
- *    写法为: <Route path='/million-words' component={ Home } exact />
+ *    写法为: <Route path='/mw' component={ Home } exact />
  */
 export default class App extends React.Component {
     constructor (props) {

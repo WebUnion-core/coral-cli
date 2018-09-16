@@ -15,9 +15,7 @@ const resHeader = {
 };
 
 module.exports = function(version, api) {
-    api.get(`/${version}/home/main_list`, (ctx, next) => {
-        const { response, request } = ctx;
-
+    api.get(`/${version}/home/main_list`, (ctx) => {
         ctx.set(resHeader); // 设置响应头
 
         ctx.body = {

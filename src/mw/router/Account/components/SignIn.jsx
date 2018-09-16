@@ -11,7 +11,7 @@ export default class SignIn extends React.Component {
     }
 
     // 点击跳转注册
-    clickRegisterText = (event) => {
+    clickRegisterText = () => {
         const formElem = this.props.rootEl;
 
         formElem.style.visibility = 'hidden';

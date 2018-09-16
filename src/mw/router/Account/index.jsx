@@ -18,7 +18,8 @@ class Container extends React.Component {
         super(props);
 
         this.state = {
-            contentType: 'SIGIN'
+            contentType: 'SIGIN',
+            rootEl: null
         }
     }
 
@@ -32,6 +33,9 @@ class Container extends React.Component {
             translateY: '100%',
             delay: 1000
         });
+        this.setState({
+            rootEl: this.refs.rootEl
+        });
     }
 
     // 切换表单
@@ -43,8 +47,8 @@ class Container extends React.Component {
 
     // 获取显示内容
     getForm () {
-        const { rootEl } = this.refs;
-        switch(this.state.contentType) {
+        const { rootEl, contentType } = this.state;
+        switch(contentType) {
             case 'REGISTER':
                 return (
                     <Register toggleContent={ this.toggleContent }

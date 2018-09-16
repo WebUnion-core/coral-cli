@@ -1,10 +1,10 @@
 {
-    "version": "v5",
-    "dbPath": "mongodb://localhost:27017/million-words",
+    "version": "v6",
+    "dbPath": "mongodb://localhost:27017/mw",
     "imgcdn": "https://raw.githubusercontent.com/WebUnion-core/bona-storm/master/asset/img/",
     "apps": [
         {
-            "name": "million-words",
+            "name": "mw",
             "title": "MW"
         }
     ],

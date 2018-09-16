@@ -1,15 +1,33 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import cookieUtil from './../../../common/modules/cookie-util.js';
+
 export default class HeadCanvas extends React.Component {
     constructor (props) {
         super(props);
+
+        this.state = {
+            avator: null
+        };
+    }
+
+    componentDidMount () {
+        const avator = cookieUtil.get('avator_url');
+        if (avator) {
+            this.setState({
+                avator
+            });
+        }
     }
 
     render () {
+        const { avator } = this.state;
+
         return (
             <header className="head-canvas-container">
-                <figure className="avatar-container"></figure>
+                <figure className="avatar-container"
+                    style={{ backgroundImage: `url("${avator}")` }} />
 
                 <Link to="/userInfo/">
                     <i className="edit-icon icon-151-edit" />

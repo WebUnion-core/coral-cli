@@ -4,8 +4,8 @@ const path = require('path');
 const ammunition = require('ammunition-storage');
 
 const ASSET_PATH = path.resolve(__dirname, './../asset/mw');
-const SRC_PATH = path.resolve(__dirname, './../src/million-words');
-const CONFIG = require('./../src/million-words/data.json');
+const SRC_PATH = path.resolve(__dirname, './../src/mw');
+const CONFIG = require('./../src/mw/data.json');
 
 let params;
 let moduleName;

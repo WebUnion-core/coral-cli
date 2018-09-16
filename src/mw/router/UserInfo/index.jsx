@@ -41,15 +41,18 @@ class Container extends React.Component {
 
         // 数据封装
         formData.append('user_token', cookieUtil.get('login_token'));
-        console.log(formData.getAll('image'));
 
         request({
             method: 'POST',
             url: `http://${site}/${version}/file/upload_avator`,
             data: formData,
             type: 'multipart/form-data',
-            success: (data) => {
-                console.log(data);
+            success: (res) => {
+                cookieUtil.set(
+                    'avator_url',
+                    res.data['url'],
+                    30
+                );
             },
             fail: (err) => {
                 console.error(err);
