@@ -52,14 +52,14 @@ export const TabItem = ({
  * 2. defaultIndex -> 默认选项
  */
 export default class TabsFooter extends React.Component {
-    constructor(props) {
+    constructor (props) {
         super(props);
         this.state = {
             activeIndex: 0
         }
     }
 
-    clickTab(event, item, index) {
+    clickTab = (event, item, index) => {
         const { clickHandle = () => {} } = this.props;
         this.setState({
             activeIndex: index
@@ -67,7 +67,7 @@ export default class TabsFooter extends React.Component {
         clickHandle(event, item);
     }
 
-    render() {
+    render () {
         const { list, defaultIndex } = this.props;
         const { activeIndex } = this.state;
         const itemWidth = `${ 100 / list.length }%`;
@@ -84,7 +84,7 @@ export default class TabsFooter extends React.Component {
                             activeIndex,
                             clickListener: this.clickTab
                         };
-                        return <TabItem { ...tabItemProps } />
+                        return <TabItem key={ index } { ...tabItemProps } />
                     })
                 }
             </ul>

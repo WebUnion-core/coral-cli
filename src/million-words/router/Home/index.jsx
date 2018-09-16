@@ -13,34 +13,26 @@ import request from './../../common/modules/request.js';
 import TabsFooter from './../../common/components/TabsFooter';
 
 // 子组件
-import Nav from './components/Nav.jsx';
-import FullRowList from './components/FullRowList.jsx';
-import ScrollList from './components/ScrollList.jsx';
-import HalfSideList from './components/HalfSideList.jsx';
 import TopIconList from './components/TopIconList.jsx';
 
 // 入口前缀
 const prefix = 'Home';
 
 class Container extends React.Component {
-    constructor(props) {
+    constructor (props) {
         super(props);
     }
 
-    componentWillMount() {
+    componentWillMount () {
         const { setHomeData } = this.props;
+        const { site, version } = window.Waydua;
 
         // 请求数据
         request({
             method: 'GET',
-            url: `http://${ window.Waydua.site }/${ window.Waydua.version }/home/main_list`,
-            success: (data) => {
-                setHomeData(data, this.props[prefix]);
-
-                new Swiper('.scroll-list-container', {
-                    slidesPerView: 2.5,
-                    spaceBetween: 20
-                });
+            url: `http://${site}/${version}/home/main_list`,
+            success: (res) => {
+                setHomeData(res.data, this.props[prefix]);
             },
             fail: (err) => {
                 console.error(err);
@@ -48,18 +40,19 @@ class Container extends React.Component {
         });
     }
 
-    render() {
+    render () {
         const { homeData } = this.props[prefix];
         const { footTabs = [] } = homeData;
 
         return (
             <div className="container main-container">
-                <Nav store={ homeData } />
+                <nav className="nav-container">
+                    <figure className="bg-container">
+                        <img className="bg-img"
+                            src={ `${window.Waydua.cdn}w1.jpg` } />
+                    </figure>
+                </nav>
                 <TopIconList store={ homeData } />
-                <ScrollList store={ homeData } />
-                <HalfSideList store={ homeData } />
-                <FullRowList store={ homeData } />
-
                 <TabsFooter list={ footTabs } defaultIndex={ 0 } />
             </div>
         )

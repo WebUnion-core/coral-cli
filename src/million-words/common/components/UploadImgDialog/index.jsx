@@ -5,7 +5,6 @@ import {
     getBaseUrl, getTransformResultSize, getCutImageData
 } from './../../modules/image-util';
 
-
 /**
  * 说明: 上传图片弹窗
  * props选项:
@@ -20,21 +19,25 @@ export default class UploadImgDialog extends NormalDialog {
             ifShowHorIcon: false,
             formData: null,
             size: 0,
-            context: null
+            context: null,
+            btns: null
         };
+    }
 
-        this.btns = [
+    componentDidMount () {
+        const btns = [
             {
                 id: 'selectImg',
                 text: '选择图片',
                 ifAutoClose: false,
-                listener: this.refs.selectFile.click
+                listener: () => this.refs.selectFile.click()
             },
             {
                 text: '上传',
                 listener: this.receiveImage
             }
-        ]
+        ];
+        this.setState({ btns });
     }
 
     // 接收图像
@@ -90,7 +93,10 @@ export default class UploadImgDialog extends NormalDialog {
 
     render () {
         const { title = '' } = this.props;
-        const { ifShowDialog, ifShowVerIcon, ifShowHorIcon } = this.state;
+        const {
+            ifShowDialog, ifShowVerIcon, ifShowHorIcon,
+            btns
+        } = this.state;
 
         return (
             <section className="normal-dialog-style upload-img-dialog-style"
@@ -131,8 +137,11 @@ export default class UploadImgDialog extends NormalDialog {
                         </div>
                     </div>
 
-                    <ButtonList btns={ this.btns }
-                        clickListener={ this.clickBtn } />
+                    {
+                        btns &&
+                            <ButtonList btns={ btns }
+                                clickListener={ this.clickBtn } />
+                    }
 
                     <input className="hide"
                         ref="selectFile"

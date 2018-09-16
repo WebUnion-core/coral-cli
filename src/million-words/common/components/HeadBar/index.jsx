@@ -7,7 +7,7 @@ import React from 'react';
  * 1. title -> 标题文本
  */
 export default class HeadBar extends React.Component {
-    constructor(props) {
+    constructor (props) {
         super(props);
     }
 
@@ -16,7 +16,7 @@ export default class HeadBar extends React.Component {
         window.history.back();
     }
 
-    render() {
+    render () {
         const { title } = this.props;
 
         return (

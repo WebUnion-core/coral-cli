@@ -6,20 +6,19 @@ import request from './../../../common/modules/request.js';
 import cookieUtil from './../../../common/modules/cookie-util.js';
 
 export default class SignIn extends React.Component {
-    constructor(props) {
+    constructor (props) {
         super(props);
     }
 
     // 点击跳转注册
     clickRegisterText = (event) => {
-        const formElem = document.getElementById('account-content');
+        const formElem = this.props.rootEl;
 
         formElem.style.visibility = 'hidden';
         anime({
             targets: formElem,
             translateY: '-100%'
         });
-
         setTimeout(() => {
             formElem.style.visibility = 'visible';
             this.props.toggleContent('REGISTER', () => {
@@ -33,14 +32,17 @@ export default class SignIn extends React.Component {
     }
 
     // 点击登录
-    clickSignIn() {
+    clickSignIn = () => {
+        const { site, version, userAgent } = window.Waydua;
+        const { userNameEl, passwordEl } = this.refs;
+
         request({
             method: 'POST',
-            url: `http://${ window.Waydua.site }/${ window.Waydua.version }/user/login`,
+            url: `http://${site}/${version}/user/login`,
             data: {
-                'name': this.refs['userName'].value,
-                'password': this.refs['password'].value,
-                'user_agent': window.Waydua.userAgent
+                'name': userNameEl.value,
+                'password': passwordEl.value,
+                'user_agent': userAgent
             },
             success: (data) => {
                 if (data['result'] === 1) {
@@ -58,14 +60,29 @@ export default class SignIn extends React.Component {
         });
     }
 
-    render() {
+    render () {
         return (
             <form className="fillin-form">
-                <img className="logo" src={ `${window.Waydua.cdn}logo.png` } />
-                <input ref="userName" className="input" type="text" placeholder="请输入用户名或手机号" autoComplete="off" />
-                <input ref="password" className="input" type="password" placeholder="请输入密码" autoComplete="off" />
-                <p className="register-text" onClick={ this.clickRegisterText }>点击前往注册</p>
-                <button className="btn" onClick={ () => this.clickSignIn() }>登录</button>
+                <img className="logo"
+                    src={ `${window.Waydua.cdn}logo.png` } />
+
+                <input ref="userNameEl"
+                    className="input"
+                    type="text"
+                    placeholder="请输入用户名或手机号"
+                    autoComplete="off" />
+
+                <input ref="passwordEl"
+                    className="input"
+                    type="password"
+                    placeholder="请输入密码"
+                    autoComplete="off" />
+
+                <p className="register-text"
+                    onClick={ this.clickRegisterText }>点击前往注册</p>
+
+                <button className="btn"
+                    onClick={ this.clickSignIn }>登录</button>
             </form>
         )
     }

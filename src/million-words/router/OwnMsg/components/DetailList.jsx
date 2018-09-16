@@ -1,11 +1,11 @@
 import React from 'react';
 
 export default class DetailList extends React.Component {
-    constructor(props) {
+    constructor (props) {
         super(props);
     }
 
-    render() {
+    render () {
         return (
             <ul className="detail-list">
                 <li className="detail-item">

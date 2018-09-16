@@ -79,7 +79,7 @@ export default class NormalDialog extends React.Component {
     }
 
     // 点击按钮
-    clickBtn (event, btn) {
+    clickBtn = (event, btn) => {
         const { listener, ifAutoClose = true } = btn;
 
         if (ifAutoClose) {

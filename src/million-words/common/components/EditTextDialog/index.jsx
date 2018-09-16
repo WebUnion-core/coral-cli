@@ -22,7 +22,7 @@ export const EditTextList = ({
         {
             exitTextList.map((item, index) => {
                 return (
-                    <EditTextItem data={ item }
+                    <EditTextItem key={ index } data={ item }
                         changeListener={ changeListener } />
                 )
             })
