@@ -26,6 +26,7 @@
             margin: 0 auto;
 
             .head-tabs-item {
+                @extend .flex-complete-middle;
                 float: left;
                 width: 50%;
                 height: inherit;
@@ -98,6 +99,7 @@
         }
 
         .btn-container {
+            @extend .flex-complete-middle;
             position: absolute;
             bottom: 1rem;
             width: 6rem;

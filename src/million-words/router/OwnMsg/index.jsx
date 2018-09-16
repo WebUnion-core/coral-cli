@@ -17,17 +17,17 @@ import FuncBlocks from './components/FuncBlocks.jsx';
 import DetailList from './components/DetailList.jsx';
 
 class Container extends React.Component {
-    constructor(props) {
+    constructor (props) {
         super(props);
     }
 
-    componentWillMount() {
+    componentWillMount () {
         console.log(`${prefix} props => `, this.props);
     }
 
-    componentDidMount() {}
+    componentDidMount () {}
 
-    render() {
+    render () {
         const { homeData } = this.props['Home'];
         const { footTabs = [] } = homeData;
 

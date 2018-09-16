@@ -1,8 +1,6 @@
 const path = require('path');
 const config = require('./config.json');
 const prodServer = config.prodServer;
-
-// 插件
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
@@ -33,16 +31,23 @@ module.exports = function setProdMode(webpackConfig) {
     webpackConfig.entry['vendor'] = config['vendor'];
 
     config.apps.forEach(function(item) {
+        const filename = path.resolve(
+            __dirname, './../dist/' + item.name + '/index.html'
+        );
+        const template = path.resolve(
+            __dirname, './../src/' + item.name + '/template.ejs'
+        );
+
         // 配置页面模板
         webpackConfig.plugins.push(new HtmlWebpackPlugin({
             title: item.title,
-            filename: path.resolve(__dirname, './../dist/' + item.name + '/index.html'),
-            template: path.resolve(__dirname, './../src/' + item.name + '/template.ejs'),
+            filename: filename,
+            template: template,
             hash: false,
             minify: true,
             version: config.version,
             site: prodServer.host + ':' + prodServer.port,
-            cdn: 'https://raw.githubusercontent.com/WebUnion-core/bona-storm/master/asset/img/'
+            cdn: config.imgcdn
         }));
 
         // 设置打包入口

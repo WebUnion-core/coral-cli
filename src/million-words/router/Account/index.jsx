@@ -14,7 +14,7 @@ import SignIn from './components/SignIn.jsx';
 import Register from './components/Register.jsx';
 
 class Container extends React.Component {
-    constructor(props) {
+    constructor (props) {
         super(props);
 
         this.state = {
@@ -22,13 +22,13 @@ class Container extends React.Component {
         }
     }
 
-    componentWillMount() {
+    componentWillMount () {
         console.log(`${prefix} props => `, this.props);
     }
 
-    componentDidMount() {
+    componentDidMount () {
         anime({
-            targets: document.getElementById('account-content'),
+            targets: this.refs.rootEl,
             translateY: '100%',
             delay: 1000
         });
@@ -42,20 +42,27 @@ class Container extends React.Component {
     }
 
     // 获取显示内容
-    renderForm() {
+    getForm () {
+        const { rootEl } = this.refs;
         switch(this.state.contentType) {
             case 'REGISTER':
-                return <Register toggleContent={ this.toggleContent } />;
+                return (
+                    <Register toggleContent={ this.toggleContent }
+                        rootEl={ rootEl } />
+                );
             default:
-                return <SignIn toggleContent={ this.toggleContent } />;
+                return (
+                    <SignIn toggleContent={ this.toggleContent }
+                        rootEl={ rootEl } />
+                );
         }
     }
 
-    render() {
+    render () {
         return (
             <div className="account-container">
-                <div id="account-content" className="account-content">
-                    { this.renderForm() }
+                <div ref="rootEl" className="account-content">
+                    { this.getForm() }
                 </div>
             </div>
         )

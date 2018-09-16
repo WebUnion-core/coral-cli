@@ -1,11 +1,11 @@
 import React from 'react';
 
 export default class FuncBlocks extends React.Component {
-    constructor(props) {
+    constructor (props) {
         super(props);
     }
 
-    render() {
+    render () {
         return (
             <ul className="func-blocks-list">
                 <li className="block-item">

@@ -2,15 +2,19 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 export default class HeadCanvas extends React.Component {
-    constructor(props) {
+    constructor (props) {
         super(props);
     }
 
-    render() {
+    render () {
         return (
             <header className="head-canvas-container">
                 <figure className="avatar-container"></figure>
-                <Link to="/userInfo/"><i className="edit-icon icon-151-edit" /></Link>
+
+                <Link to="/userInfo/">
+                    <i className="edit-icon icon-151-edit" />
+                </Link>
+
                 <div className="info-cont">
                     <strong className="name">WJT20</strong>
                     <small className="id">ID: 6588888</small>

@@ -1,23 +1,50 @@
 import './style.scss';
 import React from 'react';
-import NormalDialog from './../NormalDialog';
+import NormalDialog, { ButtonList } from './../NormalDialog';
 
-/*
- * props选项
- * 1. title => 标题文本
- * 2. btns => 按钮组 => [{
- *        1. text => 按钮文本,
- *        2. listener => 按钮点击回调,
- *        3. ifAutoClose => 点击后是否自动关闭
+export const EditTextItem = ({ data, changeListener }) => {
+    const { placeholder = '请输入', type = 'text' } = data;
+    return (
+        <li className="edit-text-item">
+            <input className="input"
+                type={ type }
+                placeholder={ placeholder }
+                onChange={ (event) => changeListener(event, data) } />
+        </li>
+    );
+}
+
+export const EditTextList = ({
+    exitTextList,
+    changeListener
+}) =>
+    <ul className="edit-text-list">
+        {
+            exitTextList.map((item, index) => {
+                return (
+                    <EditTextItem key={ index } data={ item }
+                        changeListener={ changeListener } />
+                )
+            })
+        }
+    </ul>
+
+/**
+ * 说明: 附加文本框弹窗
+ * props选项:
+ * 1. title -> 标题文本
+ * 2. btns -> 按钮组 -> [{
+ *        1. text -> 按钮文本,
+ *        2. listener -> 按钮点击回调,
+ *        3. ifAutoClose -> 点击后是否自动关闭
  *    }]
- * 3. closeListener => 点击关闭回调
- * 4. content => 展示内容
- * 5. exitTextList => 输入框组 => [{
- *        1. placeholder => 默认文本
- *        2. field => 数据键
- *        3. type => 输入框类型
+ * 3. closeListener -> 点击关闭回调
+ * 4. exitTextList -> 输入框组 -> [{
+ *        1. placeholder -> 默认文本
+ *        2. field -> 数据键
+ *        3. type -> 输入框类型
  *    }]
- * 6. ifShowDialog => 显示状态
+ * 5. ifShowDialog -> 显示状态
  */
 export default class EditTextDialog extends NormalDialog {
     constructor (props) {
@@ -31,40 +58,9 @@ export default class EditTextDialog extends NormalDialog {
         });
     }
 
-    // 渲染文本框组
-    renderEditTextList (exitTextList) {
-        if (exitTextList && exitTextList.length > 0) {
-            return (
-                <ul className="edit-text-list">
-                    {
-                        exitTextList.map((item, index) => {
-                            const {
-                                placeholder = '请输入',
-                                type = 'text'
-                            } = item;
-                            return (
-                                <li key={ index } className="edit-text-item">
-                                    <input className="input"
-                                        type={ type }
-                                        placeholder={ placeholder }
-                                        onChange={(event) => {
-                                            this.changeInputText(event, item);
-                                        }} />
-                                </li>
-                            )
-                        })
-                    }
-                </ul>
-            )
-        }
-        return '';
-    }
-
     render () {
         const {
-            title = '',
-            btns,
-            exitTextList
+            title = '', btns, exitTextList
         } = this.props;
         const { ifShowDialog } = this.state;
 
@@ -82,11 +78,13 @@ export default class EditTextDialog extends NormalDialog {
                             onClick={ this.clickClose } />
                     </h2>
 
-                    { this.renderEditTextList(exitTextList) }
+                    {
+                        (exitTextList && exitTextList.length > 0) &&
+                            <EditTextList exitTextList={ exitTextList }
+                                changeListener={ this.changeInputText } />
+                    }
 
-                    <ul className="btn-list">
-                        { this.renderBtnsList(btns) }
-                    </ul>
+                    <ButtonList btns={ btns } clickListener={ this.clickBtn } />
                 </div>
 
             </section>

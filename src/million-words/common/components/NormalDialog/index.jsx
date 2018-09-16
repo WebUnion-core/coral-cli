@@ -1,17 +1,46 @@
 import './style.scss';
 import React from 'react';
 
-/*
- * props选项
- * 1. title => 标题文本
- * 2. btns => 按钮组 => [{
- *        1. text => 按钮文本,
- *        2. listener => 按钮点击回调,
- *        3. ifAutoClose => 点击后是否自动关闭
+export const Button = ({ data, width, clickListener }) =>
+    <li className="btn-item"
+        style={{ width }}>
+        <button className="btn"
+            onClick={(event) => clickListener(event, data)}>
+            { data.text }
+        </button>
+    </li>
+
+export const ButtonList = ({ btns, clickListener }) => {
+    const len = btns.length;
+    return (
+        <ul className="btn-list">
+            {
+                btns.map((item, index) => {
+                    const width = `${(100 - (len - 1) * 5) / len}%`;
+                    const btnProps = {
+                        data: item,
+                        width,
+                        clickListener
+                    };
+                    return <Button key={ index } { ...btnProps } />
+                })
+            }
+        </ul>
+    )
+}
+
+/**
+ * 说明: 一般弹窗
+ * props选项:
+ * 1. title -> 标题文本
+ * 2. btns -> 按钮组 -> [{
+ *        1. text -> 按钮文本,
+ *        2. listener -> 按钮点击回调,
+ *        3. ifAutoClose -> 点击后是否自动关闭
  *    }]
- * 3. closeListener => 点击关闭回调
- * 4. content => 展示内容
- * 5. ifShowDialog => 显示状态
+ * 3. closeListener -> 点击关闭回调
+ * 4. content -> 展示内容
+ * 5. ifShowDialog -> 显示状态
  */
 export default class NormalDialog extends React.Component {
     constructor (props) {
@@ -31,15 +60,16 @@ export default class NormalDialog extends React.Component {
 
     // 切换状态
     toggleShow = (status) => {
-        const { ifShowDialog } = this.state;
-        this.setState({
-            ifShowDialog: status || !ifShowDialog
-        });
+        let { ifShowDialog } = this.state;
+
+        ifShowDialog = typeof status === 'undefined' ? !ifShowDialog : status;
+        this.setState({ ifShowDialog });
     }
 
     // 点击关闭
     clickClose = (event) => {
         const { closeListener } = this.props;
+
         if (closeListener) {
             closeListener();
         }
@@ -49,13 +79,15 @@ export default class NormalDialog extends React.Component {
     }
 
     // 点击按钮
-    clickBtn (event, btn) {
+    clickBtn = (event, btn) => {
         const { listener, ifAutoClose = true } = btn;
+
         if (ifAutoClose) {
+            // 自动关闭
             this.toggleShow();
         }
-
         if (listener) {
+            // 执行传入回调
             listener(this.state);
         }
         event.stopPropagation();
@@ -71,37 +103,9 @@ export default class NormalDialog extends React.Component {
         event.preventDefault();
     }
 
-    // 渲染按钮列表
-    renderBtnsList (btns) {
-        const len = btns.length;
-
-        return (
-            btns.map((item, index) => {
-                const { text } = item;
-                const width = (100 - (len - 1) * 5) / len;
-
-                return (
-                    <li key={ index }
-                        className="btn-item"
-                        style={{ width: `${ width }%` }}>
-                        <button
-                            className="btn"
-                            onClick={
-                                (event) => this.clickBtn(event, item)
-                            }>
-                            { text }
-                        </button>
-                    </li>
-                )
-            })
-        )
-    }
-
     render () {
         const {
-            title = '', content = '',
-            btns,
-            closeListener
+            title = '', content = '', btns, closeListener
         } = this.props;
         const { ifShowDialog } = this.state;
 
@@ -122,9 +126,7 @@ export default class NormalDialog extends React.Component {
                     <div className="content"
                         dangerouslySetInnerHTML={{ __html: content }} />
 
-                    <ul className="btn-list">
-                        { this.renderBtnsList(btns) }
-                    </ul>
+                    <ButtonList btns={ btns } clickListener={ this.clickBtn } />
                 </div>
 
             </section>

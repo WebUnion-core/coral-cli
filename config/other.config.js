@@ -1,12 +1,9 @@
 const webpack = require('webpack');
 const path = require('path');
 const fs = require('fs');
-
 const SpritesmithPlugin = require('webpack-spritesmith');
-
 const SRC_PATH = path.resolve(__dirname, './../asset/sprite');
 const TARGET_PATH = path.resolve(__dirname, './../src/asset');
-
 const spriteConfig = [];
 
 // 其他打包配置
@@ -21,6 +18,8 @@ module.exports = function setOther(webpackConfig) {
     srcData.forEach(function(item) {
         const itemPath = path.resolve(SRC_PATH, './' + item);
         const isDir = fs.statSync(itemPath).isDirectory();
+        const image = path.resolve(TARGET_PATH, './images/' + item + '.png');
+        const css = path.resolve(TARGET_PATH, './style/' + item + '.css');
 
         if (isDir) {
             spriteConfig.push({
@@ -31,8 +30,8 @@ module.exports = function setOther(webpackConfig) {
                 },
                 // 输出雪碧图文件及样式文件
                 target: {
-                    image: path.resolve(TARGET_PATH, './images/' + item + '.png'),
-                    css: path.resolve(TARGET_PATH, './style/' + item + '.css')
+                    image: image,
+                    css: css
                 },
                 // 样式文件中调用雪碧图地址写法
                 apiOptions: {

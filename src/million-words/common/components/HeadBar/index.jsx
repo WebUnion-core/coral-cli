@@ -1,24 +1,30 @@
 import './style.scss';
 import React from 'react';
 
-/*
- * props选项
- * 1. title => 标题文本
+/**
+ * 说明: 顶部标题栏
+ * props选项:
+ * 1. title -> 标题文本
  */
 export default class HeadBar extends React.Component {
-    constructor(props) {
+    constructor (props) {
         super(props);
     }
 
-    render() {
+    // 点击返回
+    clickGoBack = () => {
+        window.history.back();
+    }
+
+    render () {
         const { title } = this.props;
 
         return (
             <header className="head-bar-container">
                 <div className="head-bar">
-                    <i onClick={ () => window.history.back() }
+                    <i onClick={ this.clickGoBack }
                         className="icon icon-151-back" />
-                    <span>{ title || 'BAR_TITLE' }</span>
+                    <span>{ title || '' }</span>
                 </div>
             </header>
         )

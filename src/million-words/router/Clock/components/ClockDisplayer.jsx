@@ -8,41 +8,45 @@ export default class ClockDisplayer extends React.Component {
     }
 
     componentDidMount() {
+        const { secondEl, minuteEl, hourEl } = this.refs;
+
         this.timer = setInterval(() => {
             const dateTime = new Date();
             const second = dateTime.getSeconds();
             const minute = dateTime.getMinutes();
-            const hour = dateTime.getHours() > 12 ? (dateTime.getHours() - 12) : dateTime.getHours();
-            const secondDeg = second * 6;
-            const minuteDeg = minute * 6;
-            const hourDeg = hour * 30;
+            const oriHour = dateTime.getHours();
+            const hour = oriHour > 12 ? (oriHour - 12) : oriHour;
 
-            if (this.refs.second && this.refs.minute && this.refs.hour) {
+            const secondDeg = 90 + second * 6;
+            const minuteDeg = 90 + minute * 6;
+            const hourDeg = 90 + hour * 30;
+
+            if (secondEl && minuteEl && hourEl) {
                 // 秒针转动
-                Object.assign(this.refs.second.style, {
-                    'transform': `rotate(${90 + secondDeg}deg)`,
-                    '-ms-transform': `rotate(${90 + secondDeg}deg)`,
-                    '-moz-transform': `rotate(${90 + secondDeg}deg)`,
-                    '-webkit-transform': `rotate(${90 + secondDeg}deg)`,
-                    '-o-transform': `rotate(${90 + secondDeg}deg)`
+                Object.assign(secondEl.style, {
+                    'transform': `rotate(${secondDeg}deg)`,
+                    '-ms-transform': `rotate(${secondDeg}deg)`,
+                    '-moz-transform': `rotate(${secondDeg}deg)`,
+                    '-webkit-transform': `rotate(${secondDeg}deg)`,
+                    '-o-transform': `rotate(${secondDeg}deg)`
                 });
 
                 // 分针转动
-                Object.assign(this.refs.minute.style, {
-                    'transform': `rotate(${90 + minuteDeg}deg)`,
-                    '-ms-transform': `rotate(${90 + minuteDeg}deg)`,
-                    '-moz-transform': `rotate(${90 + minuteDeg}deg)`,
-                    '-webkit-transform': `rotate(${90 + minuteDeg}deg)`,
-                    '-o-transform': `rotate(${90 + minuteDeg}deg)`
+                Object.assign(minuteEl.style, {
+                    'transform': `rotate(${minuteDeg}deg)`,
+                    '-ms-transform': `rotate(${minuteDeg}deg)`,
+                    '-moz-transform': `rotate(${minuteDeg}deg)`,
+                    '-webkit-transform': `rotate(${minuteDeg}deg)`,
+                    '-o-transform': `rotate(${minuteDeg}deg)`
                 });
 
                 // 时针转动
-                Object.assign(this.refs.hour.style, {
-                    'transform': `rotate(${90 + hourDeg}deg)`,
-                    '-ms-transform': `rotate(${90 + hourDeg}deg)`,
-                    '-moz-transform': `rotate(${90 + hourDeg}deg)`,
-                    '-webkit-transform': `rotate(${90 + hourDeg}deg)`,
-                    '-o-transform': `rotate(${90 + hourDeg}deg)`
+                Object.assign(hourEl.style, {
+                    'transform': `rotate(${hourDeg}deg)`,
+                    '-ms-transform': `rotate(${hourDeg}deg)`,
+                    '-moz-transform': `rotate(${hourDeg}deg)`,
+                    '-webkit-transform': `rotate(${hourDeg}deg)`,
+                    '-o-transform': `rotate(${hourDeg}deg)`
                 });
             } else {
                 clearInterval(this.timer);
@@ -54,15 +58,21 @@ export default class ClockDisplayer extends React.Component {
         return (
             <section className="clock-displayer-container">
                 <figure className="clock-bg">
-                    <div ref="hour" className="abs hour"><hr className="color-line" /></div>
-                    <div ref="minute" className="abs minute"><hr className="color-line" /></div>
-                    <div ref="second" className="abs second"><hr className="color-line" /></div>
+                    <div ref="hourEl" className="abs hour">
+                        <hr className="color-line" />
+                    </div>
+                    <div ref="minuteEl" className="abs minute">
+                        <hr className="color-line" />
+                    </div>
+                    <div ref="secondEl" className="abs second">
+                        <hr className="color-line" />
+                    </div>
                 </figure>
-                <div className="flex-center btn-container left">
+                <div className="btn-container left">
                     <span className="text">添加</span>
                     <i className="icon icon-151-add" />
                 </div>
-                <div className="flex-center btn-container right">
+                <div className="btn-container right">
                     <span className="text">设置</span>
                     <i className="icon icon-151-setting" />
                 </div>
