@@ -7,7 +7,6 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 // 生产模式打包配置
 module.exports = function setProdMode(webpackConfig) {
-    // 额外插件
     webpackConfig.plugins.push(
         // 清除打包源文件
         new CleanWebpackPlugin(['dist']),
