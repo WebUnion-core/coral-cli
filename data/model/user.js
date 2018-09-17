@@ -7,6 +7,7 @@ const UserSchema = new Schema({
     'password': String,
     'user_agent': String,
     'name': String,
+    'avator_url': String,
 
     'meta': {
         'createdAt': {

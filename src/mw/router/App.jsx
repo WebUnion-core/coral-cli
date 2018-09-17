@@ -34,6 +34,8 @@ export default class App extends React.Component {
     }
 
     componentWillMount () {
+        const { site, version, userAgent } = window.Waydua;
+
         // 请求数据
         request({
             method: 'POST',
@@ -50,6 +52,27 @@ export default class App extends React.Component {
                 } else {
                     this.setState({
                         routerType: 'NORMAL'
+                    });
+
+                    // TODO 请求登录待优化
+                    request({
+                        method: 'POST',
+                        url: `${ getRequestPath() }/user/login`,
+                        data: {
+                            'login_token': cookieUtil.get('login_token'),
+                            'user_agent': userAgent
+                        },
+                        success: (res) => {
+                            if (res.result === 1) {
+                                Object.assign(localStorage, {
+                                    userName: res.data['user_name'],
+                                    avatorUrl: res.data['avator_url']
+                                });
+                            }
+                        },
+                        fail: (err) => {
+                            console.error(err);
+                        }
                     });
                 }
             },

@@ -2,19 +2,17 @@
 export default (state = {}, action) => {
     switch (action.type) {
         case 'SET_HOME_DATA':
+            __DEV__ && console.log(
+                'SET_HOME_DATA',
+                JSON.stringify(action.homeData)
+            );
             state = {
                 homeData: { ...action.homeData }
             };
             return state;
         default:
             state = {
-                homeData: {
-                    title: 'USER_NAME',
-                    scrollList: null,
-                    halfSideList: null,
-                    fullRowList: null,
-                    topIconList: null
-                }
+                homeData: {}
             };
             return state;
     }

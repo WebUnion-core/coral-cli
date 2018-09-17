@@ -3,6 +3,7 @@ import React from 'react';
 
 // 公共模块
 import request from './../../../common/modules/request.js';
+import cookieUtil from './../../../common/modules/cookie-util.js';
 
 export default class Register extends React.Component {
     constructor (props) {
@@ -30,7 +31,7 @@ export default class Register extends React.Component {
         }, 500);
     }
 
-    // 点击登录
+    // 点击注册
     clickRegister = () => {
         const { site, version, userAgent } = window.Waydua;
         const { phoneEl, codeEl, passwordEl } = this.refs;
@@ -44,8 +45,15 @@ export default class Register extends React.Component {
                 'user_agent': userAgent,
                 'password': passwordEl.value
             },
-            success: (data) => {
-                console.log(data);
+            success: (res) => {
+                if (res.result === 1) {
+                    cookieUtil.set(
+                        'login_token',
+                        res.data['login_token'],
+                        30
+                    );
+                    window.location.reload();
+                }
             },
             fail: (err) => {
                 console.error(err);

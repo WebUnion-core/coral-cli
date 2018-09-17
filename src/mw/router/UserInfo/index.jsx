@@ -48,11 +48,7 @@ class Container extends React.Component {
             data: formData,
             type: 'multipart/form-data',
             success: (res) => {
-                cookieUtil.set(
-                    'avator_url',
-                    res.data['url'],
-                    30
-                );
+                localStorage['avatorUrl'] = res.data['url'];
             },
             fail: (err) => {
                 console.error(err);

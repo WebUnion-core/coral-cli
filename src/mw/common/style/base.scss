@@ -16,6 +16,12 @@ $brand-primary-heavy: #086560; // 主色深色
 $border-color-base: #dddddd; // 基本边框色
 $border-color-shallow: #ececec; // 基本边框浅色
 
+// 色板
+$blue1: #3456c1;
+$blue2: #00a4e9;
+$green1: #08916c;
+$green2: #38b49d;
+
 /*
  * 快速转换rem ->
  * $px为需要转换的字号
@@ -111,4 +117,9 @@ $border-color-shallow: #ececec; // 基本边框浅色
 	display: inline-block;
 	background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAAAe1BMVEUAAAAApp0App0App0App4Ap50Ap5wAp50App0App0Ap50Ap50App0Ap50Ap5wAppwAppsApp0AppwAqJ0As5kAp5wAp50Ap50Ap5wAp50AqJwAp5sApp8AqpkArpYAp50Ap50AppwApp0App0ApZ4AppwApZ0Ap58Ap538lQ8fAAAAKHRSTlMApfv1FJHv4MefiXjTuVVRR0AtGQbBrn1taFwqJA8L5Zd/c3BkYjwgZkOpDAAAAM1JREFUSMft00kSgjAURdFvYmikE+wVsNe3/xUqIwmUwJtSnHFuJZWfyGTU3pHy5sKIHQALIlhfUJnJYPMNyCRzQSYvB2Sy1CCTowKZ7AEyCWDRbrjZ+ma3j9PTn7ne0eXsmVIaDujji+2JXso+XqrQL5GawsEAgTVC9Go+7pXGADupSzBALJYbeWOVKzmXygJddOgX0mLa61wvmpnguMx+Z+rYJ8pWa+ItM7/yoehEEkUnkjp0InlIJ1JuyaRy0ACMUE4e3FxI3zFOxu8DtjhYHXKTElgAAAAASUVORK5CYII=);
 	background-size: 100% 100%;
+}
+
+// 线性渐变
+@mixin linear_gradient ($float: to right, $startColor: $green1, $endColor: $green2) {
+	background: linear-gradient($float, $startColor, $endColor);
 }

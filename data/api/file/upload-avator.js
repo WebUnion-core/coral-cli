@@ -1,16 +1,16 @@
 /**
-* api: /file/upload_avator
-* 功能: 上传头像
-*
-* 请求参数:
-* 1. user_token -> 用户token，用于命名图片
-* 2. image -> 图片文件数据流
-*
-* 响应参数:
-* 1. result -> 状态值 -> 1:成功, 0:失败
-* 2. data
-*    1. url -> 图片URL
-*/
+ * api: /file/upload_avator
+ * 功能: 上传头像
+ *
+ * 请求参数:
+ * 1. user_token -> 用户token，用于命名图片
+ * 2. image -> 图片文件数据流
+ *
+ * 响应参数:
+ * 1. result -> 状态值 -> 1:成功, 0:失败
+ * 2. data
+ *    1. url -> 图片URL
+ */
 
 const fs = require('fs');
 const path = require('path');

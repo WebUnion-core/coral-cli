@@ -2,6 +2,10 @@
 export default (state = {}, action) => {
     switch (action.type) {
         case 'SET_PUBLIC_DATA':
+            __DEV__ && console.log(
+                'SET_PUBLIC_DATA',
+                JSON.stringify(action.publicData)
+            );
             return {
                 publicData: { ...action.publicData }
             };

@@ -44,11 +44,11 @@ export default class SignIn extends React.Component {
                 'password': passwordEl.value,
                 'user_agent': userAgent
             },
-            success: (data) => {
-                if (data['result'] === 1) {
+            success: (res) => {
+                if (res.result === 1) {
                     cookieUtil.set(
                         'login_token',
-                        data['login_token'],
+                        res.data['login_token'],
                         30
                     );
                     window.location.reload();

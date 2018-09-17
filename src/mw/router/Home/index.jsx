@@ -24,7 +24,7 @@ class Container extends React.Component {
     }
 
     componentWillMount () {
-        const { setHomeData } = this.props;
+        const { setPublicData, setHomeData } = this.props;
         const { site, version } = window.Waydua;
 
         // 请求数据
@@ -32,7 +32,9 @@ class Container extends React.Component {
             method: 'GET',
             url: `http://${site}/${version}/home/main_list`,
             success: (res) => {
-                setHomeData(res.data, this.props[prefix]);
+                const { footTabs, topIconList } = res.data;
+                setHomeData({ topIconList }, this.props[prefix]);
+                localStorage['footTabs'] = JSON.stringify(footTabs);
             },
             fail: (err) => {
                 console.error(err);
@@ -42,7 +44,7 @@ class Container extends React.Component {
 
     render () {
         const { homeData } = this.props[prefix];
-        const { footTabs = [] } = homeData;
+        const footTabs = JSON.parse(localStorage['footTabs']);
 
         return (
             <div className="container main-container">

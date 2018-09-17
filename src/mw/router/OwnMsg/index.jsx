@@ -29,7 +29,7 @@ class Container extends React.Component {
 
     render () {
         const { homeData } = this.props['Home'];
-        const { footTabs = [] } = homeData;
+        const footTabs = JSON.parse(localStorage['footTabs']);
 
         return (
             <div className="container ownmsg-container">

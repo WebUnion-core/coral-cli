@@ -10,8 +10,6 @@
 * 1. result -> 状态值 -> 1:成功, 0:失败
 */
 
-const loginTokenCache = require('./../../static/login_token.json');
-
 const resHeader = {
     'Access-Control-Allow-Methods': 'POST',
     'Cache-Control': 'no-cache',
@@ -20,6 +18,7 @@ const resHeader = {
 
 module.exports = function(version, api) {
     api.post(`/${version}/user/check_token`, (ctx, next) => {
+        const loginTokenCache = require('./../../static/login_token.json');
         const { response, request: { body } } = ctx;
 
         // 请求参数

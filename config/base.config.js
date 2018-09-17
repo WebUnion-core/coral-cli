@@ -83,7 +83,7 @@ module.exports = {
     plugins: [
         // 注入常量
         new webpack.DefinePlugin({
-            __DEV__: MODE === 'development'
+            __DEV__: MODE === 'development' || MODE === 'debug'
         })
     ]
 }
