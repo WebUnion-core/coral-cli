@@ -23,18 +23,26 @@ import FirstLevelList from './components/FirstLevelList.jsx';
 class Container extends React.Component {
     constructor (props) {
         super(props);
+
         this.state = {
+            avatorUrl: null,
             ifShowEditTextDialog: false,
             ifShowUploadImgDialog: false
         }
     }
 
     componentWillMount () {
-        console.log(`${prefix} props => `, this.props);
+        __DEV__ && console.log(`${prefix} props => `, this.props);
+    }
+
+    componentDidMount () {
+        this.setState({
+            avatorUrl: localStorage['avatorUrl']
+        });
     }
 
     // 上传头像数据
-    postAvatorData (receiveParams) {
+    postAvatorData = (receiveParams) => {
         const { formData } = receiveParams;
         const { site, version } = window.Waydua;
         const { width, height, offsetX, offsetY } = receiveParams;
@@ -48,7 +56,13 @@ class Container extends React.Component {
             data: formData,
             type: 'multipart/form-data',
             success: (res) => {
-                localStorage['avatorUrl'] = res.data['url'];
+                const avatorUrl = res.data['avator_url'];
+
+                localStorage['avatorUrl'] = avatorUrl;
+                this.setState({
+                    avatorUrl,
+                    ifShowUploadImgDialog: false
+                });
             },
             fail: (err) => {
                 console.error(err);
@@ -75,13 +89,15 @@ class Container extends React.Component {
     }
 
     render () {
-        const { ifShowEditTextDialog, ifShowUploadImgDialog } = this.state;
+        const {
+            ifShowEditTextDialog,
+            ifShowUploadImgDialog,
+            avatorUrl
+        } = this.state;
         const uploadImgDialogProps = {
             ifShowDialog: ifShowUploadImgDialog,
             title: '修改头像',
-            receiveParams: (data) => {
-                this.postAvatorData(data);
-            }
+            receiveParams: this.postAvatorData
         };
         const editTextDialogProps = {
             ifShowDialog: ifShowEditTextDialog,
@@ -105,7 +121,9 @@ class Container extends React.Component {
         return (
             <div className="user-info-container">
                 <HeadBar title="个人信息" />
+
                 <FirstLevelList
+                    avatorUrl={ avatorUrl }
                     toggleEditTextDialog={ this.toggleEditTextDialog }
                     toggleUploadImgDialog={ this.toggleUploadImgDialog } />
 

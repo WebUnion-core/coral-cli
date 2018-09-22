@@ -26,7 +26,6 @@ fs.readdirSync(path.resolve(__dirname, './../static/avators'))
     .forEach((item) => {
         api.get(`/avator/${item.replace(/\..+/, '')}`, (ctx) => {
             ctx.set({
-                'Cache-Control': 'max-age=604800',
                 'Content-Type': 'image/png'
             });
             ctx.body = fs.readFileSync(

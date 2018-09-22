@@ -6,7 +6,6 @@ import './../common/style/reset.scss';
 import Account from './Account';
 
 // 公共模块
-import { getRequestPath } from './../common/modules/tools.js';
 import request from './../common/modules/request.js';
 import cookieUtil from './../common/modules/cookie-util.js';
 const config = require('./../data.json');
@@ -39,9 +38,9 @@ export default class App extends React.Component {
         // 请求数据
         request({
             method: 'POST',
-            url: `${ getRequestPath() }/user/check_token`,
+            url: `http://${site}/${version}/user/check_token`,
             data: {
-                'user_agent': window.Waydua.userAgent,
+                'user_agent': userAgent,
                 'login_token': cookieUtil.get('login_token')
             },
             success: (data) => {
@@ -52,27 +51,6 @@ export default class App extends React.Component {
                 } else {
                     this.setState({
                         routerType: 'NORMAL'
-                    });
-
-                    // TODO 请求登录待优化
-                    request({
-                        method: 'POST',
-                        url: `${ getRequestPath() }/user/login`,
-                        data: {
-                            'login_token': cookieUtil.get('login_token'),
-                            'user_agent': userAgent
-                        },
-                        success: (res) => {
-                            if (res.result === 1) {
-                                Object.assign(localStorage, {
-                                    userName: res.data['user_name'],
-                                    avatorUrl: res.data['avator_url']
-                                });
-                            }
-                        },
-                        fail: (err) => {
-                            console.error(err);
-                        }
                     });
                 }
             },
@@ -89,18 +67,14 @@ export default class App extends React.Component {
                 return <Route path="/" component={ Account } />
             case 'NORMAL':
                 return (
-                    <Switch>
-                        {
-                            config.menus.map(
-                                (item, index) => (
-                                    <Route key={ index }
-                                        path={ item.route }
-                                        component={ menuModules[index] }
-                                        exact />
-                                )
-                            )
-                        }
-                    </Switch>
+                    <Switch>{
+                        config.menus.map((item, index) =>
+                            <Route key={ index }
+                                path={ item.route }
+                                component={ menuModules[index] }
+                                exact />
+                        )
+                    }</Switch>
                 );
             default:
                 return '';

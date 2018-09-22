@@ -8,6 +8,7 @@ import Swiper from 'swiper';
 
 // 公共模块
 import request from './../../common/modules/request.js';
+import cookieUtil from './../../common/modules/cookie-util.js';
 
 // 通用组件
 import TabsFooter from './../../common/components/TabsFooter';
@@ -24,8 +25,8 @@ class Container extends React.Component {
     }
 
     componentWillMount () {
-        const { setPublicData, setHomeData } = this.props;
-        const { site, version } = window.Waydua;
+        const { setHomeData } = this.props;
+        const { site, version, userAgent } = window.Waydua;
 
         // 请求数据
         request({
@@ -35,6 +36,27 @@ class Container extends React.Component {
                 const { footTabs, topIconList } = res.data;
                 setHomeData({ topIconList }, this.props[prefix]);
                 localStorage['footTabs'] = JSON.stringify(footTabs);
+            },
+            fail: (err) => {
+                console.error(err);
+            }
+        });
+
+        // 请求登录
+        request({
+            method: 'POST',
+            url: `http://${site}/${version}/user/login`,
+            data: {
+                'login_token': cookieUtil.get('login_token'),
+                'user_agent': userAgent
+            },
+            success: (res) => {
+                if (res.result === 1) {
+                    Object.assign(localStorage, {
+                        userName: res.data['user_name'],
+                        avatorUrl: res.data['avator_url']
+                    });
+                }
             },
             fail: (err) => {
                 console.error(err);
@@ -64,8 +86,7 @@ class Container extends React.Component {
 // 将state对应值绑定到props上
 function mapStateToProps(state) {
     return {
-        [prefix]: state[prefix],
-        ['Public']: state['Public']
+        [prefix]: state[prefix]
     }
 }
 

@@ -34,7 +34,7 @@
             .figure {
                 width: pxToRem(60px);
                 height: pxToRem(60px);
-                background-color: $fill-overlay-inverse;
+                background-size: 100% 100%;
             }
 
             .value {
