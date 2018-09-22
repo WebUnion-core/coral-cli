@@ -19,6 +19,7 @@ const path = require('path');
 const fs = require('fs');
 const mongoose = require('mongoose');
 const ammunition = require('ammunition-storage');
+const config = require('./../../../config/config.json');
 
 const resHeader = {
     'Access-Control-Allow-Methods': 'POST',
@@ -53,7 +54,7 @@ module.exports = function(version, api) {
         Object.assign(body, {
             'password': ammunition.md5(body.password),
             'name': body.phone,
-            'avator_url': 'https://png.icons8.com/ios-glyphs/100/6FD2BF/albatross.png'
+            'avator_url': config.defaultAvator
         });
 
         ctx.set(resHeader); // 设置响应头
