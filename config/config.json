@@ -1,5 +1,5 @@
 {
-    "version": "v6",
+    "version": "v7",
     "dbPath": "mongodb://localhost:27017/mw",
     "imgcdn": "https://raw.githubusercontent.com/WebUnion-core/bona-storm/master/asset/img/",
     "defaultAvator": "https://raw.githubusercontent.com/WebUnion-core/bona-storm/master/asset/img/default-avator.png",
@@ -10,15 +10,12 @@
         }
     ],
     "dataServer": {
-        "host": "192.168.1.101",
         "port": 2018
     },
     "debugServer": {
-        "host": "192.168.1.101",
         "port": 2015
     },
     "prodServer": {
-        "host": "192.168.1.101",
         "port": 8888
     },
     "vendor": [

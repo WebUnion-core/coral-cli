@@ -4,6 +4,7 @@ const dataServer = config.dataServer;
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const DIST_PATH = path.resolve(__dirname, './../dist');
+const HOST = require('./../lib/getHost.js')();
 
 // 开发模式打包配置
 module.exports = function setDevMode(webpackConfig) {
@@ -46,7 +47,7 @@ module.exports = function setDevMode(webpackConfig) {
                 hash: false,
                 minify: false,
                 version: config.version,
-                site: dataServer.host + ':' + dataServer.port,
+                site: HOST + ':' + dataServer.port,
                 cdn: config.imgcdn
             })
         );

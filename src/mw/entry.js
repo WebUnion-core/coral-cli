@@ -6,7 +6,7 @@ import configureStore from './configureStore.js';
 const store = configureStore();
 
 //导入组件
-import App from './router/App.jsx';
+import App from './routes/App.jsx';
 
 render(
     <AppContainer>

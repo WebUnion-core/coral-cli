@@ -22,6 +22,9 @@ const prefix = 'Home';
 class Container extends React.Component {
     constructor (props) {
         super(props);
+        this.state = {
+            footTabs: []
+        };
     }
 
     componentWillMount () {
@@ -36,6 +39,7 @@ class Container extends React.Component {
                 const { footTabs, topIconList } = res.data;
                 setHomeData({ topIconList }, this.props[prefix]);
                 localStorage['footTabs'] = JSON.stringify(footTabs);
+                this.setState({ footTabs });
             },
             fail: (err) => {
                 console.error(err);
@@ -66,7 +70,7 @@ class Container extends React.Component {
 
     render () {
         const { homeData } = this.props[prefix];
-        const footTabs = JSON.parse(localStorage['footTabs']);
+        const { footTabs } = this.state;
 
         return (
             <div className="container main-container">

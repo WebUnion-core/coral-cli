@@ -19,17 +19,24 @@ import DetailList from './components/DetailList.jsx';
 class Container extends React.Component {
     constructor (props) {
         super(props);
+        this.state = {
+            footTabs: []
+        };
     }
 
     componentWillMount () {
         console.log(`${prefix} props => `, this.props);
     }
 
-    componentDidMount () {}
+    componentDidMount () {
+        this.setState({
+            footTabs: JSON.parse(localStorage['footTabs'] || '[]')
+        });
+    }
 
     render () {
         const { homeData } = this.props['Home'];
-        const footTabs = JSON.parse(localStorage['footTabs']);
+        const { footTabs } = this.state;
 
         return (
             <div className="container ownmsg-container">
