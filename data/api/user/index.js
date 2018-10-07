@@ -1,9 +1,6 @@
-const requestLogin = require('./login.js');
-const requestRegister = require('./register.js');
-const requestCheckToken = require('./check-token.js');
-
 module.exports = [
-    requestLogin,
-    requestRegister,
-    requestCheckToken
+    require('./login.js'),
+    require('./register.js'),
+    require('./check-token.js'),
+    require('./update-name.js')
 ];

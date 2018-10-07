@@ -70,6 +70,29 @@ class Container extends React.Component {
         });
     }
 
+    // 更新用戶名
+    updateUserName = ({ name }) => {
+        const { site, version } = window.Waydua;
+        request({
+            method: 'POST',
+            url: `http://${site}/${version}/user/update_name`,
+            data: {
+                'user_token': cookieUtil.get('login_token'),
+                'user_name': name
+            },
+            success: (res) => {
+                if (res.result === 1) {
+                    Object.assign(localStorage, {
+                        userName: res.data['user_name']
+                    });
+                }
+            },
+            fail: (err) => {
+                console.error(err);
+            }
+        });
+    }
+
     // 切换输入型对话框状态
     toggleEditTextDialog = (status) => {
         const { ifShowEditTextDialog } = this.state;
@@ -106,7 +129,7 @@ class Container extends React.Component {
                 { text: '取消' },
                 {
                     text: '确定',
-                    listener: (data) => alert(data.name)
+                    listener: this.updateUserName
                 }
             ],
             exitTextList: [
