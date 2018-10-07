@@ -10,6 +10,7 @@
 const homeList = require('./../../static/home_list.json');
 
 const resHeader = {
+    'Access-Control-Allow-Origin': '*',
     'Cache-Control': 'no-cache',
     'Content-Type': 'application/json;charset=UTF-8'
 };

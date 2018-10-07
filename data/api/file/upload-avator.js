@@ -20,6 +20,7 @@ const mongoose = require('mongoose');
 const FILE_PATH = path.join(__dirname, './../../static/avators');
 const resHeader = {
     'Access-Control-Allow-Methods': 'POST',
+    'Access-Control-Allow-Origin': '*',
     'Cache-Control': 'no-cache',
     'Content-Type': 'application/json;charset=UTF-8'
 };

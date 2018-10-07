@@ -17,6 +17,7 @@ const mongoose = require('mongoose');
 
 const resHeader = {
     'Access-Control-Allow-Methods': 'POST',
+    'Access-Control-Allow-Origin': '*',
     'Cache-Control': 'no-cache',
     'Content-Type': 'application/json;charset=UTF-8'
 };

@@ -15,6 +15,7 @@ import TabsFooter from './../../common/components/TabsFooter';
 
 // 子组件
 import TopIconList from './components/TopIconList.jsx';
+import ArticleList from './components/ArticleList.jsx';
 
 // 入口前缀
 const prefix = 'Home';
@@ -81,6 +82,7 @@ class Container extends React.Component {
                     </figure>
                 </nav>
                 <TopIconList store={ homeData } />
+                <ArticleList />
                 <TabsFooter list={ footTabs } defaultIndex={ 0 } />
             </div>
         )
