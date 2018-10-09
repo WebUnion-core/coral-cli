@@ -48,7 +48,7 @@
 
 /* 文章列表 */
 .article-list-container {
-    .article-list {
+    .article-list {        
         .article-list-item {
             @extend .horizontal-line;
             overflow: hidden;
