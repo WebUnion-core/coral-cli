@@ -48,14 +48,14 @@
 
 /* 文章列表 */
 .article-list-container {
-    .article-list {        
+    .article-list {
         .article-list-item {
             @extend .horizontal-line;
             overflow: hidden;
             font-size: 0.8rem;
 
             &.single-image-style {
-                padding: 0.5rem 0.7rem;
+                padding: 0.7rem 0.8rem;
 
                 .img {
                     float: left;
