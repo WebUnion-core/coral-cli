@@ -76,18 +76,20 @@ export default class ArticleList extends React.Component {
         return (
             <div className="article-list-container">
                 <ul className="article-list" ref="articleList">
-                {
-                    this.state.articleList.map((item, index) => {
-                        const { img, style, title } = item;
-                        return (
-                            <li key={ index }
-                                className={ `article-list-item ${ style }` }>
-                                <img className="img" src={ img } />
-                                <p className="title">{ title }</p>
-                            </li>
-                        )
-                    })
-                }
+                    {
+                        this.state.articleList.map((item, index) => {
+                            const { img, style, title } = item;
+                            return (
+                                <li key={ index }
+                                    className={
+                                        `article-list-item ${ style }`
+                                    }>
+                                    <img className="img" src={ img } />
+                                    <p className="title">{ title }</p>
+                                </li>
+                            )
+                        })
+                    }
                 </ul>
             </div>
         )

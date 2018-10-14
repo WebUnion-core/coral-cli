@@ -115,7 +115,7 @@
         "no-redeclare": 2, // 禁止重复声明变量
         "no-regex-spaces": 2, // 禁止在正则表达式字面量中使用多个空格 /foo bar/
         "no-restricted-modules": 0, // 如果禁用了指定模块，使用就会报错
-        "no-return-assign": 1, // return 语句中不能有赋值表达式
+        "no-return-assign": 0, // return 语句中不能有赋值表达式
         "no-script-url": 0, // 禁止使用javascript:void(0)
         "no-self-compare": 2, // 不能比较自身
         "no-sequences": 0, // 禁止使用逗号运算符
