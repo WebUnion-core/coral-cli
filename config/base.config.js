@@ -24,7 +24,6 @@ module.exports = {
                 enforce: 'pre', // 编译前检查
                 exclude: /node_modules/,
                 include: [
-                    path.resolve(__dirname, './../data'),
                     path.resolve(__dirname, './../src')
                 ], // 要检查的目录
             },

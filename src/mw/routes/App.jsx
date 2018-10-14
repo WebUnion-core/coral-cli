@@ -44,7 +44,7 @@ export default class App extends React.Component {
                 'login_token': cookieUtil.get('login_token')
             },
             success: (data) => {
-                if (data['result'] !== 1) {
+                if (data['status'] !== 1) {
                     this.setState({
                         routerType: 'ONLY_LOGIN'
                     });

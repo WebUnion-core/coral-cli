@@ -8,7 +8,8 @@
  *
  * 响应参数:
  * 1. result -> 状态值 -> 1:成功, 0:失败
- * 2. data
+ * 2. msg -> 返回信息，result为0时必定返回
+ * 3. data
  *    1. total_page -> 总页数
  *    2. articles -> 文章数据集合
  */
@@ -29,6 +30,8 @@
          const page = parseInt(body['page'], 10);
          const amount = parseInt(body['amount'], 10);
          let total;
+
+         ctx.set(respHeader); // 设置响应头
 
          // await Article.create({
          //     "title": "ARTICLE_TITLE",
@@ -86,12 +89,10 @@
              },
 
              // 结束回调
-             function (err, resData) {
+             (err, resData) => {
                  if (err) {
                      throw new Error(err);
                  }
-
-                 ctx.set(respHeader); // 设置响应头
 
                  ctx.body = {
                      'result': 1,

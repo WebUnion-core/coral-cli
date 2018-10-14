@@ -33,23 +33,21 @@ export default class ArticleList extends React.Component {
                 'page': pageCount,
                 'amount': this.perPageAmount
             },
-            success: (res) => {
-                if (res.result === 1) {
-                    const { articles } = res.data;
-                    articles.forEach((item) => {
-                        const { title } = item;
-                        articleList.push({
-                            style: 'single-image-style',
-                            img: item['guide_image_url'],
-                            title
-                        });
+            success: (data) => {
+                const { articles } = data;
+                articles.forEach((item) => {
+                    const { title } = item;
+                    articleList.push({
+                        style: 'single-image-style',
+                        img: item['guide_image_url'],
+                        title
                     });
-                    this.setState({
-                        articleList,
-                        totalAmount: res.data['total_page'],
-                        pageCount: pageCount + 1
-                    });
-                }
+                });
+                this.setState({
+                    articleList,
+                    totalAmount: data['total_page'],
+                    pageCount: pageCount + 1
+                });
             },
             fail: (err) => {
                 console.error(err);
@@ -57,11 +55,8 @@ export default class ArticleList extends React.Component {
         });
     }
 
-    componentWillMount () {
-        this.addArticle();
-    }
-
     componentDidMount () {
+        this.addArticle();
         bindScroll(() => {
             setTimeout(() => {
                 this.addArticle();

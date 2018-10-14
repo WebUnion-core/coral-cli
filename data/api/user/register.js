@@ -58,10 +58,10 @@ module.exports = function(version, api) {
             'avator_url': config.defaultAvator
         });
 
-        ctx.set(resHeader); // 设置响应头
-
         const user = new User(body);
         const saveInfo = await user.save(); // 保存数据
+
+        ctx.set(resHeader); // 设置响应头
 
         if (saveInfo) {
             const token = saveInfo['_id'];

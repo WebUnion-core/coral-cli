@@ -45,15 +45,13 @@ export default class Register extends React.Component {
                 'user_agent': userAgent,
                 'password': passwordEl.value
             },
-            success: (res) => {
-                if (res.result === 1) {
-                    cookieUtil.set(
-                        'login_token',
-                        res.data['login_token'],
-                        30
-                    );
-                    window.location.reload();
-                }
+            success: (data) => {
+                cookieUtil.set(
+                    'login_token',
+                    data['login_token'],
+                    30
+                );
+                window.location.reload();
             },
             fail: (err) => {
                 console.error(err);

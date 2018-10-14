@@ -55,9 +55,8 @@ class Container extends React.Component {
             url: `http://${site}/${version}/file/upload_avator`,
             data: formData,
             type: 'multipart/form-data',
-            success: (res) => {
-                const avatorUrl = res.data['avator_url'];
-
+            success: (data) => {
+                const avatorUrl = data['avator_url'];
                 localStorage['avatorUrl'] = avatorUrl;
                 this.setState({
                     avatorUrl,
@@ -80,12 +79,10 @@ class Container extends React.Component {
                 'user_token': cookieUtil.get('login_token'),
                 'user_name': name
             },
-            success: (res) => {
-                if (res.result === 1) {
-                    Object.assign(localStorage, {
-                        userName: res.data['user_name']
-                    });
-                }
+            success: (data) => {
+                Object.assign(localStorage, {
+                    userName: data['user_name']
+                });
             },
             fail: (err) => {
                 console.error(err);

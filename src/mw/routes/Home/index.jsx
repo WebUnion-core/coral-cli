@@ -36,8 +36,7 @@ class Container extends React.Component {
         request({
             method: 'GET',
             url: `http://${site}/${version}/home/main_list`,
-            success: (res) => {
-                const { footTabs, topIconList } = res.data;
+            success: ({ footTabs, topIconList }) => {
                 setHomeData({ topIconList }, this.props[prefix]);
                 localStorage['footTabs'] = JSON.stringify(footTabs);
                 this.setState({ footTabs });
@@ -55,13 +54,11 @@ class Container extends React.Component {
                 'login_token': cookieUtil.get('login_token'),
                 'user_agent': userAgent
             },
-            success: (res) => {
-                if (res.result === 1) {
-                    Object.assign(localStorage, {
-                        userName: res.data['user_name'],
-                        avatorUrl: res.data['avator_url']
-                    });
-                }
+            success: (data) => {
+                Object.assign(localStorage, {
+                    userName: data['user_name'],
+                    avatorUrl: data['avator_url']
+                });
             },
             fail: (err) => {
                 console.error(err);

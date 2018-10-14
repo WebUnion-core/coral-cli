@@ -1,3 +1,5 @@
+@import "./animate.scss";
+
 /*
  * https://github.com/ant-design/ant-design-mobile/wiki/%E8%AE%BE%E8%AE%A1%E5%8F%98%E9%87%8F%E8%A1%A8%E5%8F%8A%E5%91%BD%E5%90%8D%E8%A7%84%E8%8C%83
  */
@@ -117,6 +119,30 @@ $green2: #38b49d;
 	display: inline-block;
 	background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAAAe1BMVEUAAAAApp0App0App0App4Ap50Ap5wAp50App0App0Ap50Ap50App0Ap50Ap5wAppwAppsApp0AppwAqJ0As5kAp5wAp50Ap50Ap5wAp50AqJwAp5sApp8AqpkArpYAp50Ap50AppwApp0App0ApZ4AppwApZ0Ap58Ap538lQ8fAAAAKHRSTlMApfv1FJHv4MefiXjTuVVRR0AtGQbBrn1taFwqJA8L5Zd/c3BkYjwgZkOpDAAAAM1JREFUSMft00kSgjAURdFvYmikE+wVsNe3/xUqIwmUwJtSnHFuJZWfyGTU3pHy5sKIHQALIlhfUJnJYPMNyCRzQSYvB2Sy1CCTowKZ7AEyCWDRbrjZ+ma3j9PTn7ne0eXsmVIaDujji+2JXso+XqrQL5GawsEAgTVC9Go+7pXGADupSzBALJYbeWOVKzmXygJddOgX0mLa61wvmpnguMx+Z+rYJ8pWa+ItM7/yoehEEkUnkjp0InlIJ1JuyaRy0ACMUE4e3FxI3zFOxu8DtjhYHXKTElgAAAAASUVORK5CYII=);
 	background-size: 100% 100%;
+}
+
+.loading-container {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.75);
+	z-index: 990;
+
+	.loading-img {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 50%;
+		margin: auto 0 auto -35px;
+		background-image: url(data:image/png;base64,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);
+		background-size: 100% 100%;
+		width: pxToRem(70px);
+		height: pxToRem(70px);
+		animation: rotate-all-round 2s linear 0s infinite;
+	}
 }
 
 // 线性渐变
