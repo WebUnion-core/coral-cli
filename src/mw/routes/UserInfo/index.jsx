@@ -25,7 +25,8 @@ class Container extends React.Component {
         super(props);
 
         this.state = {
-            avatorUrl: null,
+            avatorUrl: '',
+            userName: '',
             ifShowEditTextDialog: false,
             ifShowUploadImgDialog: false
         }
@@ -36,8 +37,10 @@ class Container extends React.Component {
     }
 
     componentDidMount () {
+        const { publicData } = window.Waydua;
         this.setState({
-            avatorUrl: localStorage['avatorUrl']
+            avatorUrl: publicData['avator_url'],
+            userName: publicData['user_name']
         });
     }
 
@@ -55,13 +58,36 @@ class Container extends React.Component {
             url: `http://${site}/${version}/file/upload_avator`,
             data: formData,
             type: 'multipart/form-data',
-            success: (res) => {
-                const avatorUrl = res.data['avator_url'];
-
-                localStorage['avatorUrl'] = avatorUrl;
+            success: (data) => {
+                const avatorUrl = data['avator_url'];
+                window.Waydua.publicData['avator_url'] = avatorUrl;
                 this.setState({
                     avatorUrl,
                     ifShowUploadImgDialog: false
+                });
+            },
+            fail: (err) => {
+                console.error(err);
+            }
+        });
+    }
+
+    // 更新用戶名
+    updateUserName = ({ name }) => {
+        const { site, version } = window.Waydua;
+        request({
+            method: 'POST',
+            url: `http://${site}/${version}/user/update_name`,
+            data: {
+                'user_token': cookieUtil.get('login_token'),
+                'user_name': name
+            },
+            success: (data) => {
+                const userName = data['user_name'];
+                window.Waydua.publicData['user_name'] = userName;
+                this.setState({
+                    userName,
+                    ifShowEditTextDialog: false
                 });
             },
             fail: (err) => {
@@ -92,7 +118,8 @@ class Container extends React.Component {
         const {
             ifShowEditTextDialog,
             ifShowUploadImgDialog,
-            avatorUrl
+            avatorUrl,
+            userName
         } = this.state;
         const uploadImgDialogProps = {
             ifShowDialog: ifShowUploadImgDialog,
@@ -106,7 +133,7 @@ class Container extends React.Component {
                 { text: '取消' },
                 {
                     text: '确定',
-                    listener: (data) => alert(data.name)
+                    listener: this.updateUserName
                 }
             ],
             exitTextList: [
@@ -124,6 +151,7 @@ class Container extends React.Component {
 
                 <FirstLevelList
                     avatorUrl={ avatorUrl }
+                    userName={ userName }
                     toggleEditTextDialog={ this.toggleEditTextDialog }
                     toggleUploadImgDialog={ this.toggleUploadImgDialog } />
 

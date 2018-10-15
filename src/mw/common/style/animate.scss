@@ -21,3 +21,12 @@
         transform: translateY(0);
     }
 }
+
+@keyframes rotate-all-round {
+    from {
+        transform: rotate(0);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}

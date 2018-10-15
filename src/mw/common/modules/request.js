@@ -1,61 +1,64 @@
 const request = require('superagent');
 
+// 处理接收到的数据
+function handleData ({ fail, success }, err, res) {
+    if (err) {
+        fail(err);
+    } else {
+        const json = JSON.parse(res.text);
+        if (json.result === '0') {
+            fail(json.msg);
+        } else {
+            success(json.data);
+        }
+    }
+    document.getElementById('loading-container').style.display = 'none';
+}
+
 /**
- * 封装请求参数说明:
- * method: String，请求方式
- * url: String，请求url
- * data: Object，发送数据
- * success: Function，请求成功调用函数
- * fail: Function，请求失败调用函数
- * type: String，请求类型
+ * 封装请求
+ * @param  {[String]}   method        请求方式，默认POST
+ * @param  { String }   url           请求url
+ * @param  {[Object]}   data          发送数据
+ * @param  {[Function]} success       请求成功调用函数
+ * @param  {[Function]} fail          请求失败调用函数
+ * @param  {[String]}   type          请求数据的content-type，默认application/x-www-form-urlencoded
+ * @param  {[Boolean]}  ifShowLoading 是否展示loading，默认true
  */
-export default function(config) {
-    if (typeof config.method !== 'string') {
+export default ({
+    method = 'POST',
+    url,
+    data,
+    success = () => {},
+    fail = () => {},
+    type,
+    ifShowLoading = true
+}) => {
+    if (typeof method !== 'string') {
         throw new Error('method参数错误');
     }
 
-    if (config.method.toUpperCase() === 'GET') {
+    document.getElementById('loading-container').style.display = 'block';
+    if (method.toUpperCase() === 'GET') {
         // 使用GET
         request
-            .get(config.url)
-            .end((err, res) => {
-                if (err) {
-                    config.fail && config.fail(err);
-                } else {
-                    config.success && config.success(JSON.parse(res.text));
-                }
-            });
+            .get(url)
+            .end((err, res) => handleData({ fail, success }, err, res));
     } else {
         // 默认使用POST
-        switch (config.type) {
+        switch (type) {
             case 'multipart/form-data':
                 request
-                    .post(config.url)
-                    .send(config.data)
-                    .end((err, res) => {
-                        if (err) {
-                            config.fail &&
-                                config.fail(err);
-                        } else {
-                            config.success &&
-                                config.success(JSON.parse(res.text));
-                        }
-                    });
+                    .post(url)
+                    .send(data)
+                    .end((err, res) => handleData({ fail, success }, err, res));
                 break;
             default:
                 request
-                    .post(config.url)
-                    .send({ ...config.data })
+                    .post(url)
+                    .send({ ...data })
                     .type('application/x-www-form-urlencoded')
-                    .end((err, res) => {
-                        if (err) {
-                            config.fail &&
-                                config.fail(err);
-                        } else {
-                            config.success &&
-                                config.success(JSON.parse(res.text));
-                        }
-                    });
+                    .end((err, res) => handleData({ fail, success }, err, res));
         }
     }
 }

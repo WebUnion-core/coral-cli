@@ -25,11 +25,9 @@ class Container extends React.Component {
         console.log(`${prefix} props => `, this.props);
     }
 
-    componentDidMount () {}
-
     render () {
         const { homeData } = this.props['Home'];
-        const footTabs = JSON.parse(localStorage['footTabs']);
+        const { footTabs } = window.Waydua.publicData;
 
         return (
             <div className="container ownmsg-container">

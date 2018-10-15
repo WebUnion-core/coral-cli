@@ -17,8 +17,15 @@ module.exports = {
             {
                 // 脚本打包
                 test: /\.(js|jsx)$/,
-                loader: 'babel-loader?cacheDirectory=true',
-                exclude: /node_modules/
+                use: [
+                    'babel-loader?cacheDirectory=true',
+                    'eslint-loader'
+                ],
+                enforce: 'pre', // 编译前检查
+                exclude: /node_modules/,
+                include: [
+                    path.resolve(__dirname, './../src')
+                ], // 要检查的目录
             },
             {
                 // CSS样式表打包

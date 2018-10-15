@@ -22,7 +22,7 @@
 
 /* 顶部icon列表 */
 .top-icon-list-container {
-    border-bottom: 0.3rem solid $border-color-base;
+    border-bottom: 0.3rem solid $border-color-shallow;
 
     .top-icon-list {
         overflow: hidden;
@@ -41,6 +41,32 @@
 
             .text {
                 font-size: pxToRem(10.6px);
+            }
+        }
+    }
+}
+
+/* 文章列表 */
+.article-list-container {
+    .article-list {
+        .article-list-item {
+            @extend .horizontal-line;
+            overflow: hidden;
+            font-size: 0.8rem;
+
+            &.single-image-style {
+                padding: 0.7rem 0.8rem;
+
+                .img {
+                    float: left;
+                    height: 4.5rem;
+                    margin-right: 1rem;
+                }
+
+                .title {
+                    @extend .flex-vertical-middle;
+                    height: 4.5rem;
+                }
             }
         }
     }

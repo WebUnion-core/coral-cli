@@ -7,7 +7,7 @@ export default (state = {}, action) => {
             };
         default:
             return state = {
-                accountData: {  }
+                accountData: {}
             };
     }
 }

@@ -21,8 +21,7 @@ export default class TopIconList extends React.Component {
     }
 
     render() {
-        const { topIconList } = this.props.store;
-
+        const { topIconList } = window.Waydua.publicData;
         return topIconList
             ? (
                 <div className="top-icon-list-container">

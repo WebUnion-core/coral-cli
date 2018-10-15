@@ -15,6 +15,7 @@ import TabsFooter from './../../common/components/TabsFooter';
 
 // 子组件
 import TopIconList from './components/TopIconList.jsx';
+import ArticleList from './components/ArticleList.jsx';
 
 // 入口前缀
 const prefix = 'Home';
@@ -24,49 +25,9 @@ class Container extends React.Component {
         super(props);
     }
 
-    componentWillMount () {
-        const { setHomeData } = this.props;
-        const { site, version, userAgent } = window.Waydua;
-
-        // 请求数据
-        request({
-            method: 'GET',
-            url: `http://${site}/${version}/home/main_list`,
-            success: (res) => {
-                const { footTabs, topIconList } = res.data;
-                setHomeData({ topIconList }, this.props[prefix]);
-                localStorage['footTabs'] = JSON.stringify(footTabs);
-            },
-            fail: (err) => {
-                console.error(err);
-            }
-        });
-
-        // 请求登录
-        request({
-            method: 'POST',
-            url: `http://${site}/${version}/user/login`,
-            data: {
-                'login_token': cookieUtil.get('login_token'),
-                'user_agent': userAgent
-            },
-            success: (res) => {
-                if (res.result === 1) {
-                    Object.assign(localStorage, {
-                        userName: res.data['user_name'],
-                        avatorUrl: res.data['avator_url']
-                    });
-                }
-            },
-            fail: (err) => {
-                console.error(err);
-            }
-        });
-    }
-
     render () {
         const { homeData } = this.props[prefix];
-        const footTabs = JSON.parse(localStorage['footTabs']);
+        const { footTabs } = window.Waydua.publicData;
 
         return (
             <div className="container main-container">
@@ -77,6 +38,7 @@ class Container extends React.Component {
                     </figure>
                 </nav>
                 <TopIconList store={ homeData } />
+                <ArticleList />
                 <TabsFooter list={ footTabs } defaultIndex={ 0 } />
             </div>
         )

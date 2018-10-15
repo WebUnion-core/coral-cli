@@ -7,16 +7,18 @@ const koaLogger = require('koa-logger');
 const koaCors = require('koa-cors');
 const convert = require('koa-convert');
 
+const HOST = require('./lib/getHost.js')();
 const api = require('./data/api');
-let config;
+const config = require('./config/config.json');
+let port;
 
 require('./data/model')();
 
 const mode = ['development', 'debug'];
 if (JSON.stringify(mode).indexOf(process.env.NODE_ENV) > 0) {
-    config = require('./config/config.json').dataServer;
+    port = config.dataServer.port;
 } else {
-    config = require('./config/config.json').prodServer;
+    port = config.prodServer.port;
 }
 
 const app = new Koa()
@@ -37,14 +39,9 @@ const app = new Koa()
     })
     .use(api.routes(), api.allowedMethods());
 
-app.listen(config.port, config.host, function(err) {
+app.listen(port, HOST, function(err) {
     if (err) {
         throw new Error(err);
-    } else {
-        console.log(`The server is listening in => http://${
-            config.host
-        }:${
-            config.port
-        }`);
     }
+    console.log(`The server is listening in => http://${HOST}:${port}`);
 });

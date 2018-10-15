@@ -1,6 +1,7 @@
+/* eslint-disable */
 const cookieUtil = {
     // 设置
-    set: function(key, val, day, domain, path) {
+    set: function (key, val, day, domain, path) {
         var exp = new Date();
         exp.setDate(exp.getDate() + day);
 
@@ -20,7 +21,9 @@ const cookieUtil = {
             if (end === -1) {
                 end = document.cookie.length;
             }
-            return decodeURI(document.cookie.substring(start + name.length, end));
+            return decodeURI(
+                document.cookie.substring(start + name.length, end)
+            );
         } else {
             return null;
         }
@@ -33,10 +36,8 @@ const cookieUtil = {
 
     // 清除
     clear: function(domain, path) {
-        var pattern = /;{0,1}\w+\=/g;
-        var arr = document.cookie.match(pattern);//获取所有键名(带等于号)
-
-        for(var i = 0; i < arr.length; i++) {
+        const arr = document.cookie.match(/;{0,1}\w+\=/g);//获取所有键名(带等于号)
+        for(let i = 0; i < arr.length; i++) {
             this.unset(
                 decodeURI(arr[i].slice(0, arr[i].length - 1)),
                 (domain ? domain : location.hostname),

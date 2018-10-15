@@ -1,8 +1,17 @@
 import React from 'react';
 
+// 公共模块
+import cookieUtil from './../../../common/modules/cookie-util.js';
+
 export default class DetailList extends React.Component {
     constructor (props) {
         super(props);
+    }
+
+    // 点击注销
+    clickLogout () {
+        cookieUtil.unset('login_token');
+        window.location.href = '/mw';
     }
 
     render () {
@@ -28,7 +37,8 @@ export default class DetailList extends React.Component {
                     <span className="text">开源许可</span>
                     <i className="icon icon-11-black-arrow" />
                 </li>
-                <li className="detail-item sigin-out-btn">退出登录</li>
+                <li className="detail-item sigin-out-btn"
+                    onClick={ () => this.clickLogout() }>退出登录</li>
             </ul>
         )
     }

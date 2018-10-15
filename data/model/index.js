@@ -3,6 +3,7 @@ const config = require('./../../config/config.json');
 
 module.exports = function() {
     require('./user.js');
+    require('./article.js');
 
     if (config.dbPath) {
         mongoose.set('debug', true);

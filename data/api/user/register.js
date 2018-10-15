@@ -23,6 +23,7 @@ const config = require('./../../../config/config.json');
 
 const resHeader = {
     'Access-Control-Allow-Methods': 'POST',
+    'Access-Control-Allow-Origin': '*',
     'Cache-Control': 'no-cache',
     'Content-Type': 'application/json;charset=UTF-8'
 };
@@ -57,10 +58,10 @@ module.exports = function(version, api) {
             'avator_url': config.defaultAvator
         });
 
-        ctx.set(resHeader); // 设置响应头
-
         const user = new User(body);
         const saveInfo = await user.save(); // 保存数据
+
+        ctx.set(resHeader); // 设置响应头
 
         if (saveInfo) {
             const token = saveInfo['_id'];

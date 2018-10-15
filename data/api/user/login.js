@@ -24,6 +24,7 @@ const ammunition = require('ammunition-storage');
 
 const resHeader = {
     'Access-Control-Allow-Methods': 'POST',
+    'Access-Control-Allow-Origin': '*',
     'Cache-Control': 'no-cache',
     'Content-Type': 'application/json;charset=UTF-8'
 };
@@ -61,12 +62,12 @@ module.exports = function(version, api) {
             ? { '_id': token }
             : { name, password: ammunition.md5(password) };
 
+        ctx.set(resHeader); // 设置响应头
+
         await User.find(condition, function (err, resData) {
             if (err) {
                 throw new Error(err);
             }
-
-            ctx.set(resHeader); // 设置响应头
 
             if (resData.length === 0) {
                 // 用户不存在

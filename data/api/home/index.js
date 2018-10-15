@@ -1,5 +1,4 @@
-const requestMainList = require('./main-list.js');
-
 module.exports = [
-    requestMainList
+    require('./main-list.js'),
+    require('./article-list.js')
 ];
