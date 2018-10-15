@@ -6,9 +6,8 @@ import './../common/style/reset.scss';
 import Account from './Account';
 
 // 公共模块
-import request from './../common/modules/request.js';
-import cookieUtil from './../common/modules/cookie-util.js';
 const config = require('./../data.json');
+import requestInterface from './interface';
 
 // 整合菜单
 const menuModules = [];
@@ -26,37 +25,17 @@ config.menus.forEach((item) => {
 export default class App extends React.Component {
     constructor (props) {
         super(props);
-
         this.state = {
             routerType: 'HIDE'
         };
     }
 
     componentWillMount () {
-        const { site, version, userAgent } = window.Waydua;
-
-        // 请求数据
-        request({
-            method: 'POST',
-            url: `http://${site}/${version}/user/check_token`,
-            data: {
-                'user_agent': userAgent,
-                'login_token': cookieUtil.get('login_token')
-            },
-            success: (data) => {
-                if (data['status'] !== 1) {
-                    this.setState({
-                        routerType: 'ONLY_LOGIN'
-                    });
-                } else {
-                    this.setState({
-                        routerType: 'NORMAL'
-                    });
-                }
-            },
-            fail: (err) => {
-                console.error(err);
-            }
+        requestInterface((data) => {
+            window.Waydua.publicData = data;
+            this.setState({
+                routerType: data['status'] !== 1 ? 'ONLY_LOGIN' : 'NORMAL'
+            });
         });
     }
 
@@ -67,14 +46,16 @@ export default class App extends React.Component {
                 return <Route path="/" component={ Account } />
             case 'NORMAL':
                 return (
-                    <Switch>{
-                        config.menus.map((item, index) =>
-                            <Route key={ index }
-                                path={ item.route }
-                                component={ menuModules[index] }
-                                exact />
-                        )
-                    }</Switch>
+                    <Switch>
+                        {
+                            config.menus.map((item, index) =>
+                                <Route key={ index }
+                                    path={ item.route }
+                                    component={ menuModules[index] }
+                                    exact />
+                            )
+                        }
+                    </Switch>
                 );
             default:
                 return '';
@@ -82,6 +63,10 @@ export default class App extends React.Component {
     }
 
     render () {
-        return <Router><section>{ this.renderRouter() }</section></Router>;
+        return (
+            <Router>
+                <section>{ this.renderRouter() }</section>
+            </Router>
+        );
     }
 }

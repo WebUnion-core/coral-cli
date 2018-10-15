@@ -11,9 +11,9 @@ export default class FirstLevelList extends React.Component {
         const {
             toggleEditTextDialog,
             toggleUploadImgDialog,
-            avatorUrl
+            avatorUrl,
+            userName
         } = this.props;
-        const { userName } = localStorage;
 
         return (
             <ul className="list-container">
@@ -35,9 +35,11 @@ export default class FirstLevelList extends React.Component {
                 </li>
                 <li className="list-item">
                     <span className="field">ID</span>
-                    <span className="right value">{
-                        cookieUtil.get('login_token')
-                    }</span>
+                    <span className="right value">
+                        {
+                            cookieUtil.get('login_token')
+                        }
+                    </span>
                 </li>
             </ul>
         )

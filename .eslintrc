@@ -12,7 +12,8 @@
         "ReactDOM": false,
         "__DEV__": false,
         "__VERSION__": false,
-        "__DEBUG__": false
+        "__DEBUG__": false,
+        "Promise": false
     },
 
     "parser": "babel-eslint",

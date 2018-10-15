@@ -3,7 +3,10 @@ import { Link } from 'react-router-dom';
 import IScroll from 'iscroll/build/iscroll-probe';
 import LazyLoad from 'react-lazyload';
 
-import { bindScroll } from './../../../common/modules/tools.js';
+import {
+    bindScroller,
+    removeScroller
+} from './../../../common/modules/tools.js';
 import request from './../../../common/modules/request.js';
 
 export default class ArticleList extends React.Component {
@@ -57,11 +60,15 @@ export default class ArticleList extends React.Component {
 
     componentDidMount () {
         this.addArticle();
-        bindScroll(() => {
+        bindScroller('ARTICLE_LIST_SCROLLER', () => {
             setTimeout(() => {
                 this.addArticle();
             }, 500);
         });
+    }
+
+    componentWillUnmount() {
+        removeScroller('ARTICLE_LIST_SCROLLER');
     }
 
     render () {

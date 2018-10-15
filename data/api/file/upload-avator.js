@@ -34,7 +34,7 @@ module.exports = function (version, api) {
         // 请求参数
         const file = files['image'];
         const token = body['user_token'];
-        const avatorUrl = `http://${server.host}:${server.port}/avator/${token}?v=${new Date().valueOf()}`;
+        const avatorUrl = `http://${server.host}:${server.port}/avator/${token}`;
         const newPath = path.resolve(FILE_PATH, `${token}.png`);
 
         ctx.set(resHeader); // 设置响应头
@@ -54,6 +54,18 @@ module.exports = function (version, api) {
                 const reader = fs.createReadStream(file.path);
                 const writer = fs.createWriteStream(newPath);
                 reader.pipe(writer);
+
+                api.get(`/avator/${token}`, (ctx) => {
+                    ctx.set({
+                        'Content-Type': 'image/png'
+                    });
+                    ctx.body = fs.readFileSync(
+                        path.resolve(
+                            __dirname,
+                            `./../../static/avators/${token}`
+                        )
+                    );
+                });
 
                 ctx.body = {
                     'result': 1,

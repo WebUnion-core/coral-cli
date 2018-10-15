@@ -23,52 +23,11 @@ const prefix = 'Home';
 class Container extends React.Component {
     constructor (props) {
         super(props);
-        this.state = {
-            footTabs: []
-        };
-    }
-
-    componentWillMount () {
-        const { setHomeData } = this.props;
-        const { site, version, userAgent } = window.Waydua;
-
-        // 请求数据
-        request({
-            method: 'GET',
-            url: `http://${site}/${version}/home/main_list`,
-            success: ({ footTabs, topIconList }) => {
-                setHomeData({ topIconList }, this.props[prefix]);
-                localStorage['footTabs'] = JSON.stringify(footTabs);
-                this.setState({ footTabs });
-            },
-            fail: (err) => {
-                console.error(err);
-            }
-        });
-
-        // 请求登录
-        request({
-            method: 'POST',
-            url: `http://${site}/${version}/user/login`,
-            data: {
-                'login_token': cookieUtil.get('login_token'),
-                'user_agent': userAgent
-            },
-            success: (data) => {
-                Object.assign(localStorage, {
-                    userName: data['user_name'],
-                    avatorUrl: data['avator_url']
-                });
-            },
-            fail: (err) => {
-                console.error(err);
-            }
-        });
     }
 
     render () {
         const { homeData } = this.props[prefix];
-        const { footTabs } = this.state;
+        const { footTabs } = window.Waydua.publicData;
 
         return (
             <div className="container main-container">

@@ -25,7 +25,8 @@ class Container extends React.Component {
         super(props);
 
         this.state = {
-            avatorUrl: null,
+            avatorUrl: '',
+            userName: '',
             ifShowEditTextDialog: false,
             ifShowUploadImgDialog: false
         }
@@ -36,8 +37,10 @@ class Container extends React.Component {
     }
 
     componentDidMount () {
+        const { publicData } = window.Waydua;
         this.setState({
-            avatorUrl: localStorage['avatorUrl']
+            avatorUrl: publicData['avator_url'],
+            userName: publicData['user_name']
         });
     }
 
@@ -57,7 +60,7 @@ class Container extends React.Component {
             type: 'multipart/form-data',
             success: (data) => {
                 const avatorUrl = data['avator_url'];
-                localStorage['avatorUrl'] = avatorUrl;
+                window.Waydua.publicData['avator_url'] = avatorUrl;
                 this.setState({
                     avatorUrl,
                     ifShowUploadImgDialog: false
@@ -80,8 +83,11 @@ class Container extends React.Component {
                 'user_name': name
             },
             success: (data) => {
-                Object.assign(localStorage, {
-                    userName: data['user_name']
+                const userName = data['user_name'];
+                window.Waydua.publicData['user_name'] = userName;
+                this.setState({
+                    userName,
+                    ifShowEditTextDialog: false
                 });
             },
             fail: (err) => {
@@ -112,7 +118,8 @@ class Container extends React.Component {
         const {
             ifShowEditTextDialog,
             ifShowUploadImgDialog,
-            avatorUrl
+            avatorUrl,
+            userName
         } = this.state;
         const uploadImgDialogProps = {
             ifShowDialog: ifShowUploadImgDialog,
@@ -144,6 +151,7 @@ class Container extends React.Component {
 
                 <FirstLevelList
                     avatorUrl={ avatorUrl }
+                    userName={ userName }
                     toggleEditTextDialog={ this.toggleEditTextDialog }
                     toggleUploadImgDialog={ this.toggleUploadImgDialog } />
 
