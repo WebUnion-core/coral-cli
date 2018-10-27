@@ -1,5 +1,5 @@
 {
-    "version": "v7",
+    "version": "v1.7.0",
     "dbPath": "mongodb://localhost:27017/mw",
     "imgcdn": "https://raw.githubusercontent.com/WebUnion-core/tadpole/master/asset/img/",
     "defaultAvator": "https://raw.githubusercontent.com/WebUnion-core/tadpole/master/asset/img/default-avator.png",
