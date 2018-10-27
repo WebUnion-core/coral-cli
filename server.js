@@ -10,6 +10,7 @@ const convert = require('koa-convert');
 const HOST = require('./lib/getHost.js')();
 const api = require('./server/api');
 const config = require('./config/config.json');
+const cron = require('./server/cron');
 let port;
 
 require('./server/model')();
@@ -21,6 +22,7 @@ if (JSON.stringify(mode).indexOf(process.env.NODE_ENV) > 0) {
     port = config.prodServer.port;
 }
 
+// 挂载各种中间件
 const app = new Koa()
     .use(convert(
         require('koa-static')(path.resolve(__dirname, './dist'))
@@ -34,9 +36,13 @@ const app = new Koa()
     ))
     .use(api.routes(), api.allowedMethods());
 
+// 启动服务
 app.listen(port, HOST, function(err) {
     if (err) {
         throw new Error(err);
     }
+
+    // 启动定时任务
+    cron.crawlArticles();
     console.log(`The server is listening in => http://${HOST}:${port}`);
 });
