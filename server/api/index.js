@@ -4,18 +4,18 @@ const fs = require('fs');
 const config = require('./../../config/config.json');
 const api = koaRouter();
 
-// 接口
-config.apis.forEach((apiName) => {
-    require(`./${apiName}`).forEach((request) => {
-        request(config.version, api);
+config.apps.forEach((app) => {
+    // 接口
+    app.apis.forEach((apiName) => {
+        require(`./${app.name}/${apiName}`).forEach((request) => {
+            request(config.version, api);
+        });
     });
-});
 
-// 页面路由
-config.apps.forEach((item) => {
-    api.get(`/${item.name}`, (ctx) => {
+    // 页面路由
+    api.get(`/${app.name}`, (ctx) => {
         ctx.body = fs.readFileSync(
-            path.resolve(__dirname, `./../../dist/${item.name}/index.html`),
+            path.resolve(__dirname, `./../../dist/${app.name}/index.html`),
             'utf-8'
         );
     });
@@ -23,15 +23,15 @@ config.apps.forEach((item) => {
 
 // 头像路由
 fs.readdirSync(path.resolve(__dirname, './../static/avators'))
-    .forEach((item) => {
-        api.get(`/avator/${item.replace(/\..+/, '')}`, (ctx) => {
+    .forEach((avator) => {
+        api.get(`/avator/${avator.replace(/\..+/, '')}`, (ctx) => {
             ctx.set({
                 'Content-Type': 'image/png'
             });
             ctx.body = fs.readFileSync(
                 path.resolve(
                     __dirname,
-                    `./../static/avators/${item}`
+                    `./../static/avators/${avator}`
                 )
             );
         });

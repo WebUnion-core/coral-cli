@@ -23,7 +23,7 @@ const resHeader = {
 };
 
 module.exports = function(version, api) {
-    api.post(`/${version}/user/update_name`, async (ctx, next) => {
+    api.post(`/mw/${version}/user/update_name`, async (ctx, next) => {
         const { response, request: { body } } = ctx;
         const User = mongoose.model('User');
 

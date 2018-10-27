@@ -55,7 +55,7 @@ class Container extends React.Component {
 
         request({
             method: 'POST',
-            url: `http://${site}/${version}/file/upload_avator`,
+            url: `http://${site}/mw/${version}/file/upload_avator`,
             data: formData,
             type: 'multipart/form-data',
             success: (data) => {
@@ -77,7 +77,7 @@ class Container extends React.Component {
         const { site, version } = window.Waydua;
         request({
             method: 'POST',
-            url: `http://${site}/${version}/user/update_name`,
+            url: `http://${site}/mw/${version}/user/update_name`,
             data: {
                 'user_token': cookieUtil.get('login_token'),
                 'user_name': name

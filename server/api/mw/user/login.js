@@ -32,10 +32,10 @@ const resHeader = {
 // 更新登录缓存文件
 function updateTokenCache(token, userAgent) {
     // 将登录签名和UA保存到Cache
-    const loginTokenCache = require('./../../static/login_token.json');
+    const loginTokenCache = require('./../../../static/login_token.json');
     const cachePath = path.resolve(
         __dirname,
-        './../../static/login_token.json'
+        './../../../static/login_token.json'
     );
     if (process.env.NODE_ENV !== 'debug') {
         loginTokenCache[token] = userAgent;
@@ -48,7 +48,7 @@ function updateTokenCache(token, userAgent) {
 }
 
 module.exports = function(version, api) {
-    api.post(`/${version}/user/login`, async (ctx, next) => {
+    api.post(`/mw/${version}/user/login`, async (ctx, next) => {
         const { response, request: { body } } = ctx;
         const User = mongoose.model('User');
 

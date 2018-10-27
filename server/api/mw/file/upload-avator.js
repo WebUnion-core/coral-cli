@@ -15,10 +15,10 @@
 
 const fs = require('fs');
 const path = require('path');
-const { server } = require('./../../common');
+const { server } = require('./../../../common');
 const mongoose = require('mongoose');
 
-const FILE_PATH = path.join(__dirname, './../../static/avators');
+const FILE_PATH = path.join(__dirname, './../../../static/avators');
 const resHeader = {
     'Access-Control-Allow-Methods': 'POST',
     'Access-Control-Allow-Origin': '*',
@@ -27,7 +27,7 @@ const resHeader = {
 };
 
 module.exports = function (version, api) {
-    api.post(`/${version}/file/upload_avator`, async (ctx, next) => {
+    api.post(`/mw/${version}/file/upload_avator`, async (ctx, next) => {
         const { response, request: { files, body } } = ctx;
         const User = mongoose.model('User');
 
@@ -42,9 +42,7 @@ module.exports = function (version, api) {
         // 更新数据库用户头像
         await User.updateOne(
             { '_id': token },
-            {
-                $set: { 'avator_url': avatorUrl }
-            },
+            { $set: { 'avator_url': avatorUrl } },
             (err) => {
                 if (err) {
                     throw new Error(err);

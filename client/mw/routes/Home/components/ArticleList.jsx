@@ -1,7 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import IScroll from 'iscroll/build/iscroll-probe';
-import LazyLoad from 'react-lazyload';
 
 import {
     bindScroller,
@@ -31,7 +29,7 @@ export default class ArticleList extends React.Component {
 
         request({
             method: 'POST',
-            url: `http://${site}/${version}/home/home_article_list`,
+            url: `http://${site}/mw/${version}/home/home_article_list`,
             data: {
                 'page': pageCount,
                 'amount': this.perPageAmount

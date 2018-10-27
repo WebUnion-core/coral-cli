@@ -2,16 +2,19 @@ const path = require('path');
 const fs = require('fs');
 const SpritesmithPlugin = require('webpack-spritesmith');
 const SRC_PATH = path.resolve(__dirname, './../asset/sprite');
-const TARGET_PATH = path.resolve(__dirname, './../src/asset');
+const TARGET_PATH = path.resolve(__dirname, './../client/asset');
 const spriteConfig = [];
 
-// 其他打包配置
+/**
+ * 其他打包配置
+ * @param {Object} webpackConfig webpack配置对象
+ */
 module.exports = function setOther(webpackConfig) {
     const srcData = fs.readdirSync(SRC_PATH);
 
     // 伪入口
     webpackConfig.entry['sprite_log'] = [
-        path.resolve(__dirname, './../src/asset/sprite-entry.js')
+        path.resolve(__dirname, './../client/asset/sprite-entry.js')
     ];
 
     srcData.forEach(function(item) {

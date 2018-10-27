@@ -1,13 +1,17 @@
 #!/usr/bin/env node
+
+/**
+ * 重写雪碧图样式文件
+ */
+
 const fs = require('fs');
 const path = require('path');
 
-const ASSET_PATH = path.resolve(__dirname, './../src/asset');
+const ASSET_PATH = path.resolve(__dirname, './../client/asset');
 const STYLE_PATH = path.resolve(ASSET_PATH, './style');
 
 const files = [];
 
-// 重写雪碧图样式文件
 function reWriteEachSpriteFile(itemPath, itemName) {
     let data = fs.readFileSync(itemPath, 'utf-8');
     const spriteInfo = itemName.split('-');
@@ -52,9 +56,7 @@ function rewriteAllSpriteEntry() {
         importStr += '@import url(\'./style/' + item + '\');\n';
     });
     fs.writeFileSync(
-        path.resolve(ASSET_PATH, './all-sprite.scss'),
-        importStr,
-        'utf-8'
+        path.resolve(ASSET_PATH, './all-sprite.scss'), importStr, 'utf-8'
     );
 }
 
@@ -63,7 +65,6 @@ const assetData = fs.readdirSync(STYLE_PATH);
 assetData.forEach(function(item) {
     const itemPath = path.resolve(STYLE_PATH, './' + item);
     const isFile = fs.statSync(itemPath).isFile();
-
     if (isFile) {
         reWriteEachSpriteFile(itemPath, item);
         files.push(item);

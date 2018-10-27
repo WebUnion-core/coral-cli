@@ -5,13 +5,13 @@ import React from 'react';
 import request from './../../../common/modules/request.js';
 import cookieUtil from './../../../common/modules/cookie-util.js';
 
-export default class Register extends React.Component {
+export default class SignIn extends React.Component {
     constructor (props) {
         super(props);
     }
 
-    // 点击跳转登录
-    clickSigInText = () => {
+    // 点击跳转注册
+    clickRegisterText = () => {
         const formElem = this.props.rootEl;
 
         formElem.style.visibility = 'hidden';
@@ -21,7 +21,7 @@ export default class Register extends React.Component {
         });
         setTimeout(() => {
             formElem.style.visibility = 'visible';
-            this.props.toggleContent('SIGIN', () => {
+            this.props.toggleContent('REGISTER', () => {
                 anime({
                     targets: formElem,
                     translateY: '100%',
@@ -31,19 +31,18 @@ export default class Register extends React.Component {
         }, 500);
     }
 
-    // 点击注册
-    clickRegister = () => {
+    // 点击登录
+    clickSignIn = () => {
         const { site, version, userAgent } = window.Waydua;
-        const { phoneEl, codeEl, passwordEl } = this.refs;
+        const { userNameEl, passwordEl } = this.refs;
 
         request({
             method: 'POST',
-            url: `http://${site}/${version}/user/register`,
+            url: `http://${site}/mw/${version}/user/login`,
             data: {
-                'phone': phoneEl.value,
-                'code': codeEl.value,
-                'user_agent': userAgent,
-                'password': passwordEl.value
+                'name': userNameEl.value,
+                'password': passwordEl.value,
+                'user_agent': userAgent
             },
             success: (data) => {
                 cookieUtil.set(
@@ -65,28 +64,23 @@ export default class Register extends React.Component {
                 <img className="logo"
                     src={ `${window.Waydua.cdn}logo.png` } />
 
-                <input ref="phoneEl"
+                <input ref="userNameEl"
                     className="input"
                     type="text"
-                    placeholder="请输入手机号" />
-
-                <input ref="codeEl"
-                    className="input"
-                    type="text"
-                    placeholder="请输入验证码" />
+                    placeholder="请输入用户名或手机号"
+                    autoComplete="off" />
 
                 <input ref="passwordEl"
                     className="input"
                     type="password"
-                    placeholder="请输入密码" />
+                    placeholder="请输入密码"
+                    autoComplete="off" />
 
                 <p className="register-text"
-                    onClick={ this.clickSigInText }>点击前往登录</p>
-
-                <button className="btn">获取验证码</button>
+                    onClick={ this.clickRegisterText }>点击前往注册</p>
 
                 <button className="btn"
-                    onClick={ this.clickRegister }>注册</button>
+                    onClick={ this.clickSignIn }>登录</button>
             </form>
         )
     }

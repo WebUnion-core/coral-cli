@@ -8,7 +8,10 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const DIST_PATH = path.resolve(__dirname, './../dist');
 const HOST = require('./../lib/getHost.js')();
 
-// 开发模式打包配置
+/**
+ * 开发模式打包配置
+ * @param {Object} webpackConfig webpack配置对象
+ */
 module.exports = function setDevMode(webpackConfig) {
     webpackConfig.plugins.push(
         // 热更新
@@ -47,7 +50,7 @@ module.exports = function setDevMode(webpackConfig) {
             __dirname, './../dist/' + item.name + '/index.html'
         );
         const template = path.resolve(
-            __dirname, './../src/' + item.name + '/template.ejs'
+            __dirname, './../client/' + item.name + '/template.ejs'
         );
 
         // 配置页面模板
@@ -66,7 +69,7 @@ module.exports = function setDevMode(webpackConfig) {
 
         // 设置打包入口
         webpackConfig.entry[item.name + '/bundle'] = [
-            path.resolve(__dirname, './../src/' + item.name + '/entry.js'),
+            path.resolve(__dirname, './../client/' + item.name + '/entry.js'),
             'react-hot-loader/patch',
             'webpack-dev-server/client',
             'webpack/hot/only-dev-server'

@@ -7,7 +7,6 @@ import actions from './../../actions';
 import Swiper from 'swiper';
 
 // 公共模块
-import request from './../../common/modules/request.js';
 import cookieUtil from './../../common/modules/cookie-util.js';
 
 // 通用组件

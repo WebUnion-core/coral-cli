@@ -6,7 +6,12 @@
     "apps": [
         {
             "name": "mw",
-            "title": "MW"
+            "title": "MW",
+            "apis": [
+                "home",
+                "user",
+                "file"
+            ]
         }
     ],
     "dataServer": {
@@ -25,10 +30,5 @@
         "animejs",
         "superagent",
         "swiper"
-    ],
-    "apis": [
-        "home",
-        "user",
-        "file"
     ]
 }

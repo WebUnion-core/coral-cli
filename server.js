@@ -8,11 +8,11 @@ const koaCors = require('koa-cors');
 const convert = require('koa-convert');
 
 const HOST = require('./lib/getHost.js')();
-const api = require('./data/api');
+const api = require('./server/api');
 const config = require('./config/config.json');
 let port;
 
-require('./data/model')();
+require('./server/model')();
 
 const mode = ['development', 'debug'];
 if (JSON.stringify(mode).indexOf(process.env.NODE_ENV) > 0) {
@@ -26,17 +26,12 @@ const app = new Koa()
         require('koa-static')(path.resolve(__dirname, './dist'))
     ))
     .use(convert.compose(
-        koaBody({
-            multipart: true
-        }),
+        koaBody({ multipart: true }),
         koaBodyParser(),
         koaJson(),
         koaLogger(),
         koaCors()
     ))
-    .use(async (ctx, next) => {
-        await next();
-    })
     .use(api.routes(), api.allowedMethods());
 
 app.listen(port, HOST, function(err) {

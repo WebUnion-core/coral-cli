@@ -1,4 +1,9 @@
 #!/usr/bin/env node
+
+/**
+ * 打包前移除babel中react-hot-loader的配置
+ */
+
 const fs = require('fs');
 const path = require('path');
 
@@ -37,27 +42,22 @@ function addTarget(data, target) {
 switch (MODE) {
     case 'development':
         BABELRC_DATA['plugins'] = deleteTarget(
-            BABELRC_DATA['plugins'],
-            'react-hot-loader/babel'
+            BABELRC_DATA['plugins'], 'react-hot-loader/babel'
         );
         break;
     case 'production':
         BABELRC_DATA['plugins'] = deleteTarget(
-            BABELRC_DATA['plugins'],
-            'react-hot-loader/babel'
+            BABELRC_DATA['plugins'], 'react-hot-loader/babel'
         );
         break;
     case 'debug':
         BABELRC_DATA['plugins'] = addTarget(
-            BABELRC_DATA['plugins'],
-            'react-hot-loader/babel'
+            BABELRC_DATA['plugins'], 'react-hot-loader/babel'
         );
         break;
     default:
 }
 
 fs.writeFileSync(
-    BABELRC_PATH,
-    JSON.stringify(BABELRC_DATA, null, 4),
-    'utf-8'
+    BABELRC_PATH, JSON.stringify(BABELRC_DATA, null, 4), 'utf-8'
 );

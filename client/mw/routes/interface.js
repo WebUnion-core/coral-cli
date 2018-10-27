@@ -8,7 +8,7 @@ function requestCheckToken (resolve, reject) {
     const { site, version, userAgent } = window.Waydua;
     request({
         method: 'POST',
-        url: `http://${site}/${version}/user/check_token`,
+        url: `http://${site}/mw/${version}/user/check_token`,
         data: {
             'user_agent': userAgent,
             'login_token': cookieUtil.get('login_token')
@@ -27,7 +27,7 @@ function requestMainList (resolve, reject) {
     const { site, version, userAgent } = window.Waydua;
     request({
         method: 'GET',
-        url: `http://${site}/${version}/home/main_list`,
+        url: `http://${site}/mw/${version}/home/main_list`,
         success: (data) => {
             resolve(data);
         },
@@ -42,7 +42,7 @@ function requestLogin (resolve, reject) {
     const { site, version, userAgent } = window.Waydua;
     request({
         method: 'POST',
-        url: `http://${site}/${version}/user/login`,
+        url: `http://${site}/mw/${version}/user/login`,
         data: {
             'login_token': cookieUtil.get('login_token'),
             'user_agent': userAgent

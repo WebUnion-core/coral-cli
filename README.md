@@ -1,64 +1,44 @@
 
-# Bona Storm #
+# Tadpole #
 
-> 使用 react + redux + webpack4 + koa + mongodb 技术栈。
+![image](./asset/intro/head.jpg?v=1)
 
-目前内置一个开发中的 webapp，名为 MW，启动后本地服务访问`127.0.0.1:2015/mw/`。
+> Tadpole(中文名: 蝌蚪) 是由 WebUnion 自主开发的一款前后端统一框架，前端(客户端)使用的是 react.js 技术，后端(服务端)使用的是 Node.js 环境及 MongoDB 数据库。注意，在使用此框架前，请确认已安装 Node.js(v7+) 和 MongoDB，否则程序将无法正常运行。
 
 ## 安装 ##
 
 ```
-npm i
+npm i 或者 cnpm i
 ```
 
 ## 启动 ##
 
-视图层开发:  
+1. 启动 MongoDB: 确认安装好 MongoDB 之后，根据自己本地的 MongoDB 配置路径修改 db.bat 文件的内容，之后启动 db.bat 即可.
+
+2. 启动服务端: 服务端负责数据管理，必须在客户端之前启动，启动命令有以下几种:
 
 ```
-// 启动开发模式打包
-npm run build-dev
-
-// 启动生产模式打包
-npm run build-prod
-
-// 启动本地页面调试服务器，第一次启动需要先本地打包
-npm run dev
-```
-
-数据层开发:   
-
-```
-// 启动本地接口监听
+热更新模式(用于开发环境)
 npm run watch
 
-// 启动开发模式服务器接口
+启动测试/开发环境服务器
 npm run start-dev-server
 
-// 启动生产模式服务器接口
+启动生产环境服务器
 npm run start-prod-server
 ```
 
-## [MW]预览 ##
-
-### 首页 ###
-
-![image](./asset/intro/2018-08-24-20-39-28.jpg?v=1)
-
-### 闹钟应用 ###
-
-![image](./asset/intro/2018-08-24-20-41-11.jpg?v=1)
-
-### 登录/注册 ###
-
-![image](./asset/intro/2018-08-08-23-39-46.jpg?v=2)
-
-### 用户中心 ###
-
-![image](./asset/intro/2018-08-24-20-31-58.jpg?v=2)
-
----
+3. 客户端相关: 相关命令有以下几种:
 
 ```
-CREATE DATE: 2018-07-19
+启动热更新服务器(用于开发环境)
+npm run dev
+
+启动测试/开发环境打包
+npm run build-dev
+
+启动生产环境打包
+npm run build-prod
 ```
+
+> CREATE DATE: 2018-07-19

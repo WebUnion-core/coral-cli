@@ -24,7 +24,7 @@
  };
 
  module.exports = function (version, api) {
-     api.post(`/${version}/home/home_article_list`, async (ctx, next) => {
+     api.post(`/mw/${version}/home/home_article_list`, async (ctx, next) => {
          const { response, request: { body } } = ctx;
          const Article = mongoose.model('Article');
          const page = parseInt(body['page'], 10);

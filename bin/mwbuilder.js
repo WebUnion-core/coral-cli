@@ -1,11 +1,16 @@
 #!/usr/bin/env node
+
+/**
+ * 构建MW页面模板
+ */
+
 const fs = require('fs');
 const path = require('path');
 const ammunition = require('ammunition-storage');
 
 const ASSET_PATH = path.resolve(__dirname, './../asset/mw');
-const SRC_PATH = path.resolve(__dirname, './../src/mw');
-const CONFIG = require('./../src/mw/data.json');
+const SRC_PATH = path.resolve(__dirname, './../client/mw');
+const CONFIG = require('./../client/mw/data.json');
 
 let params;
 let moduleName;
@@ -71,7 +76,7 @@ function copyFile (srcPath, tgtPath) {
 }
 
 // 宏命令
-const macro = function() {
+const macro = function () {
     return {
         commandList: [],
         add: function(command) {
@@ -107,7 +112,7 @@ const copyCommand = {
             path.resolve(SRC_PATH, './reducers/' + moduleName + '.js')
         );
     },
-    add: function() {
+    add: function () {
         throw new Error('叶对象不能添加子节点'); // 抛出错误提示
     }
 }
@@ -126,7 +131,7 @@ const fillinDataCommand = {
             'utf-8'
         );
     },
-    add: function() {
+    add: function () {
         throw new Error('叶对象不能添加子节点'); // 抛出错误提示
     }
 };
@@ -138,7 +143,7 @@ const replaceTagCommand = {
         rewriteFile(path.resolve(SRC_PATH, './actions/' + moduleName + '.js'));
         rewriteFile(path.resolve(SRC_PATH, './reducers/' + moduleName + '.js'));
     },
-    add: function() {
+    add: function () {
         throw new Error('叶对象不能添加子节点'); // 抛出错误提示
     }
 };

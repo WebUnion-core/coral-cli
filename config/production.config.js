@@ -5,7 +5,10 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
-// 生产模式打包配置
+/**
+ * 生产模式打包配置
+ * @param {Object} webpackConfig webpack配置对象
+ */
 module.exports = function setProdMode(webpackConfig) {
     webpackConfig.plugins.push(
         // 清除打包源文件
@@ -34,7 +37,7 @@ module.exports = function setProdMode(webpackConfig) {
             __dirname, './../dist/' + item.name + '/index.html'
         );
         const template = path.resolve(
-            __dirname, './../src/' + item.name + '/template.ejs'
+            __dirname, './../client/' + item.name + '/template.ejs'
         );
 
         // 配置页面模板
@@ -51,7 +54,7 @@ module.exports = function setProdMode(webpackConfig) {
 
         // 设置打包入口
         webpackConfig.entry[item.name + '/bundle'] = [
-            path.resolve(__dirname, './../src/' + item.name + '/entry.js')
+            path.resolve(__dirname, './../client/' + item.name + '/entry.js')
         ];
     });
 };

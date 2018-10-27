@@ -8,7 +8,10 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const MODE = process.env.NODE_ENV ? process.env.NODE_ENV.toLowerCase() : 'none';
 const isKnownMode = ['production', 'development'].join(',').indexOf(MODE) >= 0;
 
-// 设置打包基本配置
+/**
+ * 设置打包基本配置
+ * @type {Object} webpack基本配置对象
+ */
 module.exports = {
     mode: isKnownMode ? MODE : 'none',
     entry: {},
@@ -24,7 +27,7 @@ module.exports = {
                 enforce: 'pre', // 编译前检查
                 exclude: /node_modules/,
                 include: [
-                    path.resolve(__dirname, './../src')
+                    path.resolve(__dirname, './../client')
                 ], // 要检查的目录
             },
             {
