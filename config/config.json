@@ -1,8 +1,8 @@
 {
     "version": "v7",
     "dbPath": "mongodb://localhost:27017/mw",
-    "imgcdn": "https://raw.githubusercontent.com/WebUnion-core/bona-storm/master/asset/img/",
-    "defaultAvator": "https://raw.githubusercontent.com/WebUnion-core/bona-storm/master/asset/img/default-avator.png",
+    "imgcdn": "https://raw.githubusercontent.com/WebUnion-core/tadpole/master/asset/img/",
+    "defaultAvator": "https://raw.githubusercontent.com/WebUnion-core/tadpole/master/asset/img/default-avator.png",
     "apps": [
         {
             "name": "mw",

@@ -35,7 +35,7 @@
 
          // await Article.create({
          //     "title": "ARTICLE_TITLE",
-         //     "guide_image_url": "https://raw.githubusercontent.com/WebUnion-core/bona-storm/master/asset/img/default-avator.png",
+         //     "guide_image_url": "https://raw.githubusercontent.com/WebUnion-core/tadpole/master/asset/img/default-avator.png",
          //     "content": "Article contentttttttttt...........................",
          //     "publish_date": Date.now(),
          //     "author": "WJT20"
@@ -45,7 +45,7 @@
          // for (let i = 0; i < amount; i++) {
          //     data.push({
          //         "title": "ARTICLE_TITLE",
-         //         "guide_image_url": "https://raw.githubusercontent.com/WebUnion-core/bona-storm/master/asset/img/default-avator.png",
+         //         "guide_image_url": "https://raw.githubusercontent.com/WebUnion-core/tadpole/master/asset/img/default-avator.png",
          //         "content": "Article contentttttttttt...........................",
          //         "publish_date": Date.now(),
          //         "author": "WJT20"
