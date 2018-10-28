@@ -1,7 +1,7 @@
 import React from 'react';
 
 // 公共模块
-import cookieUtil from './../../../common/modules/cookie-util.js';
+import cookieUtil from 'modules/cookie-util.js';
 
 export default class DetailList extends React.Component {
     constructor (props) {

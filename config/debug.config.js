@@ -1,8 +1,7 @@
 const webpack = require('webpack');
 const path = require('path');
 const config = require('./config.json');
-const debugServer = config.debugServer;
-const dataServer = config.dataServer;
+const devServer = config.devServer;
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const DIST_PATH = path.resolve(__dirname, './../dist');
@@ -13,6 +12,14 @@ const HOST = require('./../lib/getHost.js')();
  * @param {Object} webpackConfig webpack配置对象
  */
 module.exports = function setDevMode(webpackConfig) {
+    const launchApp = config.apps[config.launchIndex];
+    const filename = path.resolve(
+        __dirname, './../dist/' + launchApp.name + '/index.html'
+    );
+    const template = path.resolve(
+        __dirname, './../client/' + launchApp.name + '/template.ejs'
+    );
+
     webpackConfig.plugins.push(
         // 热更新
         new webpack.HotModuleReplacementPlugin(),
@@ -31,7 +38,7 @@ module.exports = function setDevMode(webpackConfig) {
     webpackConfig.devServer = {
         contentBase: DIST_PATH,
         host: HOST,
-        port: debugServer.port,
+        port: launchApp.port,
         historyApiFallback: true,
         inline: true,
         hot: true
@@ -45,34 +52,25 @@ module.exports = function setDevMode(webpackConfig) {
         chunkFilename: '[name].js'
     };
 
-    config.apps.forEach(function(item) {
-        const filename = path.resolve(
-            __dirname, './../dist/' + item.name + '/index.html'
-        );
-        const template = path.resolve(
-            __dirname, './../client/' + item.name + '/template.ejs'
-        );
+    // 配置页面模板
+    webpackConfig.plugins.push(
+        new HtmlWebpackPlugin({
+            title: launchApp.title,
+            filename: filename,
+            template: template,
+            hash: false,
+            minify: false,
+            version: config.version,
+            site: HOST + ':' + devServer.port,
+            cdn: config.imgcdn
+        })
+    );
 
-        // 配置页面模板
-        webpackConfig.plugins.push(
-            new HtmlWebpackPlugin({
-                title: item.title,
-                filename: filename,
-                template: template,
-                hash: false,
-                minify: false,
-                version: config.version,
-                site: HOST + ':' + dataServer.port,
-                cdn: config.imgcdn
-            })
-        );
-
-        // 设置打包入口
-        webpackConfig.entry[item.name + '/bundle'] = [
-            path.resolve(__dirname, './../client/' + item.name + '/entry.js'),
-            'react-hot-loader/patch',
-            'webpack-dev-server/client',
-            'webpack/hot/only-dev-server'
-        ];
-    });
+    // 设置打包入口
+    webpackConfig.entry[launchApp.name + '/bundle'] = [
+        path.resolve(__dirname, './../client/' + launchApp.name + '/entry.js'),
+        'react-hot-loader/patch',
+        'webpack-dev-server/client',
+        'webpack/hot/only-dev-server'
+    ];
 }

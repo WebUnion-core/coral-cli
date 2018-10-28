@@ -1,20 +1,9 @@
 import './style/index.scss';
-
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import actions from './../../actions.js';
-import Swiper from 'swiper';
-
-// 公共模块
-import cookieUtil from 'modules/cookie-util.js';
-
-// 通用组件
-import TabsFooter from 'components/TabsFooter';
-
-// 子组件
-import TopIconList from './components/TopIconList.jsx';
-import ArticleList from './components/ArticleList.jsx';
+import Button from '@material-ui/core/Button';
 
 // 入口前缀
 const prefix = 'Home';
@@ -26,19 +15,10 @@ class Container extends React.Component {
 
     render () {
         const { homeData } = this.props[prefix];
-        const { footTabs } = window.Waydua.publicData;
 
         return (
             <div className="container main-container">
-                <nav className="nav-container">
-                    <figure className="bg-container">
-                        <img className="bg-img"
-                            src={ `${window.Waydua.cdn}w1.jpg` } />
-                    </figure>
-                </nav>
-                <TopIconList store={ homeData } />
-                <ArticleList />
-                <TabsFooter list={ footTabs } defaultIndex={ 0 } />
+                <Button variant="contained" color="primary">Hello World</Button>
             </div>
         )
     }

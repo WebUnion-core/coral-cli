@@ -3,19 +3,19 @@ import './style/index.scss';
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import actions from './../../actions';
+import actions from './../../actions.js';
 
 // 入口前缀
 const prefix = 'UserInfo';
 
 // 公共模块
-import request from './../../common/modules/request.js';
-import cookieUtil from './../../common/modules/cookie-util.js';
+import request from 'modules/request.js';
+import cookieUtil from 'modules/cookie-util.js';
 
 // 公共组件
-import HeadBar from './../../common/components/HeadBar';
-import EditTextDialog from './../../common/components/EditTextDialog';
-import UploadImgDialog from './../../common/components/UploadImgDialog';
+import HeadBar from 'components/HeadBar';
+import EditTextDialog from 'components/EditTextDialog';
+import UploadImgDialog from 'components/UploadImgDialog';
 
 // 子组件
 import FirstLevelList from './components/FirstLevelList.jsx';

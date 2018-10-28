@@ -1,11 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import {
-    bindScroller,
-    removeScroller
-} from './../../../common/modules/tools.js';
-import request from './../../../common/modules/request.js';
+import { bindScroller, removeScroller } from 'modules/tools.js';
+import request from 'modules/request.js';
 
 export default class ArticleList extends React.Component {
     constructor (props) {

@@ -17,21 +17,21 @@ To change `display` (e.g. `display: inline-block;`), we suggest using a common C
 <i class="icon icon-home"></i>
 */
 .icon-18751-chatgroup {
-  background-image: url(./../images/sprite-100-1.875-1.png);
+  background-image: url(./../../images/sprite-100-1.875-1.png);
   background-position: 0px 0rem;
   background-size: 1.875rem;
   width: 1.875rem;
   height: 1.875rem;
 }
 .icon-18751-credit-cards {
-  background-image: url(./../images/sprite-100-1.875-1.png);
+  background-image: url(./../../images/sprite-100-1.875-1.png);
   background-position: 0px -1.875rem;
   background-size: 1.875rem;
   width: 1.875rem;
   height: 1.875rem;
 }
 .icon-18751-shopcar {
-  background-image: url(./../images/sprite-100-1.875-1.png);
+  background-image: url(./../../images/sprite-100-1.875-1.png);
   background-position: 0px -3.75rem;
   background-size: 1.875rem;
   width: 1.875rem;

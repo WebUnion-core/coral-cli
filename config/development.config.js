@@ -1,6 +1,6 @@
 const path = require('path');
 const config = require('./config.json');
-const dataServer = config.dataServer;
+const devServer = config.devServer;
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const DIST_PATH = path.resolve(__dirname, './../dist');
@@ -50,7 +50,7 @@ module.exports = function setDevMode(webpackConfig) {
                 hash: false,
                 minify: false,
                 version: config.version,
-                site: HOST + ':' + dataServer.port,
+                site: HOST + ':' + devServer.port,
                 cdn: config.imgcdn
             })
         );

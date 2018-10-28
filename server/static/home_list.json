@@ -2,12 +2,12 @@
     "footTabs": [
         {
             "name": "首页",
-            "link": "/",
+            "link": "/mwapp/",
             "icon": "icon-151-home"
         },
         {
             "name": "个人",
-            "link": "/own_msg",
+            "link": "/mwapp/own_msg",
             "icon": "icon-151-user"
         }
     ],
@@ -15,17 +15,17 @@
         {
             "icon": "icon-271-clock",
             "text": "时钟",
-            "link": "/clock"
+            "link": "/mwapp/clock"
         },
         {
             "icon": "icon-271-music",
             "text": "音乐",
-            "link": "/"
+            "link": "/mwapp/"
         },
         {
             "icon": "icon-271-gallery",
             "text": "画廊",
-            "link": "/"
+            "link": "/mwapp/"
         }
     ]
 }

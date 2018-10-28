@@ -5,13 +5,13 @@
   "main": "server.js",
   "scripts": {
     "mwbuilder": "node ./bin/mwbuilder.js",
-    "dev": "set NODE_ENV=debug&&node ./bin/before-pack.js&&webpack-dev-server --profile",
+    "build-sprite": "webpack&&node ./bin/reset-sprite.js",
+    "debug": "set NODE_ENV=debug&&node ./bin/before-pack.js&&webpack-dev-server --profile",
     "build-dev": "set NODE_ENV=development&&node ./bin/before-pack.js&&webpack",
     "build-prod": "set NODE_ENV=production&&node ./bin/before-pack.js&&webpack",
-    "start-dev-server": "set NODE_ENV=development&&node server.js",
-    "start-prod-server": "set NODE_ENV=production&&node server.js",
     "watch": "set NODE_ENV=debug&&nodemon --exec node server.js",
-    "build-sprite": "webpack&&node ./bin/reset-sprite.js"
+    "start-dev-server": "set NODE_ENV=development&&node server.js",
+    "start-prod-server": "set NODE_ENV=production&&node server.js"
   },
   "author": "WebUnion",
   "license": "ISC",
@@ -20,6 +20,7 @@
     "npm": "5.5.1"
   },
   "devDependencies": {
+    "@material-ui/core": "^3.3.2",
     "ammunition-storage": "^0.0.2",
     "animejs": "^2.2.0",
     "autoprefixer": "^8.6.4",

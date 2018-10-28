@@ -2,8 +2,8 @@ import anime from 'animejs';
 import React from 'react';
 
 // 公共模块
-import request from './../../../common/modules/request.js';
-import cookieUtil from './../../../common/modules/cookie-util.js';
+import request from 'modules/request.js';
+import cookieUtil from 'modules/cookie-util.js';
 
 export default class SignIn extends React.Component {
     constructor (props) {

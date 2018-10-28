@@ -1,6 +1,5 @@
 import React from 'react';
-
-import cookieUtil from './../../../common/modules/cookie-util.js';
+import cookieUtil from 'modules/cookie-util.js';
 
 export default class FirstLevelList extends React.Component {
     constructor (props) {

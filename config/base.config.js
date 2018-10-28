@@ -61,7 +61,8 @@ module.exports = {
         // 最常匹配的放在最前面，减少查找
         extensions: ['.jsx', '.js', '.scss', '.css', '.png', '.jpg'],
         modules: [
-            path.resolve(__dirname, './../node_modules')
+            path.resolve(__dirname, './../node_modules'),
+            path.resolve(__dirname, './../client/common')
         ]
     },
 

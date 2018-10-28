@@ -3,7 +3,7 @@ import './style/index.scss';
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import actions from './../../actions';
+import actions from './../../actions.js';
 
 // 入口前缀
 const prefix = 'Clock';

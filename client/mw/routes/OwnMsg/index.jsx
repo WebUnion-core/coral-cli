@@ -3,10 +3,10 @@ import './style/index.scss';
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import actions from './../../actions';
+import actions from './../../actions.js';
 
 // 通用组件
-import TabsFooter from './../../common/components/TabsFooter';
+import TabsFooter from 'components/TabsFooter';
 
 // 入口前缀
 const prefix = 'OwnMsg';

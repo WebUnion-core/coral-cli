@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import cookieUtil from './../../../common/modules/cookie-util.js';
+import cookieUtil from 'modules/cookie-util.js';
 
 export default class HeadCanvas extends React.Component {
     constructor (props) {

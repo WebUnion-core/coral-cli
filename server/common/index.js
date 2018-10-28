@@ -4,7 +4,7 @@ const mode = ['development', 'debug'];
 let server;
 
 if (JSON.stringify(mode).indexOf(process.env.NODE_ENV) > 0) {
-    server = config.dataServer;
+    server = config.devServer;
 } else {
     server = config.prodServer;
 }

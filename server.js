@@ -17,7 +17,7 @@ require('./server/model')();
 
 const mode = ['development', 'debug'];
 if (JSON.stringify(mode).indexOf(process.env.NODE_ENV) > 0) {
-    port = config.dataServer.port;
+    port = config.devServer.port;
 } else {
     port = config.prodServer.port;
 }

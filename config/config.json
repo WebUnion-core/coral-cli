@@ -4,22 +4,27 @@
     "imgcdn": "https://raw.githubusercontent.com/WebUnion-core/tadpole/master/asset/img/",
     "defaultAvator": "https://raw.githubusercontent.com/WebUnion-core/tadpole/master/asset/img/default-avator.png",
     "articleSource": "http://www.myzaker.com/",
+    "launchIndex": 1,
     "apps": [
         {
             "name": "mw",
             "title": "MW",
+            "port": "20151",
             "apis": [
                 "home",
                 "user",
                 "file"
             ]
+        },
+        {
+            "name": "mx",
+            "title": "MX",
+            "port": "20152",
+            "apis": []
         }
     ],
-    "dataServer": {
+    "devServer": {
         "port": 2018
-    },
-    "debugServer": {
-        "port": 2015
     },
     "prodServer": {
         "port": 8888

@@ -2,12 +2,7 @@ import React from 'react';
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import 'style/reset.scss';
 
-// 组件
-import Account from './Account';
-
-// 公共模块
 const config = require('./../data.json');
-import requestInterface from './interface';
 
 // 整合菜单
 const menuModules = [];
@@ -25,47 +20,23 @@ config.menus.forEach((item) => {
 export default class App extends React.Component {
     constructor (props) {
         super(props);
-        this.state = {
-            routerType: 'HIDE'
-        };
-    }
-
-    componentWillMount () {
-        requestInterface((data) => {
-            window.Waydua.publicData = data;
-            this.setState({
-                routerType: data['status'] !== 1 ? 'ONLY_LOGIN' : 'NORMAL'
-            });
-        });
-    }
-
-    // 配置路由
-    renderRouter () {
-        switch (this.state.routerType) {
-            case 'ONLY_LOGIN':
-                return <Route path="/" component={ Account } />
-            case 'NORMAL':
-                return (
-                    <Switch>
-                        {
-                            config.menus.map((item, index) =>
-                                <Route key={index}
-                                    path={item.route}
-                                    component={menuModules[index]}
-                                    exact />
-                            )
-                        }
-                    </Switch>
-                );
-            default:
-                return '';
-        }
     }
 
     render () {
         return (
             <Router>
-                <section>{ this.renderRouter() }</section>
+                <section>
+                    <Switch>
+                        {
+                            config.menus.map((item, index) =>
+                                <Route key={ index }
+                                    path={ item.route }
+                                    component={ menuModules[index] }
+                                    exact />
+                            )
+                        }
+                    </Switch>
+                </section>
             </Router>
         );
     }

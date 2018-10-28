@@ -1,6 +1,6 @@
-@import "./../../../common/style/base";
-@import "./../../../common/style/animate";
-@import "./../../../common/style/swiper.min.scss";
+@import "style/base";
+@import "style/animate";
+@import "style/swiper.min.scss";
 
 .account-container {
     @include linear_gradient;

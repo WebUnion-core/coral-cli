@@ -1,5 +1,5 @@
-import request from './../common/modules/request.js';
-import cookieUtil from './../common/modules/cookie-util.js';
+import request from 'modules/request.js';
+import cookieUtil from 'modules/cookie-util.js';
 
 const result = {};
 

@@ -1,14 +1,11 @@
 import { combineReducers } from 'redux';
-import Public from './Public.js';
 
-const config = require('./../data.json');
-const reducer = {
-    Public
-}
+const config = require('./data.json');
+const reducer = {}
 
 config.menus.forEach((item) => {
     const { name } = item;
-    reducer[name] = require('./' + name + '.js').default;
+    reducer[name] = require('./routes/' + name + '/reducer.js').default;
 });
 
 // 使用redux的combineReducers方法将所有reducer打包起来
