@@ -14,9 +14,6 @@
         <%= htmlWebpackPlugin.options.title %>
     </title>
 
-    <!-- weinre --boundHost 192.168.1.107 --httpPort 8080 -->
-    <!-- <script src="http://192.168.1.107:8080/target/target-script-min.js#anonymous"></script> -->
-
     <script title="公共全局参数">
         window.Waydua = {
             userAgent: window.navigator.userAgent,
@@ -43,14 +40,8 @@
             var recalc = function() {
                 var clientWidth = Math.min(docEl.clientWidth, win.innerWidth); // 处理一些移动设备中获取到怪异设备宽度的情况
                 var fontSize;
-
-                if (clientWidth >= 720) { // 大于峰值规定一致的字体大小
-                    fontSize = docEl.style.fontSize = '32px';
-                    win.Waydua.remFontSize = parseInt(fontSize, 10);
-                } else {
-                    fontSize = docEl.style.fontSize = clientWidth * 32 / 720 + 'px'; // 等比例缩放
-                    win.Waydua.remFontSize = parseInt(fontSize, 10);
-                }
+                fontSize = docEl.style.fontSize = '18px';
+                win.Waydua.remFontSize = parseInt(fontSize, 10);
             };
 
             //事件绑定

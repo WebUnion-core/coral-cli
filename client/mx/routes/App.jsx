@@ -1,6 +1,7 @@
 import React from 'react';
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import 'style/reset.scss';
+import './reset.scss';
 
 const config = require('./../data.json');
 
@@ -25,7 +26,7 @@ export default class App extends React.Component {
     render () {
         return (
             <Router>
-                <section>
+                <section className="main">
                     <Switch>
                         {
                             config.menus.map((item, index) =>

@@ -2,7 +2,11 @@
     "menus": [
         {
             "name": "Home",
-            "route": "/mxapp/"
+            "route": "/"
+        },
+        {
+            "name": "Login",
+            "route": "/login"
         }
     ]
 }
