@@ -14,7 +14,7 @@ const resHeader = {
     'Content-Type': 'application/json;charset=UTF-8'
 };
 
-module.exports = function(version, api) {
+module.exports = function (version, api) {
     api.get(`/mw/${version}/home/main_list`, (ctx) => {
         const homeList = require('./../../../static/home_list.json');
         ctx.set(resHeader); // 设置响应头

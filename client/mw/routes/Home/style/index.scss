@@ -57,10 +57,18 @@
             &.single-image-style {
                 padding: 0.7rem 0.8rem;
 
-                .img {
+                .img-container {
+                    @extend .flex-complete-middle;
                     float: left;
                     height: 4.5rem;
+                    width: 6rem;
+                    overflow: hidden;
                     margin-right: 1rem;
+                    background-color: $color-text-placeholder;
+
+                    .img {
+                        height: 100%;
+                    }
                 }
 
                 .title {

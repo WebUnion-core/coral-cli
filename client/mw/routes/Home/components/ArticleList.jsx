@@ -81,11 +81,11 @@ export default class ArticleList extends React.Component {
                             const { img, style, title } = item;
                             return (
                                 <li key={ index }
-                                    className={
-                                        `article-list-item ${ style }`
-                                    }>
-                                    <img className="img" src={ img } />
-                                    <p className="title">{ title }</p>
+                                    className={`article-list-item ${ style }`}>
+                                    <figure className='img-container'>
+                                        <img className="img" src={img} />
+                                    </figure>
+                                    <p className="title">{title}</p>
                                 </li>
                             )
                         })
