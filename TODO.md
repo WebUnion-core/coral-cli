@@ -5,9 +5,9 @@
 
 - [X] node.js定时任务接入
 
-- [ ] node.js爬虫程序编写
+- [X] node.js爬虫程序编写
 
-- [ ] node.js定时爬取文章数据
+- [X] node.js定时爬取文章数据
 
 - [ ] mw后台框架搭建
 

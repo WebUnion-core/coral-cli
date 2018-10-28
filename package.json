@@ -65,6 +65,7 @@
     "ammunition-storage": "^0.0.2",
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.7.0",
+    "cheerio": "^1.0.0-rc.2",
     "cron": "^1.4.1",
     "koa": "^2.5.2",
     "koa-body": "^4.0.4",
