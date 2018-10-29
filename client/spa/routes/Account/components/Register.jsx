@@ -38,7 +38,7 @@ export default class Register extends React.Component {
 
         request({
             method: 'POST',
-            url: `http://${site}/mw/${version}/user/register`,
+            url: `http://${site}/${version}/user/register`,
             data: {
                 'phone': phoneEl.value,
                 'code': codeEl.value,

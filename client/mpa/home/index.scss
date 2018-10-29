@@ -1,0 +1,19 @@
+@import "style/base.scss";
+
+.home-container {
+    height: 100%;
+
+    .operate-platform {
+        @extend .flex-complete-middle;
+        float: left;
+        box-sizing: border-box;
+        width: 80%;
+        height: 100%;
+        background-color: $green4;
+
+        .title {
+            font-size: 3rem;
+            color: $color-text-base;
+        }
+    }
+}

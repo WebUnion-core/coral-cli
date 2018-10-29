@@ -59,9 +59,7 @@ export default class EditTextDialog extends NormalDialog {
     }
 
     render () {
-        const {
-            title = '', btns, exitTextList
-        } = this.props;
+        const { title = '', btns, exitTextList } = this.props;
         const { ifShowDialog } = this.state;
 
         return (

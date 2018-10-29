@@ -26,7 +26,7 @@ export default class ArticleList extends React.Component {
 
         request({
             method: 'POST',
-            url: `http://${site}/mw/${version}/home/home_article_list`,
+            url: `http://${site}/${version}/home/home_article_list`,
             data: {
                 'page': pageCount,
                 'amount': this.perPageAmount

@@ -10,7 +10,7 @@ import Swiper from 'swiper';
 import cookieUtil from 'modules/cookie-util.js';
 
 // 通用组件
-import TabsFooter from 'components/TabsFooter';
+import TabsFooter from 'mb-components/TabsFooter';
 
 // 子组件
 import TopIconList from './components/TopIconList.jsx';

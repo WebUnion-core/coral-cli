@@ -11,6 +11,8 @@ const HOST = require('./../lib/getHost.js')();
  * @param {Object} webpackConfig webpack配置对象
  */
 module.exports = function setDevMode(webpackConfig) {
+    const launchPages = [config['spa']].concat(config['mpa'].pages);
+
     webpackConfig.plugins.push(
         // CSS提取
         new MiniCssExtractPlugin({
@@ -33,22 +35,21 @@ module.exports = function setDevMode(webpackConfig) {
     // 设置vendor
     webpackConfig.entry['vendor'] = config['vendor'];
 
-    config.apps.forEach(function(item) {
-        const filename = path.resolve(
-            __dirname, './../dist/' + item.name + '/index.html'
-        );
-        const template = path.resolve(
-            __dirname, './../client/' + item.name + '/template.ejs'
-        );
+    launchPages.forEach(function (page) {
+        const filename = path.resolve(__dirname, './../dist/' + page.path + '/index.html');
+        const template = path.resolve(__dirname, './../client/' + page.path + '/template.ejs');
 
         // 配置页面模板
         webpackConfig.plugins.push(
             new HtmlWebpackPlugin({
-                title: item.title,
+                title: page.title,
                 filename: filename,
                 template: template,
                 hash: false,
                 minify: false,
+                chunks: ['vendor', page.path + '/bundle'],
+
+                // 注入常量
                 version: config.version,
                 site: HOST + ':' + devServer.port,
                 cdn: config.imgcdn
@@ -56,8 +57,8 @@ module.exports = function setDevMode(webpackConfig) {
         );
 
         // 设置打包入口
-        webpackConfig.entry[item.name + '/bundle'] = [
-            path.resolve(__dirname, './../client/' + item.name + '/entry.js')
+        webpackConfig.entry[page.path + '/bundle'] = [
+            path.resolve(__dirname, './../client/' + page.path + '/entry.js')
         ];
     });
 }

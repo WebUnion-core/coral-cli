@@ -13,9 +13,9 @@ import request from 'modules/request.js';
 import cookieUtil from 'modules/cookie-util.js';
 
 // 公共组件
-import HeadBar from 'components/HeadBar';
-import EditTextDialog from 'components/EditTextDialog';
-import UploadImgDialog from 'components/UploadImgDialog';
+import HeadBar from 'mb-components/HeadBar';
+import EditTextDialog from 'mb-components/EditTextDialog';
+import UploadImgDialog from 'mb-components/UploadImgDialog';
 
 // 子组件
 import FirstLevelList from './components/FirstLevelList.jsx';
@@ -55,7 +55,7 @@ class Container extends React.Component {
 
         request({
             method: 'POST',
-            url: `http://${site}/mw/${version}/file/upload_avator`,
+            url: `http://${site}/${version}/file/upload_avator`,
             data: formData,
             type: 'multipart/form-data',
             success: (data) => {
@@ -77,7 +77,7 @@ class Container extends React.Component {
         const { site, version } = window.Waydua;
         request({
             method: 'POST',
-            url: `http://${site}/mw/${version}/user/update_name`,
+            url: `http://${site}/${version}/user/update_name`,
             data: {
                 'user_token': cookieUtil.get('login_token'),
                 'user_name': name

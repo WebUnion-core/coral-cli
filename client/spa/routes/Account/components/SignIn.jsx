@@ -38,7 +38,7 @@ export default class SignIn extends React.Component {
 
         request({
             method: 'POST',
-            url: `http://${site}/mw/${version}/user/login`,
+            url: `http://${site}/${version}/user/login`,
             data: {
                 'name': userNameEl.value,
                 'password': passwordEl.value,

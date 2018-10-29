@@ -18,7 +18,11 @@
         "pages": [
             {
                 "path": "mpa/login",
-                "title": "MX_APP"
+                "title": "MX_APP_LOGIN"
+            },
+            {
+                "path": "mpa/home",
+                "title": "MX_APP_HOME"
             }
         ]
     },

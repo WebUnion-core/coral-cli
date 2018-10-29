@@ -59,8 +59,7 @@ module.exports = function setDevMode(webpackConfig) {
         chunkFilename: '[name].js'
     };
 
-    for (let i = 0; i < launchPages.length; i++) {
-        const page = launchPages[i];
+    launchPages.forEach(function (page) {
         const filename = path.resolve(__dirname, './../dist/' + page.path + '/index.html');
         const template = path.resolve(__dirname, './../client/' + page.path + '/template.ejs');
 
@@ -72,6 +71,9 @@ module.exports = function setDevMode(webpackConfig) {
                 template: template,
                 hash: false,
                 minify: false,
+                chunks: ['vendor', page.path + '/bundle'],
+
+                // 注入常量
                 version: config.version,
                 site: HOST + ':' + devServer.port,
                 cdn: config.imgcdn
@@ -85,5 +87,5 @@ module.exports = function setDevMode(webpackConfig) {
             'webpack-dev-server/client',
             'webpack/hot/only-dev-server'
         ];
-    }
+    });
 }
