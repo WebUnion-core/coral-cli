@@ -1,4 +1,8 @@
 [
     { "link": "/mpa/home", "text": "主页" },
-    { "link": "/mpa/home", "text": "主页" }
+    { "link": "/mpa/home", "text": "发布通知" },
+    { "link": "/mpa/home", "text": "访问量统计" },
+    { "link": "/mpa/home", "text": "反馈信息收集" },
+    { "link": "/mpa/home", "text": "任务审批" },
+    { "link": "/mpa/home", "text": "首页应用入口" }
 ]

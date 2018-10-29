@@ -32,13 +32,15 @@ const myTheme = createMuiTheme({
 // https://material-ui.com/demos/app-bar/#-----------
 const styles = theme => ({
     paper: {
+        position: 'absolute',
+        left: '0',
+        right: '0',
         maxWidth: '350px',
         margin: '0 auto',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        padding: `${theme.spacing.unit * 4}px ${theme.spacing.unit * 3}px ${theme.spacing.unit * 4}px`,
-        transform: 'translateY(50%)'
+        padding: `${theme.spacing.unit * 4}px ${theme.spacing.unit * 3}px ${theme.spacing.unit * 4}px`
     },
     form: {
         width: '100%', // Fix IE 11 issue.

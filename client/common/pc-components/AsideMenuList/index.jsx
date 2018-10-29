@@ -34,7 +34,10 @@ class AsideMenuList extends React.Component {
         return (
             <MuiThemeProvider theme={myTheme}>
                 <ul className="aside-menu">
-                    <figure className="head-figure" />
+                    <figure className="head-figure">
+                        <img className="logo"
+                            src={'https://raw.githubusercontent.com/WebUnion-core/tadpole/v1.8.0/asset/img/logo1.png'} />
+                    </figure>
                     <List className={classes.menuList} component="nav">
                         {
                             menuList.map((item, index) =>
