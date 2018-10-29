@@ -22,7 +22,7 @@ const resHeader = {
 
 module.exports = function(version, api) {
     api.post(`/mw/${version}/user/check_token`, (ctx, next) => {
-        const loginTokenCache = require('./../../../static/login_token.json');
+        const loginTokenCache = require('./../../static/login_token.json');
         const { response, request: { body } } = ctx;
 
         // 请求参数

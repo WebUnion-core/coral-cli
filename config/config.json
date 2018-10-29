@@ -4,25 +4,25 @@
     "imgcdn": "https://raw.githubusercontent.com/WebUnion-core/tadpole/master/asset/img/",
     "defaultAvator": "https://raw.githubusercontent.com/WebUnion-core/tadpole/master/asset/img/default-avator.png",
     "articleSource": "http://www.myzaker.com/",
-    "launchIndex": 1,
-    "apps": [
-        {
-            "name": "mw",
-            "title": "MW",
-            "port": "20151",
-            "apis": [
-                "home",
-                "user",
-                "file"
-            ]
-        },
-        {
-            "name": "mx",
-            "title": "MX",
-            "port": "20152",
-            "apis": []
-        }
-    ],
+    "replyDatabase": false,
+    "apis": ["home", "user", "file"],
+
+    "launchType": "mpa",
+    "spa": {
+        "path": "spa",
+        "title": "MW_APP",
+        "port": 20151
+    },
+    "mpa": {
+        "port": 20152,
+        "pages": [
+            {
+                "path": "mpa/login",
+                "title": "MX_APP"
+            }
+        ]
+    },
+
     "devServer": {
         "port": 2018
     },

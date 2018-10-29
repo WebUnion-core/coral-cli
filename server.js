@@ -13,7 +13,9 @@ const config = require('./config/config.json');
 const cron = require('./server/cron');
 let port;
 
-require('./server/model')();
+if (config.replyDatabase) {
+    require('./server/model')();
+}
 
 const mode = ['development', 'debug'];
 if (JSON.stringify(mode).indexOf(process.env.NODE_ENV) > 0) {

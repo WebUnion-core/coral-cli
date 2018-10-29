@@ -15,10 +15,10 @@
 
 const fs = require('fs');
 const path = require('path');
-const { server } = require('./../../../common');
+const { server } = require('./../../common');
 const mongoose = require('mongoose');
 
-const FILE_PATH = path.join(__dirname, './../../../static/avators');
+const FILE_PATH = path.join(__dirname, './../../static/avators');
 const resHeader = {
     'Access-Control-Allow-Methods': 'POST',
     'Access-Control-Allow-Origin': '*',

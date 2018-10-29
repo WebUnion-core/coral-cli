@@ -1,8 +1,5 @@
-import './style/index.scss';
+import './index.scss';
 import React from 'react';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
-import actions from './../../actions.js';
 
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
@@ -15,11 +12,11 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 
-// 入口前缀
-const prefix = 'Home';
-
 // https://material-ui.com/customization/themes/
-const theme = createMuiTheme({
+const myTheme = createMuiTheme({
+    typography: {
+        useNextVariants: true
+    },
     palette: {
         primary: { main: '#38b49d' },
         secondary: { main: '#11cb5f' }
@@ -30,11 +27,12 @@ const theme = createMuiTheme({
 const styles = theme => ({
     paper: {
         maxWidth: '350px',
-        margin: `${theme.spacing.unit * 10}px auto 0`,
+        margin: '0 auto',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        padding: `${theme.spacing.unit * 4}px ${theme.spacing.unit * 3}px ${theme.spacing.unit * 4}px`
+        padding: `${theme.spacing.unit * 4}px ${theme.spacing.unit * 3}px ${theme.spacing.unit * 4}px`,
+        transform: 'translateY(50%)'
     },
     form: {
         width: '100%', // Fix IE 11 issue.
@@ -53,31 +51,33 @@ class Container extends React.Component {
     }
 
     render () {
-        const { loginData } = this.props[prefix];
         const { classes } = this.props;
 
         return (
             <div className="container login-container">
-                <MuiThemeProvider theme={theme}>
+                <MuiThemeProvider theme={myTheme}>
                     <Paper className={classes.paper}>
-                        <Typography component="h1" variant="h5">请登录账号</Typography>
+                        <Typography component="h1"
+                            variant="h5">请登录账号</Typography>
                         <form className={classes.form}>
-                            <FormControl margin="normal" required fullWidth>
+                            <FormControl margin="normal"
+                                required
+                                fullWidth>
                                 <InputLabel htmlFor="user-id">账号</InputLabel>
                                 <Input id="user-id"
                                     name="user-id"
                                     autoFocus />
                             </FormControl>
-                            <FormControl margin="normal" required fullWidth>
+                            <FormControl margin="normal"
+                                required
+                                fullWidth>
                                 <InputLabel htmlFor="password">密码</InputLabel>
                                 <Input name="password"
                                     type="password"
                                     id="password"
                                     autoComplete="current-password" />
                             </FormControl>
-                            <FormControlLabel control={
-                                    <Checkbox value="remember" color="primary" />
-                                }
+                            <FormControlLabel control={<Checkbox value="remember" color="primary" />}
                                 label="记住账号" />
                             <Button type="submit"
                                 fullWidth
@@ -92,20 +92,4 @@ class Container extends React.Component {
     }
 }
 
-// 将state对应值绑定到props上
-function mapStateToProps(state) {
-    return {
-        [prefix]: state[prefix]
-    }
-}
-
-// 将action的所有方法绑定到props上
-function mapDispatchToProps(dispatch) {
-    return bindActionCreators(actions, dispatch);
-}
-
-// 通过react-redux提供的connect方法将我们需要的state中的数据和actions中的方法绑定到props上
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(withStyles(styles)(Container));
+export default withStyles(styles)(Container);

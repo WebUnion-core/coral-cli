@@ -19,7 +19,7 @@ const path = require('path');
 const fs = require('fs');
 const mongoose = require('mongoose');
 const ammunition = require('ammunition-storage');
-const config = require('./../../../../config/config.json');
+const config = require('./../../../config/config.json');
 
 const resHeader = {
     'Access-Control-Allow-Methods': 'POST',
@@ -31,10 +31,10 @@ const resHeader = {
 // 更新登录缓存文件
 function updateTokenCache(token, userAgent) {
     // 将登录签名和UA保存到Cache
-    const loginTokenCache = require('./../../../static/login_token.json');
+    const loginTokenCache = require('./../../static/login_token.json');
     const cachePath = path.resolve(
         __dirname,
-        './../../../static/login_token.json'
+        './../../static/login_token.json'
     );
     if (process.env.NODE_ENV !== 'debug') {
         loginTokenCache[token] = userAgent;
