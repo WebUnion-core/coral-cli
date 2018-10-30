@@ -1,5 +1,6 @@
 [
     { "link": "/mpa/home", "text": "主页" },
+    { "link": "/mpa/home", "text": "发布资讯" },
     { "link": "/mpa/home", "text": "发布通知" },
     { "link": "/mpa/home", "text": "访问量统计" },
     { "link": "/mpa/home", "text": "反馈信息收集" },

@@ -9,7 +9,7 @@ import Divider from '@material-ui/core/Divider';
 
 const myTheme = createMuiTheme({
     palette: {
-        primary: { main: '#38b49d' },
+        primary: { main: '#fbd208' },
         secondary: { main: '#11cb5f' }
     }
 });

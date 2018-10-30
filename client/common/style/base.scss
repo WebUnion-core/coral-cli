@@ -25,8 +25,9 @@ $green1: #08916c;
 $green2: #38b49d;
 $green3: #277d6d;
 $green4: #388f7f;
-$yellow1: #eac925;
+$yellow1: #fbd208;
 $black1: #292222;
+$white1: #ffffff;
 
 /*
  * 快速转换rem ->
@@ -45,12 +46,7 @@ $black1: #292222;
 
 // 显示
 .show {
-	display: block;
-}
-
-// 显示[inline-block]
-.show-inline-block {
-	display: inline-block;
+	display: initial;
 }
 
 // 隐藏
