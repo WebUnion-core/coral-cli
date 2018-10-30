@@ -23,6 +23,10 @@
             {
                 "path": "mpa/home",
                 "title": "MX_APP_HOME"
+            },
+            {
+                "path": "mpa/article",
+                "title": "MX_APP_ARTICLE"
             }
         ]
     },

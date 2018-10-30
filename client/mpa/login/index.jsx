@@ -1,5 +1,6 @@
 import './index.scss';
 import React from 'react';
+import commonData from './../common';
 
 import withStyles from '@material-ui/core/styles/withStyles';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
@@ -24,8 +25,7 @@ function Transition(props) {
 // https://material-ui.com/customization/themes/
 const myTheme = createMuiTheme({
     palette: {
-        primary: { main: '#38b49d' },
-        secondary: { main: '#11cb5f' }
+        primary: { main: '#fbd208' }
     }
 });
 
@@ -59,17 +59,22 @@ const styles = theme => ({
 class Login extends React.Component {
     constructor (props) {
         super(props);
-        this.managerData = {
-            userId: 'webunion',
-            password: '2015'
-        };
         this.state = {
             userId: '',
             password: '',
-            ifRememberId: false,
             ifDisplayDialog: false,
             alertText: ''
         };
+    }
+
+    componentWillMount () {
+        const { userId, password } = window.sessionStorage;
+        if (
+            userId === commonData.MANAGER_ID
+            && password === commonData.MANAGER_PASSWORD
+        ) {
+            window.location.href = '/mpa/home';
+        }
     }
 
     // 点击提交
@@ -78,17 +83,15 @@ class Login extends React.Component {
 
         if (!userId || !password) {
             return this.handleClickOpen('登录信息不能为空！');
-        } else if (userId !== this.managerData.userId) {
+        } else if (userId !== commonData.MANAGER_ID) {
             return this.handleClickOpen('账号不存在！');
-        } else if (password !== this.managerData.password) {
+        } else if (password !== commonData.MANAGER_PASSWORD) {
             return this.handleClickOpen('密码不正确！');
         }
 
-        if (ifRememberId) {
-            Object.assign(window.sessionStorage, {
-                userId, password
-            });
-        }
+        Object.assign(window.sessionStorage, {
+            userId, password
+        });
 
         window.location.href = '/mpa/home';
     }
@@ -96,11 +99,6 @@ class Login extends React.Component {
     // 改变输入框内容
     changeInput (key, value) {
         this.setState({ [key]: value });
-    }
-
-    // 改变记住账号选择框
-    changeSelectRememberId = (event, checked) => {
-        this.setState({ ifRememberId: checked });
     }
 
     // 展开弹窗
@@ -161,13 +159,6 @@ class Login extends React.Component {
                                     id="password"
                                     onChange={(event) => this.changeInput('password', event.target.value)} />
                             </FormControl>
-                            <FormControlLabel
-                                control={
-                                    <Checkbox value="remember"
-                                        color="primary"
-                                        onChange={this.changeSelectRememberId} />
-                                }
-                                label="记住账号，下次自动登录" />
                             <Button type="submit"
                                 fullWidth
                                 variant="contained"

@@ -15,9 +15,6 @@ const myTheme = createMuiTheme({
 });
 
 const styles = theme => ({
-    menuList: {
-        padding: 0
-    },
     active: {
         backgroundColor: '#eac925'
     }
@@ -38,10 +35,10 @@ class AsideMenuList extends React.Component {
                         <img className="logo"
                             src={'https://raw.githubusercontent.com/WebUnion-core/tadpole/v1.8.0/asset/img/logo1.png'} />
                     </figure>
-                    <List className={classes.menuList} component="nav">
+                    <List className="menu-list" component="nav">
                         {
                             menuList.map((item, index) =>
-                                <li className={parseInt(activeIndex, 10) === index ? classes.active : ''}
+                                <li className={`menu-item ${parseInt(activeIndex, 10) === index ? classes.active : ''}`}
                                     key={index}>
                                     <ListItem button
                                         href={item.link}
