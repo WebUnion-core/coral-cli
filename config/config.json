@@ -4,9 +4,8 @@
     "imgcdn": "https://raw.githubusercontent.com/WebUnion-core/tadpole/master/asset/img/",
     "defaultAvator": "https://raw.githubusercontent.com/WebUnion-core/tadpole/master/asset/img/default-avator.png",
     "articleSource": "http://www.myzaker.com/",
-    "replyDatabase": false,
+    "replyDatabase": true,
     "apis": ["home", "user", "file", "article"],
-
     "launchType": "mpa",
     "spa": {
         "path": "spa",
@@ -30,7 +29,6 @@
             }
         ]
     },
-
     "devServer": {
         "port": 2018
     },

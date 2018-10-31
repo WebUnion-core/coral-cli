@@ -15,7 +15,7 @@
 
 const fs = require('fs');
 const path = require('path');
-const server = require('./../../../lib/common').server;
+const server = require('./../../../lib').server;
 const mongoose = require('mongoose');
 
 const FILE_PATH = path.join(__dirname, './../../static/avators');

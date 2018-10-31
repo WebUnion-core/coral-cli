@@ -10,9 +10,9 @@ const convert = require('koa-convert');
 const api = require('./server/api');
 const config = require('./config/config.json');
 const cron = require('./server/cron');
-const server = require('./lib');
+const server = require('./lib').server;
 const HOST = server.host;
-const PORT = server.PORT;
+const PORT = server.port;
 
 if (config.replyDatabase) {
     require('./server/model')();

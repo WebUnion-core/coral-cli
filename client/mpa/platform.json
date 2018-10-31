@@ -1,9 +1,9 @@
 [
     { "link": "/mpa/home", "text": "主页" },
-    { "link": "/mpa/article", "text": "发布资讯" },
-    { "link": "/mpa/home", "text": "发布通知" },
-    { "link": "/mpa/home", "text": "访问量统计" },
-    { "link": "/mpa/home", "text": "反馈信息收集" },
-    { "link": "/mpa/home", "text": "任务审批" },
-    { "link": "/mpa/home", "text": "首页应用设置" }
+    { "link": "/mpa/article", "text": "资讯平台" },
+    { "link": "/mpa/home", "text": "通知平台" },
+    { "link": "/mpa/home", "text": "统计平台" },
+    { "link": "/mpa/home", "text": "反馈平台" },
+    { "link": "/mpa/home", "text": "任务审批平台" },
+    { "link": "/mpa/home", "text": "应用管理平台" }
 ]
