@@ -1,6 +1,6 @@
 /**
- * api: /home/home_article_list
- * 功能: 首页文章列表
+ * api: /article/search_article
+ * 功能: 文章搜索
  *
  * 请求参数:
  * 1. page -> 分页计数，由1计起
@@ -23,40 +23,15 @@ const respHeader = {
     'Content-Type': 'application/json;charset=UTF-8'
 };
 
-module.exports = function(version, api) {
-    api.post(`/mw/${version}/home/home_article_list`, async (ctx, next) => {
-        const {
-            response,
-            request: {
-                body
-            }
-        } = ctx;
+module.exports = function (version, api) {
+    api.post(`/${version}/article/search_article`, async (ctx, next) => {
+        const { response, request: { body } } = ctx;
         const Article = mongoose.model('Article');
         const page = parseInt(body['page'], 10);
         const amount = parseInt(body['amount'], 10);
         let total;
 
         ctx.set(respHeader); // 设置响应头
-
-        // await Article.create({
-        //     "title": "ARTICLE_TITLE",
-        //     "guide_image_url": "https://raw.githubusercontent.com/WebUnion-core/tadpole/master/asset/img/default-avator.png",
-        //     "content": "Article contentttttttttt...........................",
-        //     "publish_date": Date.now(),
-        //     "author": "WJT20"
-        // });
-        //
-        // const data = [];
-        // for (let i = 0; i < amount; i++) {
-        //     data.push({
-        //         "title": "ARTICLE_TITLE",
-        //         "guide_image_url": "https://raw.githubusercontent.com/WebUnion-core/tadpole/master/asset/img/default-avator.png",
-        //         "content": "Article contentttttttttt...........................",
-        //         "publish_date": Date.now(),
-        //         "author": "WJT20"
-        //     });
-        // }
-        // await Article.insertMany(data);
 
         // 获取记录总数
         await Article.count({}, function(err, resData) {
@@ -66,7 +41,7 @@ module.exports = function(version, api) {
             total = resData;
         });
 
-        // 查询数据
+        // 查询数据, https://www.jianshu.com/p/554a5bf67b31
         await Article.find(
             // 筛选条件
             {},

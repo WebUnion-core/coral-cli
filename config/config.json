@@ -5,7 +5,7 @@
     "defaultAvator": "https://raw.githubusercontent.com/WebUnion-core/tadpole/master/asset/img/default-avator.png",
     "articleSource": "http://www.myzaker.com/",
     "replyDatabase": false,
-    "apis": ["home", "user", "file"],
+    "apis": ["home", "user", "file", "article"],
 
     "launchType": "mpa",
     "spa": {

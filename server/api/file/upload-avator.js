@@ -15,7 +15,7 @@
 
 const fs = require('fs');
 const path = require('path');
-const { server } = require('./../../common');
+const server = require('./../../../lib/common').server;
 const mongoose = require('mongoose');
 
 const FILE_PATH = path.join(__dirname, './../../static/avators');
@@ -25,6 +25,21 @@ const resHeader = {
     'Cache-Control': 'no-cache',
     'Content-Type': 'application/json;charset=UTF-8'
 };
+
+// 更新头像URL
+function updateAvator (api, token) {
+    api.get(`/avator/${token}`, (ctx) => {
+        ctx.set({
+            'Content-Type': 'image/png'
+        });
+        ctx.body = fs.readFileSync(
+            path.resolve(
+                __dirname,
+                `./../../static/avators/${token}`
+            )
+        );
+    });
+}
 
 module.exports = function (version, api) {
     api.post(`/mw/${version}/file/upload_avator`, async (ctx, next) => {
@@ -52,18 +67,7 @@ module.exports = function (version, api) {
                 const reader = fs.createReadStream(file.path);
                 const writer = fs.createWriteStream(newPath);
                 reader.pipe(writer);
-
-                api.get(`/avator/${token}`, (ctx) => {
-                    ctx.set({
-                        'Content-Type': 'image/png'
-                    });
-                    ctx.body = fs.readFileSync(
-                        path.resolve(
-                            __dirname,
-                            `./../../static/avators/${token}`
-                        )
-                    );
-                });
+                updateAvator(api, token);
 
                 ctx.body = {
                     'result': 1,

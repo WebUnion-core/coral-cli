@@ -26,21 +26,22 @@ export default class ArticleList extends React.Component {
 
         request({
             method: 'POST',
-            url: `http://${site}/${version}/home/home_article_list`,
+            url: `http://${site}/${version}/article/search_article`,
             data: {
                 'page': pageCount,
                 'amount': this.perPageAmount
             },
             success: (data) => {
                 const { articles } = data;
+
                 articles.forEach((item) => {
-                    const { title } = item;
                     articleList.push({
                         style: 'single-image-style',
                         img: item['guide_image_url'],
-                        title
+                        title: item.title
                     });
                 });
+
                 this.setState({
                     articleList,
                     totalAmount: data['total_page'],
