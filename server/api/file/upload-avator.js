@@ -42,7 +42,7 @@ function updateAvator (api, token) {
 }
 
 module.exports = function (version, api) {
-    api.post(`/mw/${version}/file/upload_avator`, async (ctx, next) => {
+    api.post(`/${version}/file/upload_avator`, async (ctx, next) => {
         const { response, request: { files, body } } = ctx;
         const User = mongoose.model('User');
 

@@ -15,7 +15,7 @@ const resHeader = {
 };
 
 module.exports = function (version, api) {
-    api.get(`/mw/${version}/home/main_list`, (ctx) => {
+    api.get(`/${version}/home/main_list`, (ctx) => {
         const homeList = require('./../../static/home_list.json');
         ctx.set(resHeader); // 设置响应头
         ctx.body = {

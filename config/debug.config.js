@@ -76,7 +76,7 @@ module.exports = function setDevMode(webpackConfig) {
                 // 注入常量
                 version: config.version,
                 site: HOST + ':' + devServer.port,
-                cdn: config.imgcdn
+                cdn: config.cdn
             })
         );
 

@@ -47,7 +47,7 @@ function updateTokenCache(token, userAgent) {
 }
 
 module.exports = function(version, api) {
-    api.post(`/mw/${version}/user/register`, async (ctx, next) => {
+    api.post(`/${version}/user/register`, async (ctx, next) => {
         const { response, request: { body } } = ctx;
         const User = mongoose.model('User');
 
@@ -55,7 +55,7 @@ module.exports = function(version, api) {
         Object.assign(body, {
             'password': ammunition.md5(body.password),
             'name': body.phone,
-            'avator_url': config.defaultAvator
+            'avator_url': `${config.cdn}/img/${config.defaultAvator}`
         });
 
         const user = new User(body);

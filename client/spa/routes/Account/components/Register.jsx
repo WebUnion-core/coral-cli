@@ -63,7 +63,7 @@ export default class Register extends React.Component {
         return (
             <form className="fillin-form">
                 <img className="logo"
-                    src={ `${window.Waydua.cdn}logo.png` } />
+                    src={ `${window.Waydua.cdn}/img/logo.png` } />
 
                 <input ref="phoneEl"
                     className="input"

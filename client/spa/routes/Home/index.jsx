@@ -33,7 +33,7 @@ class Container extends React.Component {
                 <nav className="nav-container">
                     <figure className="bg-container">
                         <img className="bg-img"
-                            src={ `${window.Waydua.cdn}w1.jpg` } />
+                            src={ `${window.Waydua.cdn}/img/w1.jpg` } />
                     </figure>
                 </nav>
                 <TopIconList store={ homeData } />

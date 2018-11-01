@@ -1,15 +1,15 @@
 {
     "version": "v1.8.0",
     "dbPath": "mongodb://localhost:27017/mw",
-    "imgcdn": "https://raw.githubusercontent.com/WebUnion-core/tadpole/master/asset/img/",
-    "defaultAvator": "https://raw.githubusercontent.com/WebUnion-core/tadpole/master/asset/img/default-avator.png",
+    "cdn": "https://raw.githubusercontent.com/WebUnion-core/tadpole/master/asset",
+    "defaultAvator": "default-avator.png",
     "articleSource": "http://www.myzaker.com/",
     "replyDatabase": true,
     "apis": ["home", "user", "file", "article"],
     "launchType": "mpa",
     "spa": {
         "path": "spa",
-        "title": "MW_APP",
+        "title": "MW_SPA",
         "port": 20151
     },
     "mpa": {
@@ -17,15 +17,15 @@
         "pages": [
             {
                 "path": "mpa/login",
-                "title": "MX_APP_LOGIN"
+                "title": "MX_MPA_LOGIN"
             },
             {
                 "path": "mpa/home",
-                "title": "MX_APP_HOME"
+                "title": "MX_MPA_HOME"
             },
             {
                 "path": "mpa/article",
-                "title": "MX_APP_ARTICLE"
+                "title": "MX_MPA_ARTICLE"
             }
         ]
     },
@@ -41,6 +41,7 @@
         "redux",
         "animejs",
         "superagent",
-        "swiper"
+        "swiper",
+        "@material-ui/core"
     ]
 }

@@ -62,7 +62,7 @@ export default class SignIn extends React.Component {
         return (
             <form className="fillin-form">
                 <img className="logo"
-                    src={ `${window.Waydua.cdn}logo.png` } />
+                    src={ `${window.Waydua.cdn}/img/logo.png` } />
 
                 <input ref="userNameEl"
                     className="input"

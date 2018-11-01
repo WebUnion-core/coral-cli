@@ -23,65 +23,71 @@ const respHeader = {
     'Content-Type': 'application/json;charset=UTF-8'
 };
 
-module.exports = function (version, api) {
-    api.post(`/${version}/article/search_article`, async (ctx, next) => {
-        const { response, request: { body } } = ctx;
-        const Article = mongoose.model('Article');
-        const page = parseInt(body['page'], 10);
-        const amount = parseInt(body['amount'], 10);
-        let total;
+// 数据库查询
+const getMongoData = async (body, ctx) => {
+    const page = parseInt(body['page'], 10);
+    const amount = parseInt(body['amount'], 10);
+    const Article = mongoose.model('Article');
+    let total;
 
-        ctx.set(respHeader); // 设置响应头
-
-        // 获取记录总数
-        await Article.count({}, function(err, resData) {
+    // 获取记录总数
+    await Article.count(
+        {},
+        (err, res) => {
             if (err) {
                 throw new Error(err);
             }
-            total = resData;
-        });
+            total = res;
+        }
+    );
 
-        // 查询数据, https://www.jianshu.com/p/554a5bf67b31
-        await Article.find(
-            // 筛选条件
-            {},
+    // 查询数据, https://www.jianshu.com/p/554a5bf67b31
+    await Article.find(
+        // 筛选条件
+        {},
 
-            // 过滤字段, 0为屏蔽, 1为不屏蔽
-            {
-                'title': 1,
-                'guide_image_url': 1,
-                'content': 1,
-                'publish_date': 1,
-                'author': 1
+        // 过滤字段, 0为屏蔽, 1为不屏蔽
+        {
+            'title': 1,
+            'guide_image_url': 1,
+            'content': 1,
+            'publish_date': 1,
+            'author': 1
+        },
+
+        {
+            // 限制返回记录条数
+            limit: amount,
+
+            // 排序
+            sort: {
+                'public_date': 1
             },
 
-            {
-                // 限制返回记录条数
-                limit: amount,
+            // 略过前几条数据
+            skip: (page - 1) * amount
+        },
 
-                // 排序
-                sort: {
-                    'public_date': 1
-                },
-
-                // 略过前几条数据
-                skip: (page - 1) * amount
-            },
-
-            // 结束回调
-            (err, resData) => {
-                if (err) {
-                    throw new Error(err);
-                }
-
-                ctx.body = {
-                    'result': 1,
-                    'data': {
-                        'articles': resData,
-                        'total_page': total
-                    }
-                };
+        // 结束回调
+        (err, res) => {
+            if (err) {
+                throw new Error(err);
             }
-        );
+            ctx.body = {
+                'result': 1,
+                'data': {
+                    'articles': res,
+                    'total_page': total
+                }
+            };
+        }
+    );
+}
+
+module.exports = function (version, api) {
+    api.post(`/${version}/article/search_article`, async (ctx, next) => {
+        const { response, request: { body } } = ctx;
+        ctx.set(respHeader); // 设置响应头
+        getMongoData(body, ctx);
     });
 };

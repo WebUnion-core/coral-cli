@@ -45,7 +45,7 @@ function updateTokenCache(token, userAgent) {
 }
 
 module.exports = function(version, api) {
-    api.post(`/mw/${version}/user/login`, async (ctx, next) => {
+    api.post(`/${version}/user/login`, async (ctx, next) => {
         const { response, request: { body } } = ctx;
         const User = mongoose.model('User');
 
