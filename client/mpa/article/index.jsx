@@ -5,19 +5,12 @@ import request from 'modules/request.js';
 
 import { withStyles } from '@material-ui/core/styles';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import Checkbox from '@material-ui/core/Checkbox';
-import Divider from '@material-ui/core/Divider';
-
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
 
 import AsideMenuList from 'pc-components/AsideMenuList';
 import FloatCtrlButton from 'pc-components/FloatCtrlButton';
+import HeadNavBar from 'pc-components/HeadNavBar';
 import SearchFilterBoard from './components/SearchFilterBoard';
-import HeadNavBar from './components/HeadNavBar';
+import ArticleList from './components/ArticleList';
 
 const platform = require('./../platform.json');
 
@@ -39,16 +32,41 @@ const styles = theme => ({
     }
 });
 
-class Article extends React.Component {
+// 列表工作板
+const ListBoard = ({
+    btnList,
+    ifShowFilterBoard,
+    articleList,
+    checked,
+    handleToggle,
+    totalPage,
+    perPageAmount,
+    requestDeleteArticle
+}) =>
+    <aside className="operate-platform">
+        <HeadNavBar btnList={btnList} />
+
+        <SearchFilterBoard displayStatus={ifShowFilterBoard} />
+
+        <ArticleList articleList={articleList}
+            checked={checked}
+            handleToggle={handleToggle}
+            totalPage={totalPage}
+            perPageAmount={perPageAmount}
+            requestDeleteArticle={requestDeleteArticle} />
+    </aside>
+
+class ArticlePlatform extends React.Component {
     constructor (props) {
         super(props);
         this.state = {
             ifShowFilterBoard: false,
-            checked: '',
+            checked: [],
             articleList: [],
             currentPage: 1,
             totalPage: 0
         };
+        this.perPageAmount = 20;
     }
 
     componentWillMount () {
@@ -56,20 +74,40 @@ class Article extends React.Component {
     }
 
     componentDidMount () {
-        const { site, version, userAgent } = window.Waydua;
+        this.requestArticleList();
+    }
 
+    // 请求文章列表
+    requestArticleList = () => {
+        const { site, version } = window.Waydua;
         request({
             method: 'POST',
             url: `http://${site}/${version}/article/search_article`,
             data: {
                 'page': 1,
-                'amount': 20
+                'amount': this.perPageAmount
             },
             success: (data) => {
                 this.setState({
                     articleList: data['articles'],
                     totalPage: data['total_page']
                 });
+            },
+            fail: (err) => {
+                console.error(err);
+            }
+        });
+    }
+
+    // 删除指定ID文章
+    requestDeleteArticle = id => () => {
+        const { site, version } = window.Waydua;
+        request({
+            method: 'POST',
+            url: `http://${site}/${version}/article/delete_article`,
+            data: { id },
+            success: (data) => {
+                console.info('删除成功！');
             },
             fail: (err) => {
                 console.error(err);
@@ -101,60 +139,37 @@ class Article extends React.Component {
         }, () => {
             console.info(this.state.checked);
         });
-    };
+    }
 
     render () {
         const { classes } = this.props;
-        const { ifShowFilterBoard, articleList } = this.state;
+        const {
+            ifShowFilterBoard, articleList,
+            checked, totalPage
+        } = this.state;
 
         return (
             <div className="container article-container">
                 <MuiThemeProvider theme={myTheme}>
                     <AsideMenuList menuList={platform} activeIndex="1" />
+
                     <FloatCtrlButton />
 
-                    <aside className="operate-platform">
-                        <HeadNavBar handleSearch={this.handleSearch} />
-                        <SearchFilterBoard displayStatus={ifShowFilterBoard} />
-
-                        <List className={classes.articleList}>
-                            {
-                                articleList.map((item, index) =>
-                                    <li key={index}>
-                                        <ListItem dense
-                                            button
-                                            onClick={this.handleToggle(index)}>
-                                            <Checkbox checked={this.state.checked.indexOf(index) !== -1}
-                                                tabIndex={index}
-                                                disableRipple />
-                                            <ListItemText className={classes.itemText}
-                                                primary={item.title} />
-                                        </ListItem>
-                                        <Divider />
-                                    </li>
-                                )
-                            }
-
-                            <ul className="page-ctrler">
-                                <li className="ctrler-item">
-                                    <Button variant="outlined" disabled>上一页</Button>
-                                </li>
-                                <li className="ctrler-item">
-                                    <span>第 <b>1</b> 页</span>
-                                </li>
-                                <li className="ctrler-item">
-                                    <TextField id="tgt-page"
-                                        placeholder="总共1000页"
-                                        margin="dense"
-                                        variant="outlined" />
-                                    <i className="goto-btn icon-13751-goto" />
-                                </li>
-                                <li className="ctrler-item">
-                                    <Button variant="outlined">下一页</Button>
-                                </li>
-                            </ul>
-                        </List>
-                    </aside>
+                    <ListBoard ifShowFilterBoard={ifShowFilterBoard}
+                        articleList={articleList}
+                        checked={checked}
+                        handleToggle={this.handleToggle}
+                        totalPage={totalPage}
+                        perPageAmount={this.perPageAmount}
+                        requestDeleteArticle={this.requestDeleteArticle}
+                        btnList={
+                            [
+                                {
+                                    text: '搜索',
+                                    clickListener: this.handleSearch
+                                }
+                            ]
+                        } />
 
                 </MuiThemeProvider>
             </div>
@@ -162,4 +177,4 @@ class Article extends React.Component {
     }
 }
 
-export default withStyles(styles)(Article);
+export default withStyles(styles)(ArticlePlatform);

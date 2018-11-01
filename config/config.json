@@ -4,8 +4,13 @@
     "cdn": "https://raw.githubusercontent.com/WebUnion-core/tadpole/master/asset",
     "defaultAvator": "default-avator.png",
     "articleSource": "http://www.myzaker.com/",
-    "replyDatabase": true,
-    "apis": ["home", "user", "file", "article"],
+    "replyDatabase": false,
+    "apis": [
+        "home",
+        "user",
+        "file",
+        "article"
+    ],
     "launchType": "mpa",
     "spa": {
         "path": "spa",
@@ -26,6 +31,10 @@
             {
                 "path": "mpa/article",
                 "title": "MX_MPA_ARTICLE"
+            },
+            {
+                "path": "mpa/article-detail",
+                "title": "MX_MPA_ARTICLE_DETAIL"
             }
         ]
     },

@@ -15,6 +15,7 @@
  */
 
 const mongoose = require('mongoose');
+const config = require('./../../../config/config.json');
 
 const respHeader = {
     'Access-Control-Allow-Methods': 'POST',
@@ -24,9 +25,7 @@ const respHeader = {
 };
 
 // 数据库查询
-const getMongoData = async (body, ctx) => {
-    const page = parseInt(body['page'], 10);
-    const amount = parseInt(body['amount'], 10);
+const queryMongoDB = async (page, amount, ctx) => {
     const Article = mongoose.model('Article');
     let total;
 
@@ -77,7 +76,7 @@ const getMongoData = async (body, ctx) => {
                 'result': 1,
                 'data': {
                     'articles': res,
-                    'total_page': total
+                    'total_page': Math.ceil(total / amount)
                 }
             };
         }
@@ -87,7 +86,35 @@ const getMongoData = async (body, ctx) => {
 module.exports = function (version, api) {
     api.post(`/${version}/article/search_article`, async (ctx, next) => {
         const { response, request: { body } } = ctx;
+        const { cdn, defaultAvator } = config;
+        const page = parseInt(body['page'], 10);
+        const amount = parseInt(body['amount'], 10);
+
         ctx.set(respHeader); // 设置响应头
-        getMongoData(body, ctx);
+
+        if (config.replyDatabase) {
+            queryMongoDB(page, amount, ctx);
+        } else {
+            const articles = [];
+
+            for (let i = 0; i < amount; i++) {
+                articles.push({
+                    '_id': '001',
+                    'title': 'xxxxxx xxxxxx xxxxxx',
+                    'guide_image_url': `${cdn}/img/${defaultAvator}`,
+                    'content': '--',
+                    'publish_date': new Date(),
+                    'author': 'WJT20'
+                });
+            }
+
+            ctx.body = {
+                'result': 1,
+                'data': {
+                    'articles': articles,
+                    'total_page': 1
+                }
+            };
+        }
     });
 };

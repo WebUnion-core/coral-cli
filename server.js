@@ -39,6 +39,8 @@ app.listen(PORT, HOST, function(err) {
     }
 
     // 启动定时任务
-    cron.crawlArticles();
+    if (config.replyDatabase) {
+        cron.crawlArticles();
+    }
     console.log(`The server is listening in => http://${HOST}:${PORT}`);
 });
