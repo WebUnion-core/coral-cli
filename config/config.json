@@ -11,7 +11,7 @@
         "file",
         "article"
     ],
-    "launchType": "mpa",
+    "launchType": "spa",
     "spa": {
         "path": "spa",
         "title": "MW_SPA",
@@ -48,9 +48,6 @@
         "react",
         "react-dom",
         "redux",
-        "animejs",
-        "superagent",
-        "swiper",
-        "@material-ui/core"
+        "superagent"
     ]
 }

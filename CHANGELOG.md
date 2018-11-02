@@ -36,3 +36,15 @@
 - ip地址自动获取
 
 - 缓存数据从localStorage迁移到redux
+
+## 1.8.0 / 2018-11-02 ##
+
+- node.js定时任务接入
+
+- node.js爬虫程序编写
+
+- node.js定时爬取文章数据
+
+- mw后台框架搭建
+
+- mw公共模块抽取到client层级下

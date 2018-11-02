@@ -37,24 +37,14 @@ const styles = theme => ({
 const ListBoard = ({
     btnList,
     ifShowFilterBoard,
-    articleList,
-    checked,
-    handleToggle,
-    totalPage,
-    perPageAmount,
-    requestDeleteArticle
+    ...articleListProp
 }) =>
     <aside className="operate-platform">
         <HeadNavBar btnList={btnList} />
 
         <SearchFilterBoard displayStatus={ifShowFilterBoard} />
 
-        <ArticleList articleList={articleList}
-            checked={checked}
-            handleToggle={handleToggle}
-            totalPage={totalPage}
-            perPageAmount={perPageAmount}
-            requestDeleteArticle={requestDeleteArticle} />
+        <ArticleList { ...articleListProp } />
     </aside>
 
 class ArticlePlatform extends React.Component {
@@ -83,11 +73,12 @@ class ArticlePlatform extends React.Component {
     // 请求文章列表
     requestArticleList = () => {
         const { site, version } = window.Waydua;
+        const { currentPage } = this.state;
         request({
             method: 'POST',
             url: `http://${site}/${version}/article/search_article`,
             data: {
-                'page': 1,
+                'page': currentPage,
                 'amount': this.perPageAmount
             },
             success: (data) => {
@@ -160,12 +151,20 @@ class ArticlePlatform extends React.Component {
         });
     }
 
+    // 切换到指定页
+    handleGotoTargetPage = page => () => {
+        this.setState({
+            currentPage: page
+        }, this.requestArticleList);
+    }
+
     render () {
         const { classes } = this.props;
         const {
             ifShowFilterBoard, articleList,
             checked, totalPage,
-            ifDisplayDialog, alertText
+            ifDisplayDialog, alertText,
+            currentPage
         } = this.state;
 
         return (
@@ -187,6 +186,8 @@ class ArticlePlatform extends React.Component {
                         totalPage={totalPage}
                         perPageAmount={this.perPageAmount}
                         requestDeleteArticle={this.requestDeleteArticle}
+                        currentPage={currentPage}
+                        handleGotoTargetPage={this.handleGotoTargetPage}
                         btnList={
                             [
                                 {

@@ -33,7 +33,7 @@ class AsideMenuList extends React.Component {
                 <ul className="aside-menu">
                     <figure className="head-figure">
                         <img className="logo"
-                            src={'https://raw.githubusercontent.com/WebUnion-core/tadpole/v1.8.0/asset/img/logo1.png'} />
+                            src={'https://raw.githubusercontent.com/WebUnion-core/tadpole/master/asset/img/logo1.png'} />
                     </figure>
                     <List className="menu-list" component="nav">
                         {

@@ -33,6 +33,24 @@ const styles = theme => ({
 class ArticleList extends React.Component {
     constructor (props) {
         super(props);
+        this.state = {
+            targetPage: ''
+        };
+    }
+
+    // 点击跳转按钮
+    handleClickGotoPageBtn = () => {
+        const page = parseInt(this.state.targetPage, 10);
+        if (!isNaN(page)) {
+            this.props.handleGotoTargetPage(page)();
+        }
+    }
+
+    // 改变
+    handleChangeTargetPage = event => {
+        this.setState({
+            targetPage: event.target.value
+        });
     }
 
     render () {
@@ -40,7 +58,9 @@ class ArticleList extends React.Component {
             articleList, classes,
             handleToggle, checked,
             totalPage, perPageAmount,
-            requestDeleteArticle
+            requestDeleteArticle,
+            currentPage,
+            handleGotoTargetPage
         } = this.props;
 
         return (
@@ -83,20 +103,29 @@ class ArticleList extends React.Component {
                         <ul className="page-ctrler">
                             <li className="ctrler-item">
                                 <Button variant="outlined"
-                                    disabled>上一页</Button>
+                                    disabled={ currentPage === 1 }
+                                    onClick={ handleGotoTargetPage(currentPage - 1) }>
+                                    上一页
+                                </Button>
                             </li>
                             <li className="ctrler-item">
-                                <span>第 <b>1</b> 页</span>
+                                <span>第 <b>{currentPage}</b> 页</span>
                             </li>
                             <li className="ctrler-item">
                                 <TextField id="tgt-page"
-                                    placeholder="总共1000页"
+                                    placeholder={`总共${totalPage}页`}
                                     margin="dense"
-                                    variant="outlined" />
-                                <i className="goto-btn icon-13751-goto" />
+                                    variant="outlined"
+                                    onChange={ this.handleChangeTargetPage } />
+                                <i className="goto-btn icon-13751-goto"
+                                    onClick={ this.handleClickGotoPageBtn } />
                             </li>
                             <li className="ctrler-item">
-                                <Button variant="outlined">下一页</Button>
+                                <Button variant="outlined"
+                                    disabled={ currentPage === totalPage }
+                                    onClick={ handleGotoTargetPage(currentPage + 1) }>
+                                    下一页
+                                </Button>
                             </li>
                         </ul>
                 }

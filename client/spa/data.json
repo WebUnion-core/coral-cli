@@ -18,7 +18,7 @@
         },
         {
             "name": "UserInfo",
-            "path": "/userInfo/"
+            "path": "/user_info/"
         }
     ]
 }

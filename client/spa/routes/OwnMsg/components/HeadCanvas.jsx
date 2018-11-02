@@ -17,7 +17,7 @@ export default class HeadCanvas extends React.Component {
                         backgroundImage: `url("${publicData['avator_url']}")`
                     }} />
 
-                <Link to="/userInfo/">
+                <Link to="/user_info/">
                     <i className="edit-icon icon-151-edit" />
                 </Link>
 
