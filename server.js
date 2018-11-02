@@ -30,7 +30,10 @@ const app = new Koa()
         koaLogger(),
         koaCors()
     ))
-    .use(api.routes(), api.allowedMethods());
+    .use(
+        api.routes(),
+        api.allowedMethods()
+    );
 
 // 启动服务
 app.listen(PORT, HOST, function(err) {

@@ -70,15 +70,19 @@ const queryMongoDB = async (page, amount, ctx) => {
         // 结束回调
         (err, res) => {
             if (err) {
-                throw new Error(err);
+                ctx.body = {
+                    'result': 0,
+                    'msg': err.message
+                };
+            } else {
+                ctx.body = {
+                    'result': 1,
+                    'data': {
+                        'articles': res,
+                        'total_page': Math.ceil(total / amount)
+                    }
+                };
             }
-            ctx.body = {
-                'result': 1,
-                'data': {
-                    'articles': res,
-                    'total_page': Math.ceil(total / amount)
-                }
-            };
         }
     );
 }
@@ -93,7 +97,7 @@ module.exports = function (version, api) {
         ctx.set(respHeader); // 设置响应头
 
         if (config.replyDatabase) {
-            queryMongoDB(page, amount, ctx);
+            await queryMongoDB(page, amount, ctx);
         } else {
             const articles = [];
 

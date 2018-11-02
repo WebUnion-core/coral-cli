@@ -11,16 +11,8 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import Paper from '@material-ui/core/Paper';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import Slide from '@material-ui/core/Slide';
 
-function Transition(props) {
-    return <Slide direction="up" {...props} />;
-}
+import Dialog from 'pc-components/Dialog';
 
 // https://material-ui.com/customization/themes/
 const myTheme = createMuiTheme({
@@ -50,9 +42,6 @@ const styles = theme => ({
         marginTop: theme.spacing.unit * 3,
         padding: theme.spacing.unit * 1.5,
         color: '#ffffff'
-    },
-    dialog: {
-        minWidth: '300px'
     }
 });
 
@@ -82,11 +71,11 @@ class Login extends React.Component {
         const { userId, password, ifRememberId } = this.state;
 
         if (!userId || !password) {
-            return this.handleClickOpen('登录信息不能为空！');
+            return this.handleOpen('登录信息不能为空！');
         } else if (userId !== commonData.MANAGER_ID) {
-            return this.handleClickOpen('账号不存在！');
+            return this.handleOpen('账号不存在！');
         } else if (password !== commonData.MANAGER_PASSWORD) {
-            return this.handleClickOpen('密码不正确！');
+            return this.handleOpen('密码不正确！');
         }
 
         Object.assign(window.sessionStorage, {
@@ -102,7 +91,7 @@ class Login extends React.Component {
     }
 
     // 展开弹窗
-    handleClickOpen = (alertText) => {
+    handleOpen = (alertText) => {
         this.setState({
             ifDisplayDialog: true,
             alertText
@@ -121,24 +110,11 @@ class Login extends React.Component {
         return (
             <div className="container login-container">
                 <MuiThemeProvider theme={myTheme}>
-                    <Dialog open={ifDisplayDialog}
-                        TransitionComponent={Transition}
-                        keepMounted
-                        onClose={this.handleClose}
-                        aria-labelledby="alert-dialog-slide-title"
-                        aria-describedby="alert-dialog-slide-description">
-                        <DialogTitle id="alert-dialog-slide-title">提示</DialogTitle>
-                        <DialogContent className={classes.dialog}>
-                            <DialogContentText
-                                id="alert-dialog-slide-description">{
-                                    alertText
-                                }</DialogContentText>
-                        </DialogContent>
-                        <DialogActions>
-                            <Button onClick={this.handleClose}
-                                color="primary">确定</Button>
-                        </DialogActions>
-                    </Dialog>
+
+                    <Dialog ifDisplayDialog={ ifDisplayDialog }
+                        alertText={ alertText }
+                        handleOpen={ this.handleOpen }
+                        handleClose={ this.handleClose } />
 
                     <Paper className={classes.paper}>
                         <h1 className="login-head-title">请登录账号</h1>

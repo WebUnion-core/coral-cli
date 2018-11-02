@@ -9,6 +9,7 @@ import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import AsideMenuList from 'pc-components/AsideMenuList';
 import FloatCtrlButton from 'pc-components/FloatCtrlButton';
 import HeadNavBar from 'pc-components/HeadNavBar';
+import Dialog from 'pc-components/Dialog';
 import SearchFilterBoard from './components/SearchFilterBoard';
 import ArticleList from './components/ArticleList';
 
@@ -64,7 +65,9 @@ class ArticlePlatform extends React.Component {
             checked: [],
             articleList: [],
             currentPage: 1,
-            totalPage: 0
+            totalPage: 0,
+            ifDisplayDialog: false,
+            alertText: ''
         };
         this.perPageAmount = 20;
     }
@@ -107,7 +110,8 @@ class ArticlePlatform extends React.Component {
             url: `http://${site}/${version}/article/delete_article`,
             data: { id },
             success: (data) => {
-                console.info('删除成功！');
+                this.handleOpen('删除文章成功！');
+                this.requestArticleList();
             },
             fail: (err) => {
                 console.error(err);
@@ -141,11 +145,27 @@ class ArticlePlatform extends React.Component {
         });
     }
 
+    // 展开弹窗
+    handleOpen = (alertText) => {
+        this.setState({
+            ifDisplayDialog: true,
+            alertText
+        });
+    }
+
+    // 关闭弹窗
+    handleClose = () => {
+        this.setState({
+            ifDisplayDialog: false
+        });
+    }
+
     render () {
         const { classes } = this.props;
         const {
             ifShowFilterBoard, articleList,
-            checked, totalPage
+            checked, totalPage,
+            ifDisplayDialog, alertText
         } = this.state;
 
         return (
@@ -154,6 +174,11 @@ class ArticlePlatform extends React.Component {
                     <AsideMenuList menuList={platform} activeIndex="1" />
 
                     <FloatCtrlButton />
+
+                    <Dialog ifDisplayDialog={ ifDisplayDialog }
+                        alertText={ alertText }
+                        handleOpen={ this.handleOpen }
+                        handleClose={ this.handleClose } />
 
                     <ListBoard ifShowFilterBoard={ifShowFilterBoard}
                         articleList={articleList}

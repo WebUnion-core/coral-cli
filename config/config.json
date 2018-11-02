@@ -4,7 +4,7 @@
     "cdn": "https://raw.githubusercontent.com/WebUnion-core/tadpole/master/asset",
     "defaultAvator": "default-avator.png",
     "articleSource": "http://www.myzaker.com/",
-    "replyDatabase": false,
+    "replyDatabase": true,
     "apis": [
         "home",
         "user",

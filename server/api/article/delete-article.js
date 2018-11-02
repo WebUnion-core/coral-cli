@@ -26,13 +26,13 @@ const queryMongoDB = async (id, ctx) => {
     let total;
 
     // 删除指定ID文章，https://blog.csdn.net/u012810020/article/details/54582051
-    await Article.remove(
+    await Article.deleteOne(
         { '_id': id },
         (err) => {
             if (err) {
                 ctx.body = {
                     'result': 0,
-                    'msg': err
+                    'msg': err.message
                 };
             } else {
                 ctx.body = {
@@ -47,12 +47,11 @@ const queryMongoDB = async (id, ctx) => {
 module.exports = function (version, api) {
     api.post(`/${version}/article/delete_article`, async (ctx, next) => {
         const { response, request: { body } } = ctx;
-        const id = parseInt(body['id'], 10);
 
         ctx.set(respHeader); // 设置响应头
 
         if (config.replyDatabase) {
-            queryMongoDB(id, ctx);
+            await queryMongoDB(body['id'], ctx);
         } else {
             ctx.body = {
                 'result': 1,
