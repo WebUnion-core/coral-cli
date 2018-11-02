@@ -49,7 +49,7 @@ module.exports = function setProdMode(webpackConfig) {
             minify: true,
             version: config.version,
             site: prodServer.host + ':' + prodServer.port,
-            cdn: config.imgcdn
+            cdn: config.cdn
         }));
 
         // 设置打包入口

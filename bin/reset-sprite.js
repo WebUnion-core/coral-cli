@@ -7,8 +7,8 @@
 const fs = require('fs');
 const path = require('path');
 
-const ASSET_PATH = path.resolve(__dirname, './../client/asset');
-const STYLE_PATH = path.resolve(ASSET_PATH, './style');
+const ASSET_PATH = path.resolve(__dirname, './../client/common/style');
+const STYLE_PATH = path.resolve(ASSET_PATH, './sprite');
 
 const files = [];
 
@@ -53,7 +53,7 @@ function reWriteEachSpriteFile(itemPath, itemName) {
 function rewriteAllSpriteEntry() {
     let importStr = '';
     files.forEach(function(item) {
-        importStr += '@import url(\'./style/' + item + '\');\n';
+        importStr += '@import url(\'./sprite/' + item + '\');\n';
     });
     fs.writeFileSync(
         path.resolve(ASSET_PATH, './all-sprite.scss'), importStr, 'utf-8'

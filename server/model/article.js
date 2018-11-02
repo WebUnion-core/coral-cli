@@ -8,6 +8,7 @@ const ArticleSchema = new Schema({
     'content': String,
     'publish_date': Date,
     'author': String,
+    'comment': Number,
 
     'meta': {
         'createdAt': {

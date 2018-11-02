@@ -7,20 +7,18 @@ const koaLogger = require('koa-logger');
 const koaCors = require('koa-cors');
 const convert = require('koa-convert');
 
-const HOST = require('./lib/getHost.js')();
 const api = require('./server/api');
 const config = require('./config/config.json');
-let port;
+const cron = require('./server/cron');
+const server = require('./lib').server;
+const HOST = server.host;
+const PORT = server.port;
 
-require('./server/model')();
-
-const mode = ['development', 'debug'];
-if (JSON.stringify(mode).indexOf(process.env.NODE_ENV) > 0) {
-    port = config.dataServer.port;
-} else {
-    port = config.prodServer.port;
+if (config.replyDatabase) {
+    require('./server/model')();
 }
 
+// 挂载各种中间件
 const app = new Koa()
     .use(convert(
         require('koa-static')(path.resolve(__dirname, './dist'))
@@ -32,11 +30,20 @@ const app = new Koa()
         koaLogger(),
         koaCors()
     ))
-    .use(api.routes(), api.allowedMethods());
+    .use(
+        api.routes(),
+        api.allowedMethods()
+    );
 
-app.listen(port, HOST, function(err) {
+// 启动服务
+app.listen(PORT, HOST, function(err) {
     if (err) {
         throw new Error(err);
     }
-    console.log(`The server is listening in => http://${HOST}:${port}`);
+
+    // 启动定时任务
+    if (config.replyDatabase) {
+        cron.crawlArticles();
+    }
+    console.log(`The server is listening in => http://${HOST}:${PORT}`);
 });

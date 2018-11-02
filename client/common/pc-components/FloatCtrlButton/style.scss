@@ -1,0 +1,47 @@
+@import "./../../style/base.scss";
+
+.ctrl-btn {
+    @extend .flex-complete-middle;
+    position: fixed;
+    bottom: 6rem;
+    right: 2rem;
+    background-color: $yellow1;
+    width: 3.2rem;
+    height: 3.2rem;
+    border-radius: 3.2rem;
+    z-index: 10;
+
+    .ctrl-menu-list {
+        display: flex;
+        position: absolute;
+        right: 4rem;
+        height: 3.2rem;
+        background-color: $yellow1;
+
+        &::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: -0.5rem;
+            height: 0;
+            margin: auto 0;
+            border-left: 0.5rem solid $yellow1;
+            border-top: 0.5rem solid transparent;
+            border-bottom: 0.5rem solid transparent;
+        }
+
+        .ctrl-menu-item {
+            @extend .flex-complete-middle;
+            box-sizing: border-box;
+            min-width: 4rem;
+            height: 3.2rem;
+            font-size: 0.75rem;
+            color: $black1;
+
+            &:hover {
+                background-color: $yellow2;
+            }
+        }
+    }
+}

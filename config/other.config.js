@@ -2,7 +2,7 @@ const path = require('path');
 const fs = require('fs');
 const SpritesmithPlugin = require('webpack-spritesmith');
 const SRC_PATH = path.resolve(__dirname, './../asset/sprite');
-const TARGET_PATH = path.resolve(__dirname, './../client/asset');
+const TARGET_PATH = path.resolve(__dirname, './../client/common');
 const spriteConfig = [];
 
 /**
@@ -14,14 +14,14 @@ module.exports = function setOther(webpackConfig) {
 
     // 伪入口
     webpackConfig.entry['sprite_log'] = [
-        path.resolve(__dirname, './../client/asset/sprite-entry.js')
+        path.resolve(__dirname, './../client/common/sprite-entry.js')
     ];
 
-    srcData.forEach(function(item) {
+    srcData.forEach(function (item) {
         const itemPath = path.resolve(SRC_PATH, './' + item);
         const isDir = fs.statSync(itemPath).isDirectory();
         const image = path.resolve(TARGET_PATH, './images/' + item + '.png');
-        const css = path.resolve(TARGET_PATH, './style/' + item + '.css');
+        const css = path.resolve(TARGET_PATH, './style/sprite/' + item + '.css');
 
         if (isDir) {
             spriteConfig.push({
@@ -37,7 +37,7 @@ module.exports = function setOther(webpackConfig) {
                 },
                 // 样式文件中调用雪碧图地址写法
                 apiOptions: {
-                    cssImageRef: './../images/' + item + '.png'
+                    cssImageRef: './../../images/' + item + '.png'
                 },
                 spritesmithOptions: {
                     algorithm: 'top-down'
@@ -47,7 +47,7 @@ module.exports = function setOther(webpackConfig) {
     })
 
     // 额外插件
-    spriteConfig.forEach(function(item) {
+    spriteConfig.forEach(function (item) {
         webpackConfig.plugins.push(new SpritesmithPlugin(item));
     });
 };

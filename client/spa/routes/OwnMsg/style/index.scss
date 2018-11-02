@@ -1,0 +1,111 @@
+@import "style/base.scss";
+@import "style/animate.scss";
+@import "style/swiper.min.scss";
+
+.ownmsg-container {
+    .head-canvas-container {
+        position: relative;
+        height: pxToRem(162px);
+        background-color: $brand-primary;
+
+        .avatar-container {
+            @extend .position-vertical-middle;
+
+            left: pxToRem(18px);
+            width: pxToRem(65px);
+            height: pxToRem(65px);
+            background-color: $fill-base;
+            background-size: 100% 100%;
+            border-radius: 50% 50%;
+        }
+
+        .edit-icon {
+            position: absolute;
+            top: pxToRem(12px);
+            right: pxToRem(16px);
+            width: pxToRem(24px);
+            height: pxToRem(24px);
+        }
+
+        .info-cont {
+            @extend .position-vertical-middle;
+
+            left: pxToRem(96px);
+            color: $fill-base;
+
+            .name {
+                font-size: pxToRem(16px);
+                line-height: pxToRem(28px);
+            }
+
+            .id {
+                display: block;
+                font-size: pxToRem(11px);
+                margin: pxToRem(2.4px) 0 pxToRem(8px);
+            }
+
+            .intro {
+                font-size: pxToRem(12.8px);
+            }
+        }
+    }
+
+    .func-blocks-list {
+        overflow: hidden;
+        width: 100%;
+        border-bottom: 0.3rem solid $border-color-base;
+
+        .block-item {
+            @extend .flex-complete-middle;
+
+            float: left;
+            box-sizing: border-box;
+            width: 33.333%;
+            height: pxToRem(85px);
+
+            .middle-cont {
+                display: inline-block;
+                text-align: center;
+
+                .icon {
+                    display: block;
+                }
+
+                .item-title {
+                    font-size: pxToRem(12px);
+                    color: $color-text-base;
+                }
+            }
+        }
+    }
+
+    .detail-list {
+        .detail-item {
+            position: relative;
+            line-height: pxToRem(63px);
+            padding: 0 pxToRem(16px);
+            font-size: pxToRem(15px);
+
+            &.sigin-out-btn {
+                text-align: center;
+                color: #ff3600;
+            }
+
+            &::after {
+                display: block;
+                content: "";
+                width: 200%;
+                height: 2px;
+                background-color: #ececec;
+                transform: scaleY(0.5) translateX(-1rem);
+            }
+
+            .icon {
+                position: absolute;
+                right: pxToRem(16px);
+                top: 50%;
+                transform: rotate(180deg) translateY(51%);
+            }
+        }
+    }
+}

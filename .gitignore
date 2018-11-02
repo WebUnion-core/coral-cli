@@ -1,4 +1,4 @@
 node_modules
 dist
 design
-data/static/avators/*.png
+server/static/avators/*.png

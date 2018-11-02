@@ -1,24 +1,45 @@
 {
-    "version": "v1.7.0",
+    "version": "v1.8.0",
     "dbPath": "mongodb://localhost:27017/mw",
-    "imgcdn": "https://raw.githubusercontent.com/WebUnion-core/tadpole/master/asset/img/",
-    "defaultAvator": "https://raw.githubusercontent.com/WebUnion-core/tadpole/master/asset/img/default-avator.png",
-    "apps": [
-        {
-            "name": "mw",
-            "title": "MW",
-            "apis": [
-                "home",
-                "user",
-                "file"
-            ]
-        }
+    "cdn": "https://raw.githubusercontent.com/WebUnion-core/tadpole/master/asset",
+    "defaultAvator": "default-avator.png",
+    "articleSource": "http://www.myzaker.com/",
+    "replyDatabase": true,
+    "apis": [
+        "home",
+        "user",
+        "file",
+        "article"
     ],
-    "dataServer": {
-        "port": 2018
+    "launchType": "spa",
+    "spa": {
+        "path": "spa",
+        "title": "MW_SPA",
+        "port": 20151
     },
-    "debugServer": {
-        "port": 2015
+    "mpa": {
+        "port": 20152,
+        "pages": [
+            {
+                "path": "mpa/login",
+                "title": "MX_MPA_LOGIN"
+            },
+            {
+                "path": "mpa/home",
+                "title": "MX_MPA_HOME"
+            },
+            {
+                "path": "mpa/article",
+                "title": "MX_MPA_ARTICLE"
+            },
+            {
+                "path": "mpa/article-detail",
+                "title": "MX_MPA_ARTICLE_DETAIL"
+            }
+        ]
+    },
+    "devServer": {
+        "port": 2018
     },
     "prodServer": {
         "port": 8888
@@ -27,8 +48,6 @@
         "react",
         "react-dom",
         "redux",
-        "animejs",
-        "superagent",
-        "swiper"
+        "superagent"
     ]
 }
