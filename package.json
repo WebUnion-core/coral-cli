@@ -1,12 +1,20 @@
 {
-    "name": "tadpole-cli",
-    "version": "0.0.1",
-    "description": "tadpole命令行工具",
-    "scripts": {},
-    "author": "WebUnion",
-    "license": "ISC",
-    "devDependencies": {
-    },
-    "dependencies": {
-    }
+  "name": "tadpole-cli",
+  "version": "1.0.0",
+  "description": "tadpole",
+  "main": "index.js",
+  "repository": "https://github.com/WebUnion-core/tadpole-cli.git",
+  "author": "WebUnion",
+  "license": "MIT",
+  "private": false,
+  "bin": {
+    "tadpole": "node index.js"
+  },
+  "scripts": {
+    "test": "node index.js"
+  },
+  "dependencies": {
+    "align-text": "^1.0.2",
+    "chalk": "^2.4.2"
+  }
 }
