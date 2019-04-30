@@ -1,4 +1,4 @@
 node_modules
 dist
 design
-server/static/avators/*.png
+.DS_Store
