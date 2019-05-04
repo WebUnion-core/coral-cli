@@ -1,6 +1,6 @@
 {
     "name": "tadpole-cli",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "description": "tadpole",
     "main": "index.js",
     "repository": "https://github.com/WebUnion-core/tadpole-cli.git",
