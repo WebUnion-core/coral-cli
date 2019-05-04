@@ -1,0 +1,69 @@
+@import "common/style/base.scss";
+@import "common/style/mixin.scss";
+@import "common/style/animation.scss";
+
+.home-container {
+    width: 100%;
+    height: 100%;
+
+    &.night {
+        background-color: $fill-body-inverse;
+        color: $color-text-base-inverse;
+    }
+
+    &.day {
+        background-color: $fill-body;
+        color: $color-text-base;
+    }
+
+    .figure {
+        @include flex_complete_middle();
+        position: relative;
+        width: 100%;
+        height: pxToRem(300px);
+
+        .img {
+            animation: shake 2s linear infinite;
+            display: inline-block;
+            width: pxToRem(200px);
+            height: pxToRem(200px);
+            border-radius: 100%;
+            border: 5px double #000;
+        }
+
+        .icon {
+            position: absolute;
+            background-color: #fff;
+            top: pxToRem(15px);
+            right: pxToRem(15px);
+            border-radius: 100%;
+        }
+    }
+
+    .content {
+        width: 100%;
+
+        .title {
+            font-size: pxToRem(20px);
+            text-align: center;
+        }
+
+        .fieldset {
+            box-sizing: border-box;
+            width: 100%;
+            margin-top: pxToRem(50px);
+            padding: pxToRem(18px);
+            font-size: pxToRem(16px);
+            border-top: 1px solid $border-color-base;
+
+            .legend {
+                padding: 0 pxToRem(16px);
+                color: inherit;
+            }
+
+            .label span {
+                color: inherit !important;
+            }
+        }
+    }
+}

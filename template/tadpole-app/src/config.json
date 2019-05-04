@@ -1,0 +1,14 @@
+{
+    "routes": [
+        {
+            "name": "Home",
+            "src": "/Home/index.jsx",
+            "path": "/"
+        },
+        {
+            "name": "Home",
+            "src": "/Home/info.jsx",
+            "path": "/info"
+        }
+    ]
+}

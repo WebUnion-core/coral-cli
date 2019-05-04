@@ -1,6 +1,8 @@
 #!/usr/bin/env node
+const package = require('./package.json');
 const align = require('align-text');
 const chalk = require('chalk');
+const startAppMode = require('./lib/app');
 let params;
 
 // 参数获取
@@ -14,9 +16,8 @@ try{
 
 // 默认提示内容
 const defaultInfo = [
-    'Tadpole Cli                               ',
-    'Version: 0.0.1                            ',
-    'Author: WebUnion                          ',
+    'version: ' + package.version + '                            ',
+    'author: WebUnion                          ',
     '',
     'You can use "help" to know how to use it. ',
 ].join('\n');
@@ -32,15 +33,22 @@ function centerAlign(len, longest, line, lines) {
 
 // 帮助提示内容
 const helpInfo = [
-    'Param list: ',
-    '1. init: initialize the tadpole project to current directory; ',
+    '',
+    'All parameters: ',
+    '',
+    '1. app: use APP mode; ',
+    '',
 ].join('\n');
 
 // 首命令符校验
 switch (params[0]) {
     case 'help':
         // 帮助提示
-        console.log(chalk.yellow(helpInfo));
+        console.log(chalk.green(helpInfo));
+        break;
+    case 'app':
+        // app分支
+        startAppMode(params.slice(1));
         break;
     default:
         // 默认提示

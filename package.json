@@ -1,20 +1,20 @@
 {
-  "name": "tadpole-cli",
-  "version": "1.0.0",
-  "description": "tadpole",
-  "main": "index.js",
-  "repository": "https://github.com/WebUnion-core/tadpole-cli.git",
-  "author": "WebUnion",
-  "license": "MIT",
-  "private": false,
-  "bin": {
-    "tadpole": "node index.js"
-  },
-  "scripts": {
-    "test": "node index.js"
-  },
-  "dependencies": {
-    "align-text": "^1.0.2",
-    "chalk": "^2.4.2"
-  }
+    "name": "tadpole-cli",
+    "version": "1.0.0",
+    "description": "tadpole",
+    "main": "index.js",
+    "repository": "https://github.com/WebUnion-core/tadpole-cli.git",
+    "author": "WebUnion",
+    "license": "MIT",
+    "private": false,
+    "bin": {
+        "tadpole": "index.js"
+    },
+    "scripts": {
+        "test": "node index.js"
+    },
+    "dependencies": {
+        "align-text": "^1.0.2",
+        "chalk": "^2.4.2"
+    }
 }

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta content="email=no" name="format-detection" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="full-screen" content="yes" />
+
+    <title>
+        <%= htmlWebpackPlugin.options.title %>
+    </title>
+
+    <script title="公共全局参数">
+    window.public = {
+        userAgent: window.navigator.userAgent,
+        browser: {
+            bISPC: !/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent),
+            bIsIOS: !!navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/),
+            bIsUc: navigator.userAgent.toLowerCase().match(/ucweb/i) == "ucweb",
+            bIsAndroid: navigator.userAgent.toLowerCase().match(/android/i) == "android",
+            bIsAndroidVersion: Number(navigator.userAgent.toLowerCase().substr(navigator.userAgent.toLowerCase().indexOf('android') + 8, 3)),
+            bIsQQ: navigator.userAgent.toLowerCase().match(/qq/i) == "qq",
+            bIsWechat: navigator.userAgent.toLowerCase().match(/micromessenger/i) == "micromessenger",
+            bIsWeibo: navigator.userAgent.toLowerCase().match(/weibo/i) == "weibo",
+            bIsHuawei: navigator.userAgent.toLowerCase().match(/huawei/i) == "huawei"
+        },
+        version: '<%= htmlWebpackPlugin.options.version %>',
+    };
+    </script>
+    <script title="rem计算">
+    (function(doc, win) {
+        var docEl = doc.documentElement;
+        var resizeEvt = 'onorientationchange' in window
+                        ? 'onorientationchange'
+                        : 'resize';
+        var recalc = function() {
+            var clientWidth = Math.min(docEl.clientWidth, win.innerWidth);
+            var fontSize;
+
+            if (clientWidth >= 720) {
+                fontSize = docEl.style.fontSize = '16px';
+                win.public.remFontSize = parseInt(fontSize, 10);
+            } else {
+                fontSize = docEl.style.fontSize = clientWidth * 32 / 720 + 'px';
+                win.public.remFontSize = parseInt(fontSize, 10);
+            }
+        };
+
+        win.addEventListener(resizeEvt, recalc, false);
+        doc.addEventListener('DOMContentLoaded', recalc, false);
+    })(document, window)
+    </script>
+</head>
+
+<body>
+    <main id="root"></main>
+</body>
+</html>

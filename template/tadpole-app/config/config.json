@@ -1,0 +1,16 @@
+{
+    "version": "v1.8.0",
+    "title": "Tadpole",
+    "mode": {
+        "dev": {
+            "port": 2018
+        },
+        "prod": {
+            "port": 8888
+        }
+    },
+    "vendor": [
+        "react",
+        "react-dom"
+    ]
+}
