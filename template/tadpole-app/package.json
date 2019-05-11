@@ -7,8 +7,8 @@
     "author": "WebUnion",
     "private": true,
     "scripts": {
-        "dev": "set ENV=DEV&&webpack-dev-server --profile",
-        "build": "set ENV=PROD&&webpack",
+        "dev": "[[SET_ENV_TYPE]] ENV=DEV&&webpack-dev-server --profile",
+        "build": "[[SET_ENV_TYPE]] ENV=PROD&&webpack",
         "reset-sprite": "node ./bin/reset-sprite.js"
     },
     "dependencies": {

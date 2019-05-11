@@ -50,7 +50,11 @@ module.exports = function setProdMode(webpackConfig) {
     );
 
     // 设置打包入口
-    webpackConfig.entry.bundle = [
-        path.resolve(__dirname, './../src/entry.js'),
-    ];
+    webpackConfig.entry = function () {
+        return {
+            bundle: [
+                path.resolve(__dirname, './../src/entry.js'),
+            ],
+        };
+    };
 };

@@ -53,7 +53,9 @@ spriteSource.forEach(function (item) {
  * @type {Object} webpack基本配置对象
  */
 const webpackConfig = {
-    entry: {},
+    entry: function () {
+        return {};
+    },
     module: {
         rules: [
             {

@@ -70,10 +70,14 @@ module.exports = function setDevMode(webpackConfig) {
     );
 
     // 设置打包入口
-    webpackConfig.entry.bundle = [
-        path.resolve(__dirname, './../src/entry.js'),
-        'react-hot-loader/patch',
-        'webpack-dev-server/client',
-        'webpack/hot/only-dev-server',
-    ];
+    webpackConfig.entry = function () {
+        return {
+            bundle: [
+                path.resolve(__dirname, './../src/entry.js'),
+                'react-hot-loader/patch',
+                'webpack-dev-server/client',
+                'webpack/hot/only-dev-server',
+            ],
+        };
+    };
 }

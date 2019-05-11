@@ -33,11 +33,8 @@ function centerAlign(len, longest, line, lines) {
 
 // 帮助提示内容
 const helpInfo = [
-    '',
     'All parameters: ',
-    '',
     '1. app: use APP mode; ',
-    '',
 ].join('\n');
 
 // 首命令符校验
